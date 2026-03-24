@@ -919,7 +919,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img src="images/top.webp" alt="KAIEN GK PAINTING SERVICE メインビジュアル" class="hero-img" loading="lazy">
+    <img src="images/top.webp?v=20260324" alt="KAIEN GK PAINTING SERVICE メインビジュアル" class="hero-img" loading="lazy">
     <div class="hero-overlay"></div>
     <div class="hero-bottom"></div>
     <div class="hero-watermark">kaien</div>
@@ -1022,7 +1022,7 @@
       <h2 class="section-title">製作料金表</h2>
       <!-- 価格表画像エリア -->
       <div class="price-image-wrap">
-        <img src="images/ryoukin.webp" alt="製作料金表">
+        <img src="images/ryoukin.webp?v=20260324" alt="製作料金表">
       </div>
     </div>
   </section>
@@ -1137,6 +1137,9 @@
       });
   });
 
+  // キャッシュバスティング用のクエリ
+  const imgVer = new Date().getTime();
+
   // 最新Information (WORKS) の取得
   fetch('data/works.json')
     .then(r => r.json())
@@ -1161,16 +1164,14 @@
     .then(data => {
       const grid = document.getElementById('topGalleryGrid');
       if (!grid) return;
-      // 最初の5件（または最初の1件のサブ4枚など、構成に合わせて表示）
-      // ここでは最初の5件のmainImageを順に配置
+      
       const items = data.slice(0, 5);
       const cells = items.map((item, i) => {
         const imgHtml = item.mainImage 
-          ? `<img src="${item.mainImage}" alt="${item.alt || item.title}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+          ? `<img src="${item.mainImage}?v=${imgVer}" alt="${item.alt || item.title}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
           : `<div class="gallery-placeholder">PHOTO ${String(i+1).padStart(2,'0')}</div>`;
         return `<div class="gallery-cell">${imgHtml}</div>`;
       });
-      // 5件未満の場合の埋め合わせ
       while(cells.length < 5) {
         cells.push(`<div class="gallery-cell"><div class="gallery-placeholder">PHOTO ${String(cells.length+1).padStart(2,'0')}</div></div>`);
       }

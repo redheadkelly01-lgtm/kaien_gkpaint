@@ -13,7 +13,7 @@ $allowed_types = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 $allowed_exts  = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
 
 // アップロード先ディレクトリ
-$upload_dir = __DIR__ . '/images/works/';
+$upload_dir = __DIR__ . '/../images/works/';
 
 if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0775, true);

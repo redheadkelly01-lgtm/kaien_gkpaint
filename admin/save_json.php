@@ -16,7 +16,7 @@ if (!in_array($type, ['works', 'gallery'])) {
     exit;
 }
 
-$file = __DIR__ . '/data/' . $type . '.json';
+$file = __DIR__ . '/../data/' . $type . '.json';
 $decoded = json_decode($json_data);
 
 if ($decoded === null) {

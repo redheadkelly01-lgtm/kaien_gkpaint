@@ -551,22 +551,18 @@
     let hiddenBlocks = [];
     let shown = 0;
 
-    function subCell(src, alt) {
-      return src
-        ? `<div class="work-sub-img"><img src="${src}" alt="${alt}" loading="lazy"></div>`
-        : `<div class="work-sub-img"><div class="img-placeholder"><span>${alt}</span></div></div>`;
-    }
+    const imgVer = new Date().getTime();
 
     function createBlock(item, num) {
       const div = document.createElement('div');
       div.className = 'work-block';
       const mainImg = item.mainImage
-        ? `<img src="${item.mainImage}" alt="${item.alt || item.title}" loading="lazy">`
+        ? `<img src="${item.mainImage}?v=${imgVer}" alt="${item.alt || item.title}" loading="lazy">`
         : `<div class="img-placeholder"><span>MAIN IMAGE</span><small>推奨: 縦長（3:4）</small></div>`;
       const subs = [0,1,2,3].map(i => {
         const s = (item.subImages || [])[i];
         return s
-          ? `<div class="work-sub-img"><img src="${s}" alt="${item.alt || item.title} サブ${i+1}" loading="lazy"></div>`
+          ? `<div class="work-sub-img"><img src="${s}?v=${imgVer}" alt="${item.alt || item.title} サブ${i+1}" loading="lazy"></div>`
           : `<div class="work-sub-img"><div class="img-placeholder"><span>SUB 0${i+1}</span></div></div>`;
       }).join('');
       div.innerHTML = `

@@ -308,6 +308,8 @@
   const grid = document.getElementById('worksGrid');
   let allCards = [];
 
+  const imgVer = new Date().getTime();
+
   // カードHTMLを生成
   function createCard(item) {
     const a = document.createElement('a');
@@ -317,7 +319,7 @@
     a.dataset.new = item.isNew ? 'true' : 'false';
 
     const thumbImg = item.thumb
-      ? `<img src="${item.thumb}" alt="${item.title}" loading="lazy">`
+      ? `<img src="${item.thumb}?v=${imgVer}" alt="${item.title}" loading="lazy">`
       : `<div class="thumb-placeholder">THUMBNAIL</div>`;
 
     a.innerHTML = `

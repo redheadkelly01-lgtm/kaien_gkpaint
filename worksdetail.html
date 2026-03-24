@@ -310,6 +310,7 @@
 <script>
   const params = new URLSearchParams(location.search);
   const targetId = params.get('id');
+  const imgVer = new Date().getTime();
 
   function renderBody(blocks) {
     return (blocks || []).map(b => {
@@ -318,13 +319,13 @@
       if (b.type === 'heading3')    return `<h3>${b.text}</h3>`;
       if (b.type === 'imageGrid2') {
         const imgs = b.images.map(im =>
-          `<div class="inline-img"><img src="${im.src}" alt="${im.alt}" loading="lazy"></div>`
+          `<div class="inline-img"><img src="${im.src}?v=${imgVer}" alt="${im.alt}" loading="lazy"></div>`
         ).join('');
         return `<div class="img-grid-2">${imgs}</div>`;
       }
       if (b.type === 'imageGrid3') {
         const imgs = b.images.map(im =>
-          `<div class="inline-img"><img src="${im.src}" alt="${im.alt}" loading="lazy"></div>`
+          `<div class="inline-img"><img src="${im.src}?v=${imgVer}" alt="${im.alt}" loading="lazy"></div>`
         ).join('');
         return `<div class="img-grid-3">${imgs}</div>`;
       }
@@ -349,7 +350,7 @@
       // メインビジュアル
       const visImg = document.getElementById('artVisualImg');
       if (item.mainVisual) {
-        visImg.innerHTML = `<img src="${item.mainVisual}" alt="${item.title} メインビジュアル" loading="lazy">`;
+        visImg.innerHTML = `<img src="${item.mainVisual}?v=${imgVer}" alt="${item.title} メインビジュアル" loading="lazy">`;
       } else {
         visImg.innerHTML = `<div class="visual-placeholder"><span>MAIN VISUAL</span><small>推奨: 16:9（1200×675px 以上）</small></div>`;
       }

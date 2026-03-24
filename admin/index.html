@@ -776,7 +776,7 @@
     fd.append('type', type);
     fd.append('data', data);
     
-    fetch('../save_json.php', { method: 'POST', body: fd })
+    fetch('save_json.php', { method: 'POST', body: fd })
       .then(r => r.json())
       .then(res => {
         if (res.ok) {
@@ -880,7 +880,7 @@
       // サーバー側のcontacts.jsonに書き込む
       const fd = new FormData();
       fd.append('id', id);
-      fetch('../mark_read.php', { method: 'POST', body: fd });
+      fetch('mark_read.php', { method: 'POST', body: fd });
     }
   }
 
@@ -956,7 +956,7 @@
     const fname = document.getElementById('uploadFilename').value.trim();
     if (fname) fd.append('filename', fname);
 
-    fetch('../upload.php', { method: 'POST', body: fd })
+    fetch('upload.php', { method: 'POST', body: fd })
       .then(r => r.json())
       .then(data => {
         if (data.ok) {
@@ -1031,7 +1031,7 @@
       fd.append('filename', `${currentFilenamePrefix}_${currentFileSuffix}`);
     }
 
-    fetch('../upload.php', { method: 'POST', body: fd })
+    fetch('upload.php', { method: 'POST', body: fd })
       .then(r => r.json())
       .then(data => {
         if (data.ok) {
