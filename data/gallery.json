@@ -1,0 +1,76 @@
+[
+  {
+    "id": "g001",
+    "title": "作品タイトル",
+    "scale": "1/8",
+    "year": "2026",
+    "mainImage": "images/works/01_main.webp",
+    "alt": "KAIEN GK 1/8スケール フィギュア サフレス塗装仕上げ",
+    "subImages": [
+      "images/works/01_sub1.webp",
+      "images/works/01_sub2.webp",
+      "images/works/01_sub3.webp"
+    ],
+    "caption": "キャプション・使用塗料・製作コメントなど"
+  },
+  {
+    "id": "g002",
+    "title": "作品タイトル",
+    "scale": "1/7",
+    "year": "2026",
+    "mainImage": "images/works/02_main.webp",
+    "alt": "KAIEN GK 1/7スケール フィギュア グラデーション塗装",
+    "subImages": [
+      "images/works/02_sub1.webp",
+      "images/works/02_sub2.webp",
+      "images/works/02_sub3.webp",
+      "images/works/02_sub4.webp"
+    ],
+    "caption": "キャプション・使用塗料・製作コメントなど"
+  },
+  {
+    "id": "g003",
+    "title": "作品タイトル",
+    "scale": "1/6",
+    "year": "2025",
+    "mainImage": "images/works/03_main.webp",
+    "alt": "KAIEN GK 1/6スケール フィギュア サフレス塗装",
+    "subImages": [
+      "images/works/03_sub1.webp",
+      "images/works/03_sub2.webp",
+      "images/works/03_sub3.webp",
+      "images/works/03_sub4.webp"
+    ],
+    "caption": "キャプション・使用塗料・製作コメントなど"
+  },
+  {
+    "id": "g004",
+    "title": "作品タイトル",
+    "scale": "1/8",
+    "year": "2025",
+    "mainImage": "images/works/04_main.webp",
+    "alt": "KAIEN GK 1/8スケール フィギュア 塗装代行仕上げ",
+    "subImages": [
+      "images/works/04_sub1.webp",
+      "images/works/04_sub2.webp",
+      "images/works/04_sub3.webp",
+      "images/works/04_sub4.webp"
+    ],
+    "caption": "キャプション・使用塗料・製作コメントなど"
+  },
+  {
+    "id": "g005",
+    "title": "作品タイトル",
+    "scale": "1/7",
+    "year": "2024",
+    "mainImage": "images/works/05_main.webp",
+    "alt": "KAIEN GK 1/7スケール フィギュア 完成品",
+    "subImages": [
+      "images/works/05_sub1.webp",
+      "images/works/05_sub2.webp",
+      "images/works/05_sub3.webp",
+      "images/works/05_sub4.webp"
+    ],
+    "caption": "キャプション・使用塗料・製作コメントなど"
+  }
+]

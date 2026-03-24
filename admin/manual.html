@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更新マニュアル — KAIEN GK PAINTING SERVICE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --surface: #1a1a1a; --surface2: #222;
+      --border: #2a2a2a; --accent: #c0392b;
+      --text: #e8e8e8; --muted: #b0b0b0; --dim: #666;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; line-height: 1.8; }
+    a { color: #5b9bd5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header { background: #111; border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .admin-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: .2em; display: flex; align-items: center; gap: 10px; }
+    .admin-logo-icon { width: 36px; height: 36px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .admin-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .admin-badge { font-size: 10px; font-weight: 600; letter-spacing: .3em; color: var(--dim); border: 1px solid var(--border); padding: 2px 8px; }
+    .header-link { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .15em; color: var(--muted); transition: color .2s; }
+    .header-link:hover { color: var(--text); text-decoration: none; }
+
+    .content { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+
+    /* タイトル */
+    h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px; }
+    .lead { color: var(--muted); font-size: 13px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+
+    /* セクション */
+    h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    h3 { font-size: 14px; font-weight: 700; color: var(--muted); margin: 24px 0 12px; letter-spacing: .05em; }
+
+    /* 本文 */
+    p { margin-bottom: 12px; color: var(--muted); }
+    strong { color: var(--text); font-weight: 700; }
+
+    /* リスト */
+    ol, ul { padding-left: 20px; margin-bottom: 16px; color: var(--muted); }
+    li { margin-bottom: 6px; line-height: 1.8; }
+    li code { background: #111; border: 1px solid var(--border); padding: 1px 6px; font-size: 12px; color: #a8d8a8; font-family: 'Courier New', monospace; }
+    li strong { color: var(--text); }
+
+    /* テーブル */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+    th { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--border); }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+    td code { background: #111; border: 1px solid var(--border); padding: 1px 6px; font-size: 12px; color: #a8d8a8; font-family: 'Courier New', monospace; }
+    tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* コードブロック */
+    pre { background: #060606; border: 1px solid var(--border); padding: 20px; font-family: 'Courier New', monospace; font-size: 12px; color: #a8d8a8; overflow-x: auto; margin: 16px 0 24px; white-space: pre; line-height: 1.7; }
+
+    /* 区切り線 */
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    /* フロー図 */
+    .flow { background: var(--surface); border: 1px solid var(--border); padding: 24px 32px; margin: 16px 0 24px; }
+    .flow-step { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+    .flow-step:last-child { margin-bottom: 0; }
+    .flow-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent); min-width: 24px; }
+    .flow-label { font-size: 13px; color: var(--text); }
+    .flow-arrow { color: var(--dim); font-size: 11px; margin-left: 4px; }
+
+    /* TIPボックス */
+    .tip { background: rgba(91,155,213,.08); border: 1px solid rgba(91,155,213,.25); border-left: 3px solid #5b9bd5; padding: 14px 16px; margin: 16px 0 24px; font-size: 13px; color: var(--muted); }
+    .tip-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #5b9bd5; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="admin-logo">
+    <div class="admin-logo-icon"><img src="../icon.webp" alt="KAIEN"></div>
+    KAIEN
+    <span class="admin-badge">MANUAL</span>
+  </div>
+  <a href="index.html" class="header-link">← 管理画面に戻る</a>
+</header>
+
+<div class="content">
+
+  <h1>WORKS・GALLERY 更新マニュアル</h1>
+  <p class="lead">VPS（レンタルサーバー）での運用を前提としています。</p>
+
+  <!-- 基本の流れ -->
+  <h2>基本の流れ</h2>
+  <div class="flow">
+    <div class="flow-step"><span class="flow-num">①</span><span class="flow-label">管理画面で記事・作品を登録・編集</span></div>
+    <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label" style="color:var(--dim);"></span></div>
+    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">JSONをダウンロード</span></div>
+    <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label"></span></div>
+    <div class="flow-step"><span class="flow-num">③</span><span class="flow-label">FTPでVPSにアップロード（JSONと画像）</span></div>
+    <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label"></span></div>
+    <div class="flow-step"><span class="flow-num">④</span><span class="flow-label">ブラウザでサイトを確認</span></div>
+  </div>
+
+  <hr>
+
+  <!-- WORKS -->
+  <h2>WORKS を更新する</h2>
+
+  <h3>記事を追加する</h3>
+  <ol>
+    <li>ブラウザで <code>https://ドメイン名/admin/index.html</code> を開く</li>
+    <li>「WORKS管理」タブ → 「<strong>+ 新規作成</strong>」</li>
+    <li>各フィールドを入力する</li>
+  </ol>
+
+  <table>
+    <thead><tr><th>フィールド</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>ID</td><td>記事ID（例: <code>007</code>）。他と重複しない連番</td></tr>
+      <tr><td>日付</td><td>表示用（例: <code>2026.06.01</code>）</td></tr>
+      <tr><td>カテゴリ</td><td>PROJECT / CONTEST / OTHER</td></tr>
+      <tr><td>タイトル</td><td>記事タイトル</td></tr>
+      <tr><td>スケール</td><td>例: <code>1/8 SCALE · RESIN KIT</code></td></tr>
+      <tr><td>抜粋</td><td>一覧カードに表示される短い説明文</td></tr>
+      <tr><td>サムネイル画像パス</td><td>例: <code>images/works/thumb07.webp</code></td></tr>
+      <tr><td>メインビジュアル画像パス</td><td>詳細ページの大きい画像</td></tr>
+      <tr><td>NEWバッジ</td><td>チェックするとNEWフィルタに表示</td></tr>
+    </tbody>
+  </table>
+
+  <ol start="4">
+    <li><strong>本文コンテンツ</strong>をブロック単位で追加
+      <ul>
+        <li><code>+ テキスト段落</code> → 本文テキスト</li>
+        <li><code>+ 見出しH2</code> → セクション見出し</li>
+        <li><code>+ 画像×2 / ×3</code> → インライン画像グリッド</li>
+      </ul>
+    </li>
+    <li>「<strong>保存</strong>」をクリック</li>
+  </ol>
+
+  <h3>記事を編集・削除する</h3>
+  <ul>
+    <li>「<strong>編集</strong>」→ 内容が読み込まれる → 変更後「保存」</li>
+    <li>「<strong>削除</strong>」→ 確認後削除</li>
+  </ul>
+
+  <hr>
+
+  <!-- GALLERY -->
+  <h2>GALLERY を更新する</h2>
+
+  <h3>作品を追加する</h3>
+  <ol>
+    <li>「GALLERY管理」タブ → 「<strong>+ 新規作成</strong>」</li>
+    <li>各フィールドを入力する</li>
+  </ol>
+
+  <table>
+    <thead><tr><th>フィールド</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>ID</td><td>作品ID（例: <code>g006</code>）。他と重複しない</td></tr>
+      <tr><td>タイトル</td><td>作品名</td></tr>
+      <tr><td>スケール</td><td><code>1/8</code> のように分母だけ入力</td></tr>
+      <tr><td>年</td><td>例: <code>2026</code></td></tr>
+      <tr><td>メイン画像パス</td><td>縦長メイン画像のパス</td></tr>
+      <tr><td>サブ画像1〜4</td><td>右側2×2グリッドのサブ画像</td></tr>
+      <tr><td>キャプション</td><td>使用塗料・制作コメントなど</td></tr>
+    </tbody>
+  </table>
+
+  <ol start="3">
+    <li>「<strong>保存</strong>」をクリック</li>
+  </ol>
+
+  <hr>
+
+  <!-- 画像アップロード -->
+  <h2>画像をアップロードする</h2>
+  <p>管理画面から直接VPSサーバーに画像をアップロードできます。</p>
+
+  <ol>
+    <li>「<strong>画像アップロード</strong>」タブを開く</li>
+    <li>（任意）ファイル名を指定するフィールドに入力（例: <code>thumb01</code>）</li>
+    <li>枠内に画像をドラッグ&amp;ドロップ、またはクリックして選択</li>
+    <li>アップロード完了後、「<strong>パスをコピー</strong>」をクリック</li>
+    <li>WORKSやGALLERYの入力フォームの該当欄にペーストする</li>
+  </ol>
+
+  <table>
+    <thead><tr><th>画像の種類</th><th>パスの例</th></tr></thead>
+    <tbody>
+      <tr><td>WORKSサムネイル</td><td><code>images/works/thumb01.webp</code></td></tr>
+      <tr><td>WORKS詳細メイン</td><td><code>images/works/detail01_main.webp</code></td></tr>
+      <tr><td>WORKS詳細インライン</td><td><code>images/works/detail01_a.webp</code></td></tr>
+      <tr><td>GALLERYメイン</td><td><code>images/works/01_main.webp</code></td></tr>
+      <tr><td>GALLERYサブ</td><td><code>images/works/01_sub1.webp</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip">
+    <div class="tip-label">💡 TIP</div>
+    推奨形式は <strong>WebP</strong>（軽量・高画質）です。<br>
+    JPEGやPNGもアップロードでき、最大ファイルサイズは <strong>10MB</strong> まで対応しています。
+  </div>
+
+  <hr>
+
+  <!-- JSONアップロード -->
+  <h2>サイトに反映する（JSONアップロード）</h2>
+  <p>管理画面での保存はブラウザ内の一時保存です。<br>
+  <strong>JSONをダウンロードしてVPSにアップロードして初めて反映されます。</strong></p>
+
+  <h3>手順</h3>
+  <ol>
+    <li>「<strong>JSONエクスポート</strong>」タブを開く</li>
+    <li>更新内容に応じてクリック
+      <ul>
+        <li><code>works.json を生成</code> → WORKS更新時</li>
+        <li><code>gallery.json を生成</code> → GALLERY更新時</li>
+      </ul>
+    </li>
+    <li>「<strong>ファイルにダウンロード</strong>」</li>
+    <li>FTPクライアント（FileZilla等）でVPSの <strong><code>data/</code></strong> フォルダに<strong>上書きアップロード</strong></li>
+    <li>ブラウザでサイトをリロードして確認</li>
+  </ol>
+
+  <hr>
+
+  <!-- ファイル構成 -->
+  <h2>ファイル構成（参考）</h2>
+  <pre>kaien2/（サーバールート）
+├── admin/
+│   ├── index.html        ← 管理画面
+│   └── manual.html       ← このページ
+├── data/
+│   ├── works.json        ← WORKS記事データ  ★更新対象
+│   ├── gallery.json      ← GALLERY作品データ ★更新対象
+│   └── contacts.json     ← お問い合わせデータ（自動生成）
+├── images/
+│   └── works/            ← 画像置き場       ★更新対象（管理画面からUP可能）
+├── upload.php            ← 画像アップロード処理
+├── contact.php           ← お問い合わせ受信
+├── mark_read.php         ← 既読処理
+├── index.html
+├── works.html
+├── gallery.html
+└── worksdetail.html</pre>
+
+</div>
+</body>
+</html>

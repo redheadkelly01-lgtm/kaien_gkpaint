@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORKS — KAIEN GK PAINTING SERVICE</title>
+  <meta name="description" content="KAIEN GK PAINTING SERVICEの制作日誌・WORKSページ。ガレージキットの制作進捗・完成報告・イベント参加記録など、日々の活動をお届けします。">
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WORKS — KAIEN GK PAINTING SERVICE">
+  <meta property="og:description" content="ガレージキットの制作進捗・完成報告・イベント参加記録など、日々の活動をお届けします。">
+  <meta property="og:url" content="http://133.88.116.248/works.html">
+  <meta property="og:image" content="http://133.88.116.248/icon.webp">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --bg2: #111111; --surface: #1a1a1a; --border: #2a2a2a;
+      --accent: #c0392b; --accent2: #e74c3c;
+      --text: #e8e8e8; --text-muted: #b0b0b0; --text-dim: #666;
+      --nav-h: 60px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; line-height: 1.7; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    header { position: fixed; top:0; left:0; right:0; height: var(--nav-h); background: rgba(10,10,10,0.93); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index:100; display:flex; align-items:center; justify-content:space-between; padding: 0 40px; }
+    .logo { display:flex; align-items:center; gap:10px; }
+    .logo-icon { width:36px; height:36px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-size:18px; font-weight:700; color:#fff; }
+    .logo-text { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:500; letter-spacing:.15em; line-height:1.3; }
+    .logo-text span { display:block; font-size:10px; color:var(--text-muted); letter-spacing:.2em; }
+    nav { display:flex; align-items:center; gap:32px; }
+    nav a { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:500; letter-spacing:.15em; color:var(--text-muted); transition:color .2s; text-transform:uppercase; }
+    nav a:hover { color:#fff; }
+    nav a.active { color:var(--accent); }
+
+    /* ─── PAGE HEADER ─────────────────────────────── */
+    .page-header {
+      margin-top: var(--nav-h);
+      padding: 72px 40px 0;
+    }
+    .page-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .page-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 52px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text); line-height: 1;
+    }
+    .page-desc {
+      margin-top: 16px; font-size: 13px;
+      color: var(--text-muted); line-height: 1.9;
+      max-width: 560px;
+    }
+
+    /* ─── FILTER ──────────────────────────────────── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 48px 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 12px 24px;
+      border: none; background: transparent;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color .2s, border-color .2s;
+      position: relative;
+    }
+    .filter-btn:hover { color: var(--text-muted); }
+    .filter-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .filter-count {
+      display: inline-block;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: .1em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+      color: var(--text-dim);
+    }
+    .filter-btn.active .filter-count { background: rgba(192,57,43,.15); border-color: rgba(192,57,43,.3); color: var(--accent); }
+
+    /* ─── WORKS GRID ──────────────────────────────── */
+    .works-main { padding: 40px 40px 120px; }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    /* カード */
+    .work-card {
+      display: block;
+      position: relative;
+      background: var(--surface);
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .work-card.hidden { display: none; }
+    .work-card.fade-in { animation: fadeIn .4s ease forwards; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+    /* サムネ */
+    .card-thumb {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      position: relative;
+      background: #111;
+    }
+    .card-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .85;
+      transition: transform .5s ease, opacity .3s;
+    }
+    .work-card:hover .card-thumb img { transform: scale(1.05); opacity: 1; }
+
+    /* サムネプレースホルダー */
+    .thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: .2em;
+      border: 1px dashed #222;
+    }
+
+    /* カテゴリバッジ */
+    .card-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      padding: 3px 10px;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--text-muted);
+    }
+    .card-badge.project { color: #5b9bd5; border-color: rgba(91,155,213,.3); }
+    .card-badge.contest { color: #e5a23a; border-color: rgba(229,162,58,.3); }
+    .card-badge.other   { color: var(--text-dim); }
+
+    /* ホバーオーバーレイ */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+    .work-card:hover .card-overlay { opacity: 1; }
+    .card-overlay-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+    .card-overlay-label::after { content: ' →'; }
+
+    /* カード本文 */
+    .card-body {
+      padding: 18px 20px 22px;
+      border-top: 1px solid var(--border);
+    }
+    .card-meta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: .15em;
+      color: var(--text-dim); text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); }
+    .card-title {
+      font-size: 14px; font-weight: 700;
+      color: var(--text); line-height: 1.4;
+      margin-bottom: 6px;
+      transition: color .2s;
+    }
+    .work-card:hover .card-title { color: var(--accent2); }
+    .card-excerpt {
+      font-size: 12px; color: var(--text-muted);
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* 件数表示 */
+    .works-count {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: .2em;
+      color: var(--text-dim); text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .works-count span { color: var(--text-muted); }
+
+    /* 空状態 */
+    .works-empty {
+      display: none;
+      padding: 80px 0;
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; letter-spacing: .2em;
+      color: var(--text-dim); text-transform: uppercase;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer { padding:24px 40px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:.15em; color:var(--text-dim); }
+    .footer-top { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); transition:color .2s; }
+    .footer-top:hover { color:var(--text); }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      .works-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      header { padding: 0 20px; }
+      nav { gap: 14px; }
+      nav a { font-size: 11px; }
+      .page-header { padding: 56px 20px 0; }
+      .page-title { font-size: 36px; }
+      .filter-bar { margin: 36px 20px 0; overflow-x: auto; }
+      .works-main { padding: 32px 20px 80px; }
+      .works-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">K</div>
+    <div class="logo-text">KAIEN<span>GK PAINTING SERVICE</span></div>
+  </div>
+  <nav>
+    <a href="index.html">TOP</a>
+    <a href="works.html" class="active">WORKS</a>
+    <a href="gallery.html">GALLERY</a>
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#contact">CONTACT</a>
+  </nav>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">制作日誌 / お知らせ</div>
+  <h1 class="page-title">WORKS</h1>
+  <p class="page-desc">製作の進捗報告・完成報告・イベント参加記録など、日々の活動をお届けします。</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">ALL <span class="filter-count" id="cnt-all">0</span></button>
+  <button class="filter-btn" data-filter="new">NEW <span class="filter-count" id="cnt-new">0</span></button>
+  <button class="filter-btn" data-filter="project">PROJECT <span class="filter-count" id="cnt-project">0</span></button>
+  <button class="filter-btn" data-filter="contest">CONTEST <span class="filter-count" id="cnt-contest">0</span></button>
+  <button class="filter-btn" data-filter="other">OTHER <span class="filter-count" id="cnt-other">0</span></button>
+</div>
+
+<!-- WORKS LIST -->
+<div class="works-main">
+  <div class="works-count">SHOWING <span id="shownCount">0</span> POSTS</div>
+  <div class="works-grid" id="worksGrid"></div>
+  <div class="works-empty" id="worksEmpty">NO POSTS FOUND</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 KAIEN GK PAINTING SERVICE</div>
+  <a href="#" class="footer-top">↑ PAGE TOP</a>
+</footer>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const shownCountEl = document.getElementById('shownCount');
+  const emptyEl = document.getElementById('worksEmpty');
+  const grid = document.getElementById('worksGrid');
+  let allCards = [];
+
+  // カードHTMLを生成
+  function createCard(item) {
+    const a = document.createElement('a');
+    a.className = 'work-card';
+    a.href = `worksdetail.html?id=${item.id}`;
+    a.dataset.category = item.category;
+    a.dataset.new = item.isNew ? 'true' : 'false';
+
+    const thumbImg = item.thumb
+      ? `<img src="${item.thumb}" alt="${item.title}" loading="lazy">`
+      : `<div class="thumb-placeholder">THUMBNAIL</div>`;
+
+    a.innerHTML = `
+      <div class="card-thumb">
+        ${thumbImg}
+        <span class="card-badge ${item.category}">${item.category.toUpperCase()}</span>
+        <div class="card-overlay"><span class="card-overlay-label">READ MORE</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>${item.date}</span>
+          <span class="card-meta-dot"></span>
+          <span>${item.category.toUpperCase()}</span>
+        </div>
+        <div class="card-title">${item.title}</div>
+        <p class="card-excerpt">${item.excerpt}</p>
+      </div>`;
+    return a;
+  }
+
+  // フィルタ適用
+  function applyFilter(f) {
+    let shown = 0;
+    allCards.forEach((c, i) => {
+      const match = f === 'all' ? true
+        : f === 'new' ? c.dataset.new === 'true'
+        : c.dataset.category === f;
+      if (match) {
+        c.classList.remove('hidden');
+        c.style.animationDelay = (shown * 0.05) + 's';
+        c.classList.remove('fade-in');
+        void c.offsetWidth;
+        c.classList.add('fade-in');
+        shown++;
+      } else {
+        c.classList.add('hidden');
+        c.classList.remove('fade-in');
+      }
+    });
+    shownCountEl.textContent = shown;
+    emptyEl.style.display = shown === 0 ? 'block' : 'none';
+  }
+
+  // JSONを読み込んで描画
+  fetch('data/works.json')
+    .then(r => r.json())
+    .then(data => {
+      const counts = { all: data.length, project: 0, contest: 0, other: 0, new: 0 };
+      data.forEach(item => {
+        if (counts[item.category] !== undefined) counts[item.category]++;
+        if (item.isNew) counts.new++;
+        const card = createCard(item);
+        grid.appendChild(card);
+        allCards.push(card);
+      });
+      document.getElementById('cnt-all').textContent     = counts.all;
+      document.getElementById('cnt-new').textContent     = counts.new;
+      document.getElementById('cnt-project').textContent = counts.project;
+      document.getElementById('cnt-contest').textContent = counts.contest;
+      document.getElementById('cnt-other').textContent   = counts.other;
+      shownCountEl.textContent = counts.all;
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          applyFilter(btn.dataset.filter);
+        });
+      });
+    })
+    .catch(() => {
+      emptyEl.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>

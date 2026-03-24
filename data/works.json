@@ -1,0 +1,145 @@
+[
+  {
+    "id": "001",
+    "title": "もりのあるまち 制 有栖彩図① 制作開始",
+    "date": "2026.05.13",
+    "category": "project",
+    "isNew": true,
+    "excerpt": "本日より製作をスタートしました。サフレス塗装で透明感を出すため、まずは下地処理から丁寧に進めていきます。",
+    "thumb": "images/works/thumb01.webp",
+    "mainVisual": "images/works/detail01_main.webp",
+    "mainVisualCaption": "キャプション：組み立て前の状態 / 撮影日：2026.05.13",
+    "scale": "1/8 SCALE · RESIN KIT",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "本日より「もりのあるまち」様制作の有栖彩図①の製作をスタートしました。今回はオーナー様のご要望により、サフレス塗装をベースに透明感のある肌表現を目指します。"
+      },
+      {
+        "type": "heading2",
+        "text": "下地処理"
+      },
+      {
+        "type": "paragraph",
+        "text": "まずはパーツのバリ・湯口処理から。今回のキットは精度が高く、パーツの合わせ目も最小限で非常に組みやすい構成でした。洗浄・乾燥後、シリコンオフで脱脂を行い下地準備が完了しています。"
+      },
+      {
+        "type": "imageGrid2",
+        "images": [
+          { "src": "images/works/detail01_a.webp", "alt": "" },
+          { "src": "images/works/detail01_b.webp", "alt": "" }
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "サフレス下塗り"
+      },
+      {
+        "type": "paragraph",
+        "text": "クレオスのラッカー系塗料をベースに、肌色の下塗りを行いました。サフレスのため、白→薄橙→肌色の順で薄く重ね塗りしています。透明感を出すためにここでの色の積み重ねが非常に重要なポイントになります。"
+      },
+      {
+        "type": "imageGrid3",
+        "images": [
+          { "src": "images/works/detail01_c.webp", "alt": "" },
+          { "src": "images/works/detail01_d.webp", "alt": "" },
+          { "src": "images/works/detail01_e.webp", "alt": "" }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "次回は顔の塗装に入ります。アイペイントが完成したらまた報告いたします。引き続きよろしくお願いします。"
+      }
+    ]
+  },
+  {
+    "id": "002",
+    "title": "コンテスト入賞のご報告",
+    "date": "2026.03.06",
+    "category": "contest",
+    "isNew": true,
+    "excerpt": "ガレージキットフェスティバル2026 エアブラシ・フィギュア塗装部門にて最高賞を受賞いたしました。",
+    "thumb": "images/works/thumb02.webp",
+    "mainVisual": "images/works/detail02_main.webp",
+    "mainVisualCaption": "",
+    "scale": "",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "ガレージキットフェスティバル2026 エアブラシ・フィギュア塗装部門において最高賞を受賞いたしました。ご支援いただいた皆様に心より御礼申し上げます。"
+      }
+    ]
+  },
+  {
+    "id": "003",
+    "title": "もりのあるまち 制 有栖彩図① 完成",
+    "date": "2026.03.06",
+    "category": "project",
+    "isNew": false,
+    "excerpt": "前作が無事完成しました。今回はウェザリングを加えてより深みのある仕上がりを目指しました。",
+    "thumb": "images/works/thumb03.webp",
+    "mainVisual": "images/works/detail03_main.webp",
+    "mainVisualCaption": "",
+    "scale": "1/8 SCALE · RESIN KIT",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "前作が無事完成しました。今回はウェザリングを加えてより深みのある仕上がりを目指しました。"
+      }
+    ]
+  },
+  {
+    "id": "004",
+    "title": "使用塗料・道具のご紹介",
+    "date": "2026.01.20",
+    "category": "other",
+    "isNew": false,
+    "excerpt": "よくご質問いただく塗料・エアブラシ・その他道具類についてまとめました。参考になれば幸いです。",
+    "thumb": "images/works/thumb04.webp",
+    "mainVisual": "",
+    "mainVisualCaption": "",
+    "scale": "",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "よくご質問いただく塗料・エアブラシ・その他道具類についてまとめました。参考になれば幸いです。"
+      }
+    ]
+  },
+  {
+    "id": "005",
+    "title": "冬イベント向けデコマス 進捗報告",
+    "date": "2025.11.10",
+    "category": "project",
+    "isNew": false,
+    "excerpt": "冬のガレージキットイベントに向けたデコマス製作の途中経過です。肌の発色を中心にご覧ください。",
+    "thumb": "images/works/thumb05.webp",
+    "mainVisual": "",
+    "mainVisualCaption": "",
+    "scale": "1/7 SCALE",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "冬のガレージキットイベントに向けたデコマス製作の途中経過です。肌の発色を中心にご覧ください。"
+      }
+    ]
+  },
+  {
+    "id": "006",
+    "title": "ご依頼受付を再開しました",
+    "date": "2025.09.03",
+    "category": "other",
+    "isNew": false,
+    "excerpt": "しばらく満枠となっておりましたご依頼受付を再開しました。お気軽にお問い合わせください。",
+    "thumb": "images/works/thumb06.webp",
+    "mainVisual": "",
+    "mainVisualCaption": "",
+    "scale": "",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "しばらく満枠となっておりましたご依頼受付を再開しました。お気軽にお問い合わせください。"
+      }
+    ]
+  }
+]

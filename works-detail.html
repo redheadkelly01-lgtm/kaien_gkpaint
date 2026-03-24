@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>制作報告 — KAIEN GK PAINTING SERVICE</title>
+  <meta name="description" content="KAIEN GK PAINTING SERVICEのガレージキット制作報告ページ。塗装工程の詳細や使用塗料、仕上がりのコメントをご紹介します。">
+  <!-- OGP -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="制作報告 — KAIEN GK PAINTING SERVICE">
+  <meta property="og:description" content="ガレージキット塗装の工程詳細や使用塗料、仕上がりのコメントをご紹介。">
+  <meta property="og:url" content="http://133.88.116.248/works-detail.html">
+  <meta property="og:image" content="http://133.88.116.248/icon.webp">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --bg2: #111111; --surface: #1a1a1a; --border: #2a2a2a;
+      --accent: #c0392b; --accent2: #e74c3c;
+      --text: #e8e8e8; --text-muted: #b0b0b0; --text-dim: #666;
+      --nav-h: 60px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; line-height: 1.7; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    header { position: fixed; top:0; left:0; right:0; height: var(--nav-h); background: rgba(10,10,10,0.93); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index:100; display:flex; align-items:center; justify-content:space-between; padding: 0 40px; }
+    .logo { display:flex; align-items:center; gap:10px; }
+    .logo-icon { width:36px; height:36px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-size:18px; font-weight:700; color:#fff; }
+    .logo-text { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:500; letter-spacing:.15em; line-height:1.3; }
+    .logo-text span { display:block; font-size:10px; color:var(--text-muted); letter-spacing:.2em; }
+    nav { display:flex; align-items:center; gap:32px; }
+    nav a { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:500; letter-spacing:.15em; color:var(--text-muted); transition:color .2s; text-transform:uppercase; }
+    nav a:hover { color:#fff; }
+    nav a.active { color:var(--accent); }
+
+    /* ─── BREADCRUMB ──────────────────────────────── */
+    .breadcrumb {
+      margin-top: var(--nav-h);
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--text-dim);
+    }
+    .breadcrumb a { color: var(--text-dim); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--text-muted); }
+    .breadcrumb-sep { color: var(--border); }
+    .breadcrumb-current { color: var(--text-muted); }
+
+    /* ─── ARTICLE HEADER ──────────────────────────── */
+    .article-header {
+      padding: 56px 40px 48px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .article-badge {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .25em; text-transform: uppercase;
+      padding: 4px 12px;
+      background: rgba(192,57,43,.13);
+      color: var(--accent2);
+      border: 1px solid rgba(192,57,43,.3);
+      margin-bottom: 20px;
+    }
+    .article-title {
+      font-size: 28px; font-weight: 700;
+      color: var(--text); line-height: 1.4;
+      letter-spacing: .02em;
+      margin-bottom: 20px;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; letter-spacing: .15em;
+      color: var(--text-dim); text-transform: uppercase;
+    }
+    .article-meta-item { display: flex; align-items: center; gap: 6px; }
+
+    /* ─── MAIN VISUAL ─────────────────────────────── */
+    .article-visual {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto 56px;
+      padding: 0 40px;
+    }
+    .article-visual-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--surface);
+      overflow: hidden;
+      position: relative;
+    }
+    .article-visual-img img { width: 100%; height: 100%; object-fit: cover; }
+    .visual-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; letter-spacing: .2em;
+      border: 1px dashed #222;
+    }
+    .visual-placeholder small { font-size: 10px; color: #333; }
+    .article-visual-caption {
+      font-size: 12px; color: var(--text-dim);
+      margin-top: 10px; line-height: 1.6;
+      padding-left: 2px;
+    }
+
+    /* ─── ARTICLE BODY ────────────────────────────── */
+    .article-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+    .article-body p {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 2; margin-bottom: 24px;
+    }
+    .article-body h2 {
+      font-size: 18px; font-weight: 700;
+      color: var(--text); margin: 48px 0 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+    }
+    .article-body h3 {
+      font-size: 15px; font-weight: 700;
+      color: var(--text); margin: 32px 0 12px;
+    }
+
+    /* インライン画像グリッド */
+    .img-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin: 32px 0;
+    }
+    .img-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      margin: 32px 0;
+    }
+    .inline-img {
+      aspect-ratio: 1 / 1;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .inline-img img { width: 100%; height: 100%; object-fit: cover; opacity: .88; transition: opacity .3s; }
+    .inline-img:hover img { opacity: 1; }
+    .inline-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: .15em;
+      border: 1px dashed #222;
+    }
+
+    /* ─── DIVIDER ─────────────────────────────────── */
+    .article-divider {
+      max-width: 860px;
+      margin: 0 auto;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 56px;
+    }
+
+    /* ─── PREV / NEXT ─────────────────────────────── */
+    .post-nav {
+      max-width: 860px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .post-nav-item {
+      display: block;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: border-color .2s, background .2s;
+    }
+    .post-nav-item:hover { border-color: var(--accent); background: rgba(192,57,43,.05); }
+    .post-nav-item.next { text-align: right; }
+    .post-nav-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 6px;
+    }
+    .post-nav-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--text-muted); line-height: 1.4;
+      transition: color .2s;
+    }
+    .post-nav-item:hover .post-nav-title { color: var(--text); }
+
+    /* ─── BACK LINK ───────────────────────────────── */
+    .back-wrap {
+      max-width: 860px;
+      margin: 0 auto 120px;
+      padding: 0 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 12px 32px;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .back-link::before { content: '←'; }
+    .back-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer { padding:24px 40px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:.15em; color:var(--text-dim); }
+    .footer-top { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); transition:color .2s; }
+    .footer-top:hover { color:var(--text); }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 600px) {
+      header { padding: 0 20px; }
+      nav { gap: 14px; }
+      nav a { font-size: 11px; }
+      .breadcrumb { padding: 16px 20px; }
+      .article-header, .article-visual, .article-body, .post-nav, .back-wrap { padding-left: 20px; padding-right: 20px; }
+      .article-title { font-size: 22px; }
+      .img-grid-2, .img-grid-3 { grid-template-columns: 1fr 1fr; }
+      .post-nav { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">K</div>
+    <div class="logo-text">KAIEN<span>GK PAINTING SERVICE</span></div>
+  </div>
+  <nav>
+    <a href="index.html">TOP</a>
+    <a href="works.html" class="active">WORKS</a>
+    <a href="gallery.html">GALLERY</a>
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#contact">CONTACT</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">TOP</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="works.html">WORKS</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">もりのあるまち 制 有栖彩図① 制作開始</span>
+</div>
+
+<!-- ARTICLE HEADER -->
+<div class="article-header">
+  <div class="article-badge">PROJECT</div>
+  <h1 class="article-title">もりのあるまち 制 有栖彩図①<br>制作開始のご報告</h1>
+  <div class="article-meta">
+    <div class="article-meta-item">
+      <span>📅</span>
+      <span>2026.05.13</span>
+    </div>
+    <div class="article-meta-item">
+      <span>🏷</span>
+      <span>1/8 SCALE · RESIN KIT</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN VISUAL -->
+<div class="article-visual">
+  <div class="article-visual-img">
+    <!-- <img src="images/works/detail01_main.webp" alt="メイン画像"> -->
+    <div class="visual-placeholder">
+      <span>MAIN VISUAL</span>
+      <small>推奨: 16:9（1200 × 675px 以上）</small>
+    </div>
+  </div>
+  <p class="article-visual-caption">キャプション：組み立て前の状態 / 撮影日：2026.05.13</p>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <p>
+    本日より「もりのあるまち」様制作の有栖彩図①の製作をスタートしました。
+    今回はオーナー様のご要望により、サフレス塗装をベースに透明感のある肌表現を目指します。
+  </p>
+
+  <h2>下地処理</h2>
+  <p>
+    まずはパーツのバリ・湯口処理から。今回のキットは精度が高く、パーツの合わせ目も最小限で非常に組みやすい構成でした。
+    洗浄・乾燥後、シリコンオフで脱脂を行い下地準備が完了しています。
+  </p>
+
+  <!-- 2枚グリッド -->
+  <div class="img-grid-2">
+    <div class="inline-img">
+      <!-- <img src="images/works/detail01_a.webp" alt=""> -->
+      <div class="inline-img-placeholder">PHOTO A</div>
+    </div>
+    <div class="inline-img">
+      <!-- <img src="images/works/detail01_b.webp" alt=""> -->
+      <div class="inline-img-placeholder">PHOTO B</div>
+    </div>
+  </div>
+
+  <h2>サフレス下塗り</h2>
+  <p>
+    クレオスのラッカー系塗料をベースに、肌色の下塗りを行いました。
+    サフレスのため、白→薄橙→肌色の順で薄く重ね塗りしています。
+    透明感を出すためにここでの色の積み重ねが非常に重要なポイントになります。
+  </p>
+
+  <!-- 3枚グリッド -->
+  <div class="img-grid-3">
+    <div class="inline-img">
+      <!-- <img src="images/works/detail01_c.webp" alt=""> -->
+      <div class="inline-img-placeholder">PHOTO C</div>
+    </div>
+    <div class="inline-img">
+      <!-- <img src="images/works/detail01_d.webp" alt=""> -->
+      <div class="inline-img-placeholder">PHOTO D</div>
+    </div>
+    <div class="inline-img">
+      <!-- <img src="images/works/detail01_e.webp" alt=""> -->
+      <div class="inline-img-placeholder">PHOTO E</div>
+    </div>
+  </div>
+
+  <p>
+    次回は顔の塗装に入ります。アイペイントが完成したらまた報告いたします。引き続きよろしくお願いします。
+  </p>
+
+</div>
+
+<div class="article-divider"></div>
+
+<!-- PREV / NEXT -->
+<div class="post-nav">
+  <a class="post-nav-item prev" href="works-detail.html">
+    <div class="post-nav-label">← PREV</div>
+    <div class="post-nav-title">コンテスト入賞のご報告</div>
+  </a>
+  <a class="post-nav-item next" href="works-detail.html">
+    <div class="post-nav-label">NEXT →</div>
+    <div class="post-nav-title">もりのあるまち 制 有栖彩図① 完成</div>
+  </a>
+</div>
+
+<!-- BACK -->
+<div class="back-wrap">
+  <a href="works.html" class="back-link">WORKS 一覧に戻る</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 KAIEN GK PAINTING SERVICE</div>
+  <a href="#" class="footer-top">↑ PAGE TOP</a>
+</footer>
+
+</body>
+</html>
