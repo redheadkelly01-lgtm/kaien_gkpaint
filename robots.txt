@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://133.88.116.248/sitemap.xml
+Sitemap: https://kaien-gkpaint.com/sitemap.xml
