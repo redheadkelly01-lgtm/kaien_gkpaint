@@ -164,6 +164,11 @@
     .modal-close:hover { color: #fff; }
     .modal-field-group { margin-bottom: 20px; }
     .modal-field-group:last-child { margin-bottom: 0; }
+    
+    /* プレビューモーダル特有 */
+    .modal-content.preview { max-width: 95vw; height: 90vh; display: flex; flex-direction: column; }
+    .modal-body.preview { flex: 1; padding: 0; background: #000; overflow: hidden; }
+    #previewFrame { width: 100%; height: 100%; border: none; background: #0d0d0d; }
   </style>
 </head>
 <body>
@@ -304,6 +309,7 @@
 
       <div class="form-actions">
         <button class="btn btn-primary" onclick="saveWorksItem()">保存</button>
+        <button class="btn btn-secondary" onclick="openWorksPreview()">プレビューを表示</button>
         <button class="btn btn-secondary" onclick="closeWorksForm()">キャンセル</button>
       </div>
       <div id="worksMsg" class="msg"></div>
@@ -416,6 +422,7 @@
 
       <div class="form-actions">
         <button class="btn btn-primary" onclick="saveGalleryItem()">保存</button>
+        <button class="btn btn-secondary" onclick="openGalleryPreview()">プレビューを表示</button>
         <button class="btn btn-secondary" onclick="closeGalleryForm()">キャンセル</button>
       </div>
       <div id="galleryMsg" class="msg"></div>
@@ -1179,5 +1186,169 @@
   }
 </script>
 
+<!-- プレビューモーダル -->
+<div id="previewModal" class="modal-overlay">
+  <div class="modal-content preview">
+    <div class="modal-header">
+      <div class="modal-title">WORKS プレビュー</div>
+      <button class="modal-close" onclick="closeWorksPreview()">×</button>
+    </div>
+    <div class="modal-body preview">
+      <iframe id="previewFrame"></iframe>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeWorksPreview()">プレビューを閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openWorksPreview() {
+    const item = {
+      title: document.getElementById('wTitle').value.trim() || '無題',
+      date: document.getElementById('wDate').value.trim() || '2026.00.00',
+      category: document.getElementById('wCategory').value,
+      scale: document.getElementById('wScale').value.trim() || '',
+      mainVisual: document.getElementById('wMainVisual').value.trim(),
+      mainVisualCaption: document.getElementById('wMainVisualCaption').value.trim(),
+      body: JSON.parse(JSON.stringify(bodyBlocks))
+    };
+
+    const frame = document.getElementById('previewFrame');
+    
+    // worksdetail.html のスタイルと構造を模倣
+    const doc = `
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --surface: #1a1a1a; --border: #2a2a2a;
+      --accent: #c0392b; --accent2: #e74c3c;
+      --text: #e8e8e8; --text-muted: #b0b0b0; --text-dim: #666;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; line-height: 1.7; padding-bottom: 100px; }
+    img { display: block; max-width: 100%; height: auto; }
+    .article-header { padding: 80px 40px 40px; max-width: 860px; margin: 0 auto; }
+    .article-badge { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; padding: 4px 12px; background: rgba(192,57,43,.13); color: var(--accent2); border: 1px solid rgba(192,57,43,.3); margin-bottom: 20px; }
+    .article-title { font-size: 28px; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 20px; }
+    .article-meta { display: flex; align-items: center; gap: 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .15em; color: var(--text-dim); text-transform: uppercase; }
+    .article-visual { width: 100%; max-width: 860px; margin: 0 auto 56px; padding: 0 40px; }
+    .article-visual-img { width: 100%; aspect-ratio: 16 / 9; background: var(--surface); overflow: hidden; position: relative; }
+    .article-visual-img img { width: 100%; height: 100%; object-fit: cover; }
+    .article-visual-caption { font-size: 12px; color: var(--text-dim); margin-top: 10px; }
+    .article-body { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+    .article-body p { font-size: 14px; color: var(--text-muted); line-height: 2; margin-bottom: 24px; white-space: pre-wrap; }
+    .article-body h2 { font-size: 18px; font-weight: 700; color: var(--text); margin: 48px 0 16px; padding-left: 14px; border-left: 3px solid var(--accent); }
+    .article-body h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 32px 0 12px; }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 32px 0; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin: 32px 0; }
+    .inline-img { aspect-ratio: 1 / 1; background: var(--surface); overflow: hidden; }
+    .inline-img img { width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 600px) {
+      .article-header, .article-visual, .article-body { padding-left: 20px; padding-right: 20px; }
+      .article-title { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="article-header">
+    <div class="article-badge">${item.category.toUpperCase()}</div>
+    <h1 class="article-title">${item.title}</h1>
+    <div class="article-meta">
+      <div>📅 ${item.date}</div>
+      <div>🏷 ${item.scale}</div>
+    </div>
+  </div>
+
+  <div class="article-visual">
+    <div class="article-visual-img">${item.mainVisual ? `<img src="../${item.mainVisual}">` : ''}</div>
+    <p class="article-visual-caption">${item.mainVisualCaption}</p>
+  </div>
+
+  <div class="article-body">
+    ${item.body.map(b => {
+      if (b.type === 'paragraph') return '<p>' + b.text + '</p>';
+      if (b.type === 'heading2') return '<h2>' + b.text + '</h2>';
+      if (b.type === 'heading3') return '<h3>' + b.text + '</h3>';
+      if (b.type === 'imageGrid2') return '<div class="img-grid-2">' + b.images.map(m => `<div class="inline-img"><img src="../${m.src}"></div>`).join('') + '</div>';
+      if (b.type === 'imageGrid3') return '<div class="img-grid-3">' + b.images.map(m => `<div class="inline-img"><img src="../${m.src}"></div>`).join('') + '</div>';
+      return '';
+    }).join('')}
+  </div>
+</body>
+</html>`;
+
+    frame.srcdoc = doc;
+    document.getElementById('previewModal').classList.add('active');
+  }
+
+  function openGalleryPreview() {
+    const item = {
+      title: document.getElementById('gTitle').value.trim() || '無題',
+      scale: document.getElementById('gScale').value.trim() || '',
+      year: document.getElementById('gYear').value.trim() || '',
+      mainImage: document.getElementById('gMainImage').value.trim(),
+      subImages: ['gSub1','gSub2','gSub3','gSub4'].map(id => document.getElementById(id).value.trim()).filter(Boolean),
+      caption: document.getElementById('gCaption').value.trim()
+    };
+
+    const frame = document.getElementById('previewFrame');
+    const doc = `
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d0d0d; --surface: #1a1a1a; --border: #2a2a2a;
+      --accent: #c0392b; --text: #e8e8e8; --text-muted: #b0b0b0; --text-dim: #666;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; padding: 40px; }
+    .g-header { margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+    .g-title { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+    .g-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--text-dim); display: flex; gap: 20px; }
+    .g-main { margin-bottom: 20px; background: var(--surface); }
+    .g-main img { width: 100%; height: auto; display: block; }
+    .g-subs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    .g-sub { background: var(--surface); aspect-ratio: 1/1; overflow: hidden; }
+    .g-sub img { width: 100%; height: 100%; object-fit: cover; }
+    .g-caption { font-size: 14px; color: var(--text-muted); line-height: 1.8; white-space: pre-wrap; background: #111; padding: 20px; border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <div class="g-header">
+    <h1 class="g-title">${item.title}</h1>
+    <div class="g-meta">
+      <span>SCALE: 1/${item.scale}</span>
+      <span>YEAR: ${item.year}</span>
+    </div>
+  </div>
+  <div class="g-main">${item.mainImage ? `<img src="../${item.mainImage}?v=${imgVer}">` : ''}</div>
+  <div class="g-subs">
+    ${item.subImages.map(src => `<div class="g-sub"><img src="../${src}?v=${imgVer}"></div>`).join('')}
+  </div>
+  <div class="g-caption">${item.caption}</div>
+</body>
+</html>`;
+
+    frame.srcdoc = doc;
+    document.getElementById('previewModal').classList.add('active');
+  }
+
+  function closePreview() {
+    document.getElementById('previewModal').classList.remove('active');
+  }
+  // エイリアス（念のため）
+  const closeWorksPreview = closePreview;
+  const closeGalleryPreview = closePreview;
+</script>
 </body>
 </html>
