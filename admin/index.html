@@ -237,6 +237,7 @@
               <input class="form-input" id="wThumb" placeholder="images/works/thumb01.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('wThumb', 'wId', 'thumb')">UP</button>
             </div>
+            <div id="wThumbPreview" class="img-preview-mini"></div>
           </div>
           <div class="form-group">
             <label class="form-label">メインビジュアル画像パス</label>
@@ -244,6 +245,7 @@
               <input class="form-input" id="wMainVisual" placeholder="images/works/detail01_main.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('wMainVisual', 'wId', 'main')">UP</button>
             </div>
+            <div id="wMainVisualPreview" class="img-preview-mini"></div>
           </div>
         </div>
 
@@ -337,6 +339,7 @@
               <input class="form-input" id="gMainImage" placeholder="images/works/01_main.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gMainImage', 'gId', 'main')">UP</button>
             </div>
+            <div id="gMainImagePreview" class="img-preview-mini"></div>
           </div>
         </div>
 
@@ -347,6 +350,7 @@
               <input class="form-input" id="gSub1" placeholder="images/works/01_sub1.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub1', 'gId', 'sub1')">UP</button>
             </div>
+            <div id="gSub1Preview" class="img-preview-mini"></div>
           </div>
           <div class="form-group">
             <label class="form-label">サブ画像2</label>
@@ -354,6 +358,7 @@
               <input class="form-input" id="gSub2" placeholder="images/works/01_sub2.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub2', 'gId', 'sub2')">UP</button>
             </div>
+            <div id="gSub2Preview" class="img-preview-mini"></div>
           </div>
         </div>
         <div class="form-row">
@@ -363,6 +368,7 @@
               <input class="form-input" id="gSub3" placeholder="images/works/01_sub3.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub3', 'gId', 'sub3')">UP</button>
             </div>
+            <div id="gSub3Preview" class="img-preview-mini"></div>
           </div>
           <div class="form-group">
             <label class="form-label">サブ画像4</label>
@@ -370,6 +376,7 @@
               <input class="form-input" id="gSub4" placeholder="images/works/01_sub4.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub4', 'gId', 'sub4')">UP</button>
             </div>
+            <div id="gSub4Preview" class="img-preview-mini"></div>
           </div>
         </div>
 
@@ -699,7 +706,11 @@
       document.getElementById('gCaption').value   = g.caption || '';
     } else {
       ['gId','gTitle','gScale','gYear','gMainImage','gSub1','gSub2','gSub3','gSub4','gCaption']
-        .forEach(id => document.getElementById(id).value = '');
+        .forEach(id => {
+          document.getElementById(id).value = '';
+          const pre = document.getElementById(id + 'Preview');
+          if (pre) pre.innerHTML = '';
+        });
     }
     document.getElementById('galleryForm').style.display = 'block';
     document.getElementById('galleryMsg').className = 'msg';
@@ -1037,6 +1048,11 @@
         if (data.ok) {
           targetEl.value = data.path;
           if (originalBtn) originalBtn.textContent = 'OK';
+          // プレビュー表示
+          const preEl = document.getElementById(currentTargetInputId + 'Preview');
+          if (preEl) {
+            preEl.innerHTML = `<img src="../${data.path}?v=${new Date().getTime()}" style="max-height:80px; margin-top:8px; border:1px solid var(--border);">`;
+          }
         } else {
           alert('エラー: ' + data.error);
           if (originalBtn) originalBtn.textContent = 'ERR';
