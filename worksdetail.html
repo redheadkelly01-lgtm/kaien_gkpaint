@@ -333,7 +333,7 @@
     }).join('');
   }
 
-  fetch('data/works.json')
+  fetch('data/works.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => {
       const idx   = data.findIndex(d => d.id === targetId);

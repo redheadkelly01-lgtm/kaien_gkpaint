@@ -1141,7 +1141,7 @@
   const imgVer = new Date().getTime();
 
   // 最新Information (WORKS) の取得
-  fetch('data/works.json')
+  fetch('data/works.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => {
       const table = document.getElementById('topInfoTable');
@@ -1159,7 +1159,7 @@
     .catch(err => console.error('Works Load Error:', err));
 
   // トップGallery の取得
-  fetch('data/gallery.json')
+  fetch('data/gallery.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => {
       const grid = document.getElementById('topGalleryGrid');

@@ -608,7 +608,7 @@
       return div;
     }
 
-    fetch('data/gallery.json')
+    fetch('data/gallery.json?t=' + Date.now())
       .then(r => r.json())
       .then(data => {
         const total = data.length;

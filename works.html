@@ -364,7 +364,7 @@
   }
 
   // JSONを読み込んで描画
-  fetch('data/works.json')
+  fetch('data/works.json?t=' + Date.now())
     .then(r => r.json())
     .then(data => {
       const counts = { all: data.length, project: 0, contest: 0, other: 0, new: 0 };
