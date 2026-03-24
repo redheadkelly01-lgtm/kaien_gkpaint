@@ -133,6 +133,11 @@
     .upload-copy-btn.copied { color: #2ecc71; border-color: #2ecc71; }
     .rename-input { background: #111; border: 1px solid var(--border); color: var(--text); padding: 6px 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 12px; width: 100%; outline: none; }
     .rename-input:focus { border-color: var(--accent); }
+
+    /* 入力グループ（ボタン付き） */
+    .input-group { display: flex; gap: 8px; align-items: stretch; }
+    .input-group .form-input { flex: 1; }
+    .btn-up { font-size: 10px; padding: 0 10px; height: 38px; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -228,11 +233,17 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">サムネイル画像パス</label>
-            <input class="form-input" id="wThumb" placeholder="images/works/thumb01.webp">
+            <div class="input-group">
+              <input class="form-input" id="wThumb" placeholder="images/works/thumb01.webp">
+              <button class="btn btn-secondary btn-up" onclick="performCmsUpload('wThumb', 'wId', 'thumb')">UP</button>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">メインビジュアル画像パス</label>
-            <input class="form-input" id="wMainVisual" placeholder="images/works/detail01_main.webp">
+            <div class="input-group">
+              <input class="form-input" id="wMainVisual" placeholder="images/works/detail01_main.webp">
+              <button class="btn btn-secondary btn-up" onclick="performCmsUpload('wMainVisual', 'wId', 'main')">UP</button>
+            </div>
           </div>
         </div>
 
@@ -322,28 +333,43 @@
         <div class="form-row single">
           <div class="form-group">
             <label class="form-label">メイン画像パス</label>
-            <input class="form-input" id="gMainImage" placeholder="images/works/01_main.webp">
+            <div class="input-group">
+              <input class="form-input" id="gMainImage" placeholder="images/works/01_main.webp">
+              <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gMainImage', 'gId', 'main')">UP</button>
+            </div>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">サブ画像1</label>
-            <input class="form-input" id="gSub1" placeholder="images/works/01_sub1.webp">
+            <div class="input-group">
+              <input class="form-input" id="gSub1" placeholder="images/works/01_sub1.webp">
+              <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub1', 'gId', 'sub1')">UP</button>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">サブ画像2</label>
-            <input class="form-input" id="gSub2" placeholder="images/works/01_sub2.webp">
+            <div class="input-group">
+              <input class="form-input" id="gSub2" placeholder="images/works/01_sub2.webp">
+              <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub2', 'gId', 'sub2')">UP</button>
+            </div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">サブ画像3</label>
-            <input class="form-input" id="gSub3" placeholder="images/works/01_sub3.webp">
+            <div class="input-group">
+              <input class="form-input" id="gSub3" placeholder="images/works/01_sub3.webp">
+              <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub3', 'gId', 'sub3')">UP</button>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-label">サブ画像4</label>
-            <input class="form-input" id="gSub4" placeholder="images/works/01_sub4.webp">
+            <div class="input-group">
+              <input class="form-input" id="gSub4" placeholder="images/works/01_sub4.webp">
+              <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub4', 'gId', 'sub4')">UP</button>
+            </div>
           </div>
         </div>
 
@@ -960,6 +986,73 @@
     el.textContent = text;
     el.className = `msg msg-${type} visible`;
   }
+
+  // ==============================
+  // CMS直接アップロード機能
+  // ==============================
+  const cmsUploadInput = document.createElement('input');
+  cmsUploadInput.type = 'file';
+  cmsUploadInput.accept = 'image/*';
+  cmsUploadInput.style.display = 'none';
+  document.body.appendChild(cmsUploadInput);
+
+  let currentTargetInputId = '';
+  let currentFilenamePrefix = '';
+  let currentFileSuffix = '';
+
+  function performCmsUpload(inputId, prefixId, suffix) {
+    currentTargetInputId = inputId;
+    const prefixNode = document.getElementById(prefixId);
+    currentFilenamePrefix = prefixNode ? prefixNode.value.trim() : '';
+    currentFileSuffix = suffix;
+    cmsUploadInput.click();
+  }
+
+  cmsUploadInput.addEventListener('change', () => {
+    if (!cmsUploadInput.files.length) return;
+    const file = cmsUploadInput.files[0];
+    const targetEl = document.getElementById(currentTargetInputId);
+    if (!targetEl) return;
+
+    const originalBtn = targetEl.nextElementSibling;
+    const originalText = originalBtn ? originalBtn.textContent : 'UP';
+    if (originalBtn) {
+      originalBtn.textContent = '...';
+      originalBtn.disabled = true;
+    }
+
+    const fd = new FormData();
+    fd.append('file', file);
+    if (currentFilenamePrefix) {
+      fd.append('filename', `${currentFilenamePrefix}_${currentFileSuffix}`);
+    }
+
+    fetch('../upload.php', { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          targetEl.value = data.path;
+          if (originalBtn) originalBtn.textContent = 'OK';
+        } else {
+          alert('エラー: ' + data.error);
+          if (originalBtn) originalBtn.textContent = 'ERR';
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert('通信エラーが発生しました');
+        if (originalBtn) originalBtn.textContent = 'ERR';
+      })
+      .finally(() => {
+        cmsUploadInput.value = '';
+        setTimeout(() => {
+          if (originalBtn) {
+            originalBtn.textContent = originalText;
+            originalBtn.disabled = false;
+          }
+        }, 2000);
+      });
+  });
 </script>
 </body>
 </html>
