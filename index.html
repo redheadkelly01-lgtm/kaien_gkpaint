@@ -1170,7 +1170,7 @@
         const imgHtml = item.mainImage 
           ? `<img src="${item.mainImage}?v=${imgVer}" alt="${item.alt || item.title}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
           : `<div class="gallery-placeholder">PHOTO ${String(i+1).padStart(2,'0')}</div>`;
-        return `<div class="gallery-cell">${imgHtml}</div>`;
+        return `<a href="gallery.html#work-${item.id}" class="gallery-cell">${imgHtml}</a>`;
       });
       while(cells.length < 5) {
         cells.push(`<div class="gallery-cell"><div class="gallery-placeholder">PHOTO ${String(cells.length+1).padStart(2,'0')}</div></div>`);

@@ -198,6 +198,7 @@
     .work-block {
       padding: 72px 0;
       border-bottom: 1px solid var(--border);
+      scroll-margin-top: 80px;
     }
 
     .work-block:last-child {
@@ -565,6 +566,7 @@
           ? `<div class="work-sub-img"><img src="${s}?v=${imgVer}" alt="${item.alt || item.title} サブ${i+1}" loading="lazy"></div>`
           : `<div class="work-sub-img"><div class="img-placeholder"><span>SUB 0${i+1}</span></div></div>`;
       }).join('');
+      div.id = `work-${item.id}`;
       div.innerHTML = `
         <div class="work-header">
           <span class="work-num">NO.${String(num).padStart(2,'0')}</span>
