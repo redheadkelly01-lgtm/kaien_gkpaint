@@ -591,9 +591,11 @@
     saveLocal();
     renderWorksList();
     closeWorksForm();
-    showMsg('worksMsg', '保存しました', 'success');
+    // サーバーへ自動反映
+    exportWorks();
+    showMsg('worksMsg', '保存してサーバーに反映しました', 'success');
     document.getElementById('worksMsg').style.display = 'block';
-    setTimeout(() => document.getElementById('worksMsg').style.display = 'none', 2000);
+    setTimeout(() => document.getElementById('worksMsg').style.display = 'none', 3000);
   }
 
   // ==============================
@@ -738,9 +740,11 @@
     saveLocal();
     renderGalleryList();
     closeGalleryForm();
-    showMsg('galleryMsg', '保存しました', 'success');
+    // サーバーへ自動反映
+    exportGallery();
+    showMsg('galleryMsg', '保存してサーバーに反映しました', 'success');
     document.getElementById('galleryMsg').style.display = 'block';
-    setTimeout(() => document.getElementById('galleryMsg').style.display = 'none', 2000);
+    setTimeout(() => document.getElementById('galleryMsg').style.display = 'none', 3000);
   }
 
   // ==============================
