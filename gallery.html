@@ -645,4 +645,26 @@
         alert('読み込みエラー詳細: ' + err.message); 
         wrap.style.display = 'none'; 
       });
+
+    // ライトボックス制御
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('img');
+
+    mainEl.addEventListener('click', e => {
+      if (e.target.tagName === 'IMG') {
+        lbImg.src = e.target.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { lbImg.src = ''; }, 300);
+    });
   </script>
+
+</body>
+
+</html>
