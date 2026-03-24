@@ -445,6 +445,25 @@
       color: var(--text);
     }
 
+    /* ─── LIGHTBOX ────────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none; align-items: center; justify-content: center;
+      cursor: zoom-out;
+      opacity: 0; transition: opacity .3s ease;
+    }
+    .lightbox.active { display: flex; opacity: 1; }
+    .lightbox img {
+      max-width: 92%; max-height: 92%;
+      object-fit: contain;
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+      transform: scale(.95); transition: transform .3s ease;
+    }
+    .lightbox.active img { transform: scale(1); }
+
     /* ─── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 768px) {
       header {
@@ -534,6 +553,11 @@
   <div class="load-more-wrap" id="loadMoreWrap">
     <div class="load-more-count">SHOWING <span id="shownCount">3</span> / <span id="totalCount">5</span> WORKS</div>
     <button class="load-more-btn" id="loadMoreBtn">LOAD MORE</button>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <img src="" alt="拡大画像">
   </div>
 
   <!-- FOOTER -->
