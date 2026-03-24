@@ -10,12 +10,22 @@
 ローカルで `git push` するだけで、VPSへ自動デプロイされる仕組みを構築します。
 
 ```
-ローカル開発
+1. ローカル開発（PC）
+    ↓ git push origin main
+2. GitHub (コード管理 / バックアップ)
     ↓ git push production main
-VPS上のbareリポジトリ（kaien.git）
-    ↓ post-receive フック自動実行
-公開ディレクトリ（/var/www/html/kaien）に反映
+3. VPS (本番環境 / 自動デプロイ)
 ```
+
+---
+
+## 現在の設定状況
+
+以下の設定は既に完了しています：
+
+- **Local Config**: `user.name`, `user.email` を `redheadkelly01@gmail.com` に設定済み。
+- **Remote `origin`**: GitHub (`https://github.com/redheadkelly01-lgtm/kaien_gkpaint.git`) を登録済み。
+- **Remote `production`**: VPS (`ssh://root@133.88.116.248/...`) を登録済み。
 
 ---
 
