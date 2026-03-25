@@ -1112,6 +1112,8 @@
           <label class="form-label">参考画像URL（任意）</label>
           <input type="text" id="image_url" name="image_url" class="form-input" placeholder="https://...">
         </div>
+        <!-- ハニーポット（ボット対策用の隠しフィールド） -->
+        <input type="text" name="contact_me_by_fax_only" style="display:none !important" tabindex="-1" autocomplete="off">
         <button type="submit" class="form-submit" id="submitBtn">送信</button>
         <div id="formMsg" style="margin-top:16px; font-size:13px; display:none;"></div>
       </form>

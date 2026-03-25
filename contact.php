@@ -1,6 +1,6 @@
-<?php
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+// 同一ドメイン内からのアクセスのみを許可（セキュリティ強化）
+// header('Access-Control-Allow-Origin: *'); 
 
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
@@ -21,6 +21,12 @@ $entry = [
     'image_url' => htmlspecialchars(trim($_POST['image_url']  ?? ''), ENT_QUOTES, 'UTF-8'),
     'read'      => false,
 ];
+
+// ハニーポット（ボット対策）: 非表示フィールドに値が入っていたらボットとみなす
+if (!empty($_POST['contact_me_by_fax_only'])) {
+    echo json_encode(['ok' => true]); // 見かけ上は成功させる
+    exit;
+}
 
 if (empty($entry['name']) || empty($entry['email'])) {
     http_response_code(400);
@@ -64,7 +70,7 @@ $contacts = array_slice($contacts, 0, 300);
 $result = file_put_contents($file, json_encode($contacts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
 if ($result === false) {
-    echo json_encode(['ok' => false, 'error' => 'ファイルへの書き込みに失敗しました', 'debug' => $debug]);
+    echo json_encode(['ok' => false, 'error' => 'ファイルへの書き込みに失敗しました']);
     exit;
 }
 
