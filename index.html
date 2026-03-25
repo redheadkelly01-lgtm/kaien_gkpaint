@@ -855,6 +855,13 @@
       .hero-img {
         object-fit: contain;
         object-position: center;
+        opacity: 1; /* スマホでは明るく表示 */
+      }
+      .hero-overlay {
+        background: rgba(0,0,0,0.15); /* オーバーレイを薄くする */
+      }
+      .hero-bottom {
+        height: 60px; /* グラデーションの範囲を狭める */
       }
 
       nav {
