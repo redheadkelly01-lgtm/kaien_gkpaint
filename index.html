@@ -52,7 +52,7 @@
       --text: #e8e8e8;
       --text-muted: #b0b0b0;
       --text-dim: #666;
-      --nav-h: 100px;
+      --nav-h: 80px;
     }
 
     html {
@@ -101,7 +101,7 @@
     }
 
     .logo-img {
-      height: 80px;
+      height: 60px;
       width: auto;
       display: block;
     }
@@ -134,8 +134,9 @@
     .hero {
       position: relative;
       margin-top: var(--nav-h);
-      height: calc(100vh - var(--nav-h));
-      min-height: 500px;
+      height: 60vh; /* 高さを抑える */
+      min-height: 320px;
+      max-height: 540px;
       overflow: hidden;
       background: var(--bg);
     }
@@ -836,8 +837,9 @@
         padding: 0 20px;
       }
       .hero {
-        height: 70vh; /* スマホでは高さを抑える */
-        min-height: 400px;
+        height: auto;
+        aspect-ratio: 16 / 9; /* スマホでは画像比率に合わせる */
+        min-height: auto;
       }
       .hero-img {
         object-fit: contain;
