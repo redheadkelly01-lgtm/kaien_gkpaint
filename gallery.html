@@ -89,9 +89,15 @@
     }
 
     .logo-img {
-      height: 80px;
-      width: auto;
+      height: 100px;
+      width: 200px;
+      object-fit: cover;
+      object-position: center;
       display: block;
+      transition: transform .3s;
+    }
+    .logo:hover .logo-img {
+      transform: scale(1.05);
     }
 
     nav {
@@ -482,7 +488,7 @@
     }
     @media (max-width: 600px) {
       header { height: 70px; padding: 0 20px; }
-      .logo-img { height: 44px; }
+      .logo-img { height: 44px; width: auto; object-fit: contain; }
       .page-title { font-size: 36px; }
       .page-count { display: none; }
     }
