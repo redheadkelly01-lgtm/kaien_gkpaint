@@ -63,8 +63,8 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 16px; /* 14px -> 16px */
+      line-height: 1.8;
       overflow-x: hidden;
     }
 
@@ -120,7 +120,7 @@
 
     nav a {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
+      font-size: 15px; /* 13px -> 15px */
       font-weight: 500;
       letter-spacing: .15em;
       color: var(--text-muted);
@@ -212,8 +212,8 @@
     }
 
     .intro p {
-      font-size: 15.5px;
-      line-height: 2.1;
+      font-size: 18px; /* 15.5px -> 18px */
+      line-height: 2.2;
       color: var(--text);
     }
 
@@ -225,7 +225,7 @@
     /* SECTION TITLE */
     .section-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
+      font-size: 26px; /* 22px -> 26px */
       font-weight: 600;
       letter-spacing: .22em;
       text-transform: uppercase;
@@ -252,9 +252,9 @@
     }
 
     .info-table td {
-      padding: 14px 0;
+      padding: 18px 0;
       vertical-align: top;
-      font-size: 13px;
+      font-size: 15px; /* 13px -> 15px */
     }
 
     .info-date {
@@ -838,6 +838,7 @@
     }
 
     @media(max-width:768px) {
+      body { font-size: 14px; }
       header {
         height: 80px;
         padding: 0 20px;
@@ -999,7 +1000,7 @@
           <div class="flow-body">
             <span class="flow-step-tag">STEP 01</span>
             <div class="flow-title">お問い合わせ</div>
-            <p class="flow-desc">お問い合わせフォームより、製作希望のキットの情報をお送りください。ご依頼内容をヒアリングし、キットの状態・塗装イメージ・スケジュールについて詳しくお聞きします。</p>
+            <p class="flow-desc" style="font-size: 16px;">お問い合わせフォームより、製作希望のキットの情報をお送りください。ご依頼内容をヒアリングし、キットの状態・塗装イメージ・スケジュールについて詳しくお聞きします。</p>
           </div>
         </div>
 
@@ -1068,7 +1069,7 @@
       <div>
         <div class="about-name">Kaien</div>
         <div class="about-role">GK Painting Service</div>
-        <p class="about-bio">
+        <p class="about-bio" style="font-size: 16px; line-height: 1.8;">
           ガレージキットの製作・塗装代行を専門とするペインター。エアブラシを主体とした彩色技法を軸に、透明感のある肌表現や繊細なグラデーション処理を得意とします。<br>
           コレクター様の大切な作品を、世界に一つだけの完成品に仕立てるお手伝いをいたします。こちらのページにて【メジャーサービス】の詳細については必ずご確認ください。
         </p>
@@ -1089,7 +1090,7 @@
   <section class="section-contact" id="contact">
     <div class="section-contact-inner">
       <h2 class="section-title">CONTACT</h2>
-      <p class="contact-lead">お問い合わせはこちらから</p>
+      <p class="contact-lead" style="font-size: 18px; margin-bottom: 32px;">お問い合わせはこちらから</p>
       <form id="contactForm">
         <div class="form-group">
           <label class="form-label">お名前</label>
