@@ -137,7 +137,7 @@
       height: calc(100vh - var(--nav-h));
       min-height: 500px;
       overflow: hidden;
-      background: #0a0a0a;
+      background: var(--bg);
     }
 
     .hero-img {
@@ -834,6 +834,13 @@
     @media(max-width:768px) {
       header {
         padding: 0 20px;
+      }
+      .hero {
+        height: 70vh; /* スマホでは高さを抑える */
+        min-height: 400px;
+      }
+      .hero-img {
+        object-position: center; /* 中央合わせ */
       }
 
       nav {
