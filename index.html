@@ -346,9 +346,12 @@
     }
 
     .gallery-cell {
-      background: var(--surface);
+      background: #000;
       overflow: hidden;
       position: relative;
+      border: 1px solid var(--border);
+      padding: 1px;
+      transition: border-color .3s;
     }
 
     .gallery-cell:nth-child(1),
@@ -363,6 +366,10 @@
       object-fit: cover;
       transition: transform .4s ease, opacity .3s;
       opacity: .82;
+    }
+
+    .gallery-cell:hover {
+      border-color: var(--accent);
     }
 
     .gallery-cell:hover img {
