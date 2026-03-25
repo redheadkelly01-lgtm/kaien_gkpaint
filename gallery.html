@@ -250,8 +250,11 @@
       grid-row: 1 / 3;
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: var(--surface);
+      background: #000;
       position: relative;
+      border: 1px solid var(--border);
+      padding: 1px; /* わずかな隙間で精細さを演出 */
+      transition: border-color .3s;
     }
 
     /* サブ4枚：右側2×2 */
@@ -267,8 +270,11 @@
     .work-sub-img {
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      background: var(--surface);
+      background: #000;
       position: relative;
+      border: 1px solid var(--border);
+      padding: 1px;
+      transition: border-color .3s;
     }
 
     /* 画像共通 */
@@ -281,9 +287,14 @@
       opacity: .88;
     }
 
+    .work-main-img:hover,
+    .work-sub-img:hover {
+      border-color: var(--accent);
+    }
+
     .work-main-img:hover img,
     .work-sub-img:hover img {
-      transform: scale(1.04);
+      transform: scale(1.05);
       opacity: 1;
     }
 
