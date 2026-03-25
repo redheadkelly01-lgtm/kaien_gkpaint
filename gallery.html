@@ -40,7 +40,7 @@
       --text: #e8e8e8;
       --text-muted: #b0b0b0;
       --text-dim: #666;
-      --nav-h: 80px;
+      --nav-h: 100px;
     }
 
     html {
@@ -89,7 +89,7 @@
     }
 
     .logo-img {
-      height: 60px;
+      height: 80px;
       width: auto;
       display: block;
     }
@@ -476,21 +476,17 @@
       nav a {
         font-size: 11px;
       }
-
-      .page-header {
-        padding: 56px 20px 40px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .page-title {
-        font-size: 36px;
-      }
-
-      .page-count {
-        display: none;
-      }
-
+    }
+    @media (max-width: 900px) {
+      .page-header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 56px 20px 32px; }
+    }
+    @media (max-width: 600px) {
+      header { height: 70px; padding: 0 20px; }
+      .logo-img { height: 44px; }
+      .page-title { font-size: 36px; }
+      .page-count { display: none; }
+    }
+    @media (max-width: 768px) {
       .gallery-main {
         padding: 0 20px 80px;
       }
