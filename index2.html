@@ -216,7 +216,7 @@
     .intro-scaler {
       width: 960px; /* PC時の固定幅 */
       margin: 0 auto;
-      transform-origin: top center;
+      transform-origin: top left; /* 左上を起点に縮小 */
     }
     .intro {
       padding: 100px 20px 80px; 
@@ -1190,10 +1190,12 @@
       const windowWidth = document.documentElement.clientWidth;
       if (windowWidth < 960) {
         // 画面が960px未満の場合はスケールダウンする
-        const scale = windowWidth / 960;
+        // 左上起点でスケールし、マージンをリセットしてぴったりはめる
+        scaler.style.margin = '0';
         scaler.style.transform = `scale(${scale})`;
         container.style.height = `${scaler.offsetHeight * scale}px`;
       } else {
+        scaler.style.margin = '0 auto';
         scaler.style.transform = 'none';
         container.style.height = 'auto';
       }
