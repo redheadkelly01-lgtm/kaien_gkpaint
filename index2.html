@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAIEN GK PAINTING SERVICE | ガレージキット塗装代行</title>
+  <meta name="description" content="KAIENはガレージキット（GK）の塗装代行サービスです。サフレス塗装による透明感と繊細なグラデーション仕上げが得意です。お気軽にご相談ください。">
+  <link rel="canonical" href="https://kaien-gkpaint.com/">
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KAIEN GK PAINTING SERVICE | ガレージキット塗装代行">
+  <meta property="og:description" content="KAIENはガレージキット（GK）の塗装代行サービスです。サフレス塗装による透明感と繊細なグラデーション仕上げが得意です。">
+  <meta property="og:url" content="https://kaien-gkpaint.com/">
+  <meta property="og:image" content="https://kaien-gkpaint.com/icon.webp">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.png">
+  <!-- 構造化データ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "KAIEN GK PAINTING SERVICE",
+    "description": "ガレージキット（GK）塗装代行サービス。サフレス塗装による透明感と繊細なグラデーションが得意。",
+    "url": "https://kaien-gkpaint.com/",
+    "image": "https://kaien-gkpaint.com/icon.webp",
+    "priceRange": "お問い合わせください"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Oswald:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #1a1a1a;
+      --bg2: #111111;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --text: #cccccc; /* 目が疲れないライトグレー */
+      --text-muted: #999999;
+      --text-dim: #666666;
+      --gold: #e3d2a4; /* 上品なシャンパンゴールド */
+      --nav-h: 100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    br.pc-only { display: block; content: ""; }
+    br.sp-only { display: none; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 16px; /* 14px -> 16px */
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* NAV */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background: rgba(10, 10, 10, 0.93);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 100px; /* 少し大きめに設定 */
+      width: 200px;  /* 横幅を固定して中央を強調 */
+      object-fit: cover; /* 中央を切り取って表示 */
+      object-position: center;
+      display: block;
+      transition: transform .3s;
+    }
+    .logo:hover .logo-img {
+      transform: scale(1.05);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; /* 13px -> 15px */
+      font-weight: 500;
+      letter-spacing: .15em;
+      color: var(--text-muted);
+      transition: color .2s;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    nav a.active {
+      color: var(--accent);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      margin-top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
+      min-height: 500px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .9;
+    }
+
+    .hero-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #222, var(--bg));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      letter-spacing: .25em;
+      border: 1px dashed var(--border);
+    }
+
+    .hero-placeholder small {
+      font-size: 11px;
+      letter-spacing: .15em;
+      color: #333;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .05) 60%, transparent 100%);
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+
+    .hero-watermark {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      color: rgba(255, 255, 255, .2);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 6px 14px;
+    }
+
+    /* INTRO */
+    .intro {
+      padding: 100px 20px 80px; /* 上下余白を少し広めに */
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 36px; /* 段落間の余白 */
+      font-family: 'Noto Serif JP', "Yu Mincho", "游明朝", serif;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .intro-lead {
+      font-size: 20px;
+      font-weight: 500;
+      color: #fff;
+      margin: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .intro-heading {
+      font-size: 34px;
+      font-weight: 700;
+      color: #f1dca3; /* シャンパンゴールド */
+      line-height: 1.5;
+      margin: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .intro-body {
+      font-size: 16px;
+      line-height: 2.2;
+      color: #d0d0d0; /* ライトグレー */
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .highlight {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 30px; /* 少し大きめに */
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold); /* シャンパンゴールド */
+      margin-bottom: 40px; /* 上下余白を広めに */
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(227, 210, 164, 0.2);
+    }
+
+    /* INFORMATION */
+    .section-information {
+      padding: 0 40px 72px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-table td {
+      padding: 18px 0;
+      vertical-align: top;
+      font-size: 15px; /* 13px -> 15px */
+    }
+
+    .info-date {
+      color: var(--text-muted);
+      width: 80px;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: .05em;
+    }
+
+    .info-tag {
+      width: 100px;
+    }
+
+    .info-tag span {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      background: rgba(192, 57, 43, .13);
+      color: var(--accent2);
+      border: 1px solid rgba(192, 57, 43, .28);
+    }
+
+    .info-content {
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .info-content small {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+    }
+
+    .read-more:hover {
+      color: var(--accent2);
+      border-color: var(--accent2);
+    }
+
+    .section-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 0 40px;
+    }
+
+    /* GALLERY */
+    .section-gallery {
+      position: relative;
+      padding: 48px 0;
+      background: #111;
+    }
+
+    .gallery-label {
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      writing-mode: vertical-rl;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    .gallery-inner {
+      padding: 0 56px 0 56px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr) 1fr;
+      grid-template-rows: 160px 160px;
+      gap: 2px;
+    }
+
+    .gallery-cell {
+      background: #000;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid #333;
+      padding: 2px;
+      transition: border-color .3s;
+    }
+
+    .gallery-cell:nth-child(1),
+    .gallery-cell:nth-child(2),
+    .gallery-cell:nth-child(3) {
+      grid-row: 1/3;
+    }
+
+    .gallery-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease, opacity .3s;
+      opacity: .82;
+    }
+
+    .gallery-cell:hover {
+      border-color: var(--accent);
+    }
+
+    .gallery-cell:hover img {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      border: 1px dashed #222;
+    }
+
+    .gallery-view-all {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 14px;
+    }
+
+    .gallery-view-all a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+    }
+
+    .gallery-view-all a:hover {
+      color: var(--accent2);
+      border-color: var(--accent2);
+    }
+
+    /* FLOW */
+    .section-flow {
+      padding: 100px 40px;
+      background: var(--bg);
+    }
+
+    .section-flow-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-flow .section-title {
+      text-align: center;
+      border-bottom: none;
+      margin-bottom: 72px;
+      font-size: 18px;
+      letter-spacing: .12em;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+    }
+
+    .flow-list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* 縦ライン */
+    .flow-list::before {
+      content: '';
+      position: absolute;
+      left: 38px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border) 5%, var(--border) 95%, transparent);
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 0;
+      position: relative;
+    }
+
+    .flow-item:not(:last-child) {
+      margin-bottom: 0;
+    }
+
+    .flow-num-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      padding-bottom: 48px;
+    }
+
+    .flow-item:last-child .flow-num-wrap {
+      padding-bottom: 0;
+    }
+
+    .flow-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      position: relative;
+      transition: background .3s, color .3s;
+    }
+
+    .flow-item:hover .flow-num {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .flow-body {
+      padding: 8px 0 48px 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .flow-item:last-child .flow-body {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .flow-step-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .flow-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: .02em;
+    }
+
+    .flow-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    .flow-note {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--text-dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      line-height: 1.7;
+    }
+
+    /* PRICE */
+    .section-price {
+      padding: 80px 40px;
+      background: #111;
+    }
+
+    .section-price-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .price-image-wrap {
+      width: 100%;
+    }
+
+    .price-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .price-image-placeholder {
+      width: 100%;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px dashed #2e2e2e;
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      letter-spacing: .25em;
+    }
+
+    .price-image-placeholder small {
+      font-size: 11px;
+      letter-spacing: .15em;
+      color: #333;
+    }
+
+    /* ABOUT */
+    .section-about {
+      padding: 80px 40px;
+    }
+
+    .section-about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .img-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin: 32px 0;
+    }
+    .img-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      margin: 32px 0;
+    }
+
+    .about-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      overflow: hidden;
+    }
+
+    .about-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: .1em;
+    }
+
+    .about-socials {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 12px;
+    }
+
+    .about-socials a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      transition: color .2s;
+    }
+
+    .about-socials a:hover {
+      color: var(--accent2);
+    }
+
+    .about-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .about-role {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: .2em;
+      margin-bottom: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .about-bio {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 24px;
+    }
+
+    .about-links-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      margin-top: 16px;
+    }
+
+    .about-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+    }
+
+    .about-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+
+    .about-links a:hover {
+      color: var(--accent2);
+      border-color: var(--accent2);
+    }
+
+    /* CONTACT */
+    .section-contact {
+      padding: 80px 40px 120px;
+      background: #111;
+    }
+
+    .section-contact-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .section-contact .section-title {
+      text-align: center;
+      border-bottom: none;
+      margin-bottom: 8px;
+    }
+
+    .contact-lead {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-textarea {
+      height: 140px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s;
+      margin-top: 32px;
+    }
+
+    .form-submit:hover {
+      background: var(--accent2);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: .15em;
+      color: var(--text-dim);
+    }
+
+    .footer-top {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color .2s;
+    }
+
+    .footer-top:hover {
+      color: var(--text);
+    }
+
+    @media(max-width:768px) {
+      body { font-size: 14px; }
+      header {
+        height: 80px;
+        padding: 0 20px;
+      }
+      .logo-img {
+        height: 50px;
+        width: auto; /* スマホでは全体を表示 */
+        object-fit: contain;
+      }
+      .hero {
+        height: auto;
+        aspect-ratio: 16 / 9; /* スマホでは画像比率に合わせる */
+        min-height: auto;
+      }
+      .hero-img {
+        object-fit: contain;
+        object-position: center;
+        opacity: 1; /* スマホでは明るく表示 */
+      }
+      .hero-overlay {
+        background: rgba(0,0,0,0.15); /* オーバーレイを薄くする */
+      }
+      .hero-bottom {
+        height: 60px; /* グラデーションの範囲を狭める */
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      nav a {
+        font-size: 11px;
+      }
+
+      .intro {
+        padding: 80px 10px 60px;
+        gap: 28px;
+        white-space: nowrap; /* 自動改行を禁止 */
+      }
+      /* 画面幅に合わせて文字を縮小し、指定した改行位置を常に維持する設定 */
+      .intro-lead { font-size: min(16px, 3.8vw); }
+      .intro-heading { font-size: min(22px, 4.8vw); }
+      .intro-body { font-size: min(14px, 2.38vw); line-height: 2.0; }
+
+      br.pc-only { display: block; content: ""; } /* スマホでもPCの改行を適用 */
+      br.sp-only { display: none; }
+
+      .section-information,
+      .section-price,
+      .section-about,
+      .section-contact {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .gallery-inner {
+        padding: 0 20px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+
+      .gallery-cell:nth-child(1),
+      .gallery-cell:nth-child(2),
+      .gallery-cell:nth-child(3) {
+        grid-row: auto;
+        height: 140px;
+      }
+
+      .flow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-col-center {
+        display: none;
+      }
+
+      .section-about-inner {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .section-sep {
+        margin: 0 20px;
+      }
+    }
+  </style>
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ★ EmailJS の Public Key をここに設定
+    (function(){ emailjs.init({ publicKey: 'YOUR_PUBLIC_KEY' }); })();
+  </script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header>
+    <a href="index.html" class="logo">
+      <img src="icon.webp" alt="KAIEN Logo" class="logo-img">
+    </a>
+    <nav>
+      <a href="#" class="active">TOP</a>
+      <a href="works.html">WORKS</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="images/top.webp?v=20260324" alt="KAIEN GK PAINTING SERVICE メインビジュアル" class="hero-img" loading="lazy">
+    <div class="hero-overlay"></div>
+    <div class="hero-bottom"></div>
+    <div class="hero-watermark">kaien</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <p class="intro-lead">
+      息を呑むような『透明感』を、あなたの手元へ。
+    </p>
+    
+    <h2 class="intro-heading">
+      ボークスファレホペイントコンテスト最優秀賞3連覇。<br class="pc-only">
+      数々の受賞歴が裏付ける、圧倒的な表現力。
+    </h2>
+
+    <p class="intro-body">
+      最優秀賞の3連覇をはじめ、金賞4回、銀賞3回、銅賞1回という確かな実績が、当サービスの技術力の証です。<br class="pc-only">
+      最大の強みは、キャラクターに命を吹き込む極めて高い塗装技術にあります。<br class="pc-only">
+      透き通るような肌を生み出すこだわりの「<span class="highlight">サフレス塗装</span>」、息遣いまで感じさせる「<span class="highlight">繊細なグラデーション</span>」、<br class="pc-only">
+      そして肌・布・金属といった素材ごとの「<span class="highlight">質感の違いの的確な表現</span>」。<br class="pc-only">
+      妥協を許さないプロの技術と緻密な手仕事で、お預かりしたガレージキットのポテンシャルを<br class="pc-only">
+      最高到達点まで引き出し、ワンランク上の芸術作品へと昇華させます。
+    </p>
+  </section>
+
+  <!-- INFORMATION -->
+  <section class="section-information" id="works">
+    <h2 class="section-title">INFORMATION</h2>
+    <table class="info-table" id="topInfoTable">
+      <!-- JSで動的に追加 -->
+    </table>
+    <a href="works.html" class="read-more">READ MORE →</a>
+  </section>
+
+  <div class="section-sep"></div>
+
+  <!-- GALLERY -->
+  <section class="section-gallery" id="gallery">
+    <div class="gallery-label">GALLERY — EDGE OF PAINTING SERVICE</div>
+    <div class="gallery-inner">
+      <div class="gallery-grid" id="topGalleryGrid">
+        <!-- JSで動的に追加 -->
+      </div>
+      <div class="gallery-view-all"><a href="gallery.html">VIEW ALL →</a></div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section class="section-flow">
+    <div class="section-flow-inner">
+      <h2 class="section-title">ご依頼から納品までの流れ</h2>
+      <div class="flow-list">
+
+        <div class="flow-item">
+          <div class="flow-num-wrap">
+            <div class="flow-num">01</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-step-tag">STEP 01</span>
+            <div class="flow-title">お問い合わせ</div>
+            <p class="flow-desc" style="font-size: 16px;">お問い合わせフォームより、製作希望のキットの情報をお送りください。ご依頼内容をヒアリングし、キットの状態・塗装イメージ・スケジュールについて詳しくお聞きします。</p>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-num-wrap">
+            <div class="flow-num">02</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-step-tag">STEP 02</span>
+            <div class="flow-title">お見積り・正式受注</div>
+            <p class="flow-desc">ヒアリング内容をもとに料金と納期をご提示します。内容にご納得いただけましたら正式受注となります。</p>
+            <div class="flow-note">キット到着後に最終確認のうえ、正式なお見積りをご提示いたします。</div>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-num-wrap">
+            <div class="flow-num">03</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-step-tag">STEP 03</span>
+            <div class="flow-title">キット送付・製作開始</div>
+            <p class="flow-desc">キットをご送付ください。到着確認後、製作を開始します。製作中は進捗報告をいたします。修正や追加のご要望は製作過程でご相談いただけます。</p>
+          </div>
+        </div>
+
+        <div class="flow-item">
+          <div class="flow-num-wrap">
+            <div class="flow-num">04</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-step-tag">STEP 04</span>
+            <div class="flow-title">納品・お支払い</div>
+            <p class="flow-desc">完成後、丁寧に梱包してご返送いたします。お支払いは納品後にお願いしております。銀行振込・PayPay等に対応しています。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-sep"></div>
+
+  <!-- PRICE -->
+  <section class="section-price">
+    <div class="section-price-inner">
+      <h2 class="section-title">製作料金表</h2>
+      <!-- 価格表画像エリア -->
+      <div class="price-image-wrap">
+        <img src="images/ryoukin.webp?v=20260324" alt="製作料金表">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section-about" id="about">
+    <div class="section-about-inner">
+      <div>
+        <div class="about-avatar">
+          <img src="images/profile.webp" alt="Kaien">
+        </div>
+        <div class="about-socials">
+          <a href="https://x.com/kaien0610" target="_blank" rel="noopener noreferrer">✕ X (Twitter)</a>
+        </div>
+      </div>
+      <div>
+        <div class="about-name">Kaien</div>
+        <div class="about-role">GK Painting Service</div>
+        <p class="about-bio" style="font-size: 16px; line-height: 1.8;">
+          ガレージキットの製作・塗装代行を専門とするペインター。エアブラシを主体とした彩色技法を軸に、透明感のある肌表現や繊細なグラデーション処理を得意とします。<br>
+          コレクター様の大切な作品を、世界に一つだけの完成品に仕立てるお手伝いをいたします。こちらのページにて【メジャーサービス】の詳細については必ずご確認ください。
+        </p>
+        <div class="about-links-title">Works</div>
+        <div class="about-links">
+          <a href="#">YouTube 作品動画チャンネル</a>
+        </div>
+        <div class="about-links-title">Contact</div>
+        <div class="about-links">
+          <a href="https://x.com/kaien0610" target="_blank" rel="noopener noreferrer">X (Twitter) ダイレクトメッセージへ</a>
+          <a href="#contact">Contact フォームはこちら</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section-contact" id="contact">
+    <div class="section-contact-inner">
+      <h2 class="section-title">CONTACT</h2>
+      <p class="contact-lead" style="font-size: 18px; margin-bottom: 32px;">お問い合わせはこちらから</p>
+      <form id="contactForm">
+        <div class="form-group">
+          <label class="form-label">お名前</label>
+          <input type="text" id="from_name" name="from_name" class="form-input" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">メールアドレス</label>
+          <input type="email" id="reply_to" name="reply_to" class="form-input" placeholder="example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">キット名・スケール・ご依頼内容</label>
+          <input type="text" id="kit_info" name="kit_info" class="form-input" placeholder="〇〇 1/8スケール・全塗装仕上げ">
+        </div>
+        <div class="form-group">
+          <label class="form-label">ご要望・ご質問</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="ご依頼内容の詳細をご記入ください。"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">参考画像URL（任意）</label>
+          <input type="text" id="image_url" name="image_url" class="form-input" placeholder="https://...">
+        </div>
+        <!-- ハニーポット（ボット対策用の隠しフィールド） -->
+        <input type="text" name="contact_me_by_fax_only" style="display:none !important" tabindex="-1" autocomplete="off">
+        <button type="submit" class="form-submit" id="submitBtn">送信</button>
+        <div id="formMsg" style="margin-top:16px; font-size:13px; display:none;"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">© 2026 KAIEN GK PAINTING SERVICE</div>
+    <a href="#" class="footer-top">↑ PAGE TOP</a>
+  </footer>
+
+</body>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+
+    btn.textContent = '送信中...';
+    btn.disabled = true;
+    msg.style.display = 'none';
+
+    const formData = new FormData(this);
+
+    fetch('contact.php', { method: 'POST', body: formData })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          msg.textContent = 'お問い合わせを受け付けました。後ほどご連絡いたします。';
+          msg.style.cssText = 'display:block; color:#2ecc71; margin-top:16px; font-size:13px;';
+          this.reset();
+        } else {
+          throw new Error(data.error || '送信エラー');
+        }
+      })
+      .catch(err => {
+        msg.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        msg.style.cssText = 'display:block; color:#e74c3c; margin-top:16px; font-size:13px;';
+        console.error(err);
+      })
+      .finally(() => {
+        btn.textContent = '送信';
+        btn.disabled = false;
+      });
+  });
+
+  // キャッシュバスティング用のクエリ
+  const imgVer = new Date().getTime();
+
+  // 最新Information (WORKS) の取得
+  fetch('data/works.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const table = document.getElementById('topInfoTable');
+      if (!table) return;
+      // 最新の3件を表示
+      const latest = data.slice(0, 3);
+      table.innerHTML = latest.map(item => `
+        <tr>
+          <td class="info-date">${item.date}</td>
+          <td class="info-tag"><span>${item.category.toUpperCase()}</span></td>
+          <td class="info-content"><a href="worksdetail.html?id=${item.id}" style="color:var(--text);">${item.title}</a><br><small>${item.excerpt}</small></td>
+        </tr>
+      `).join('');
+    })
+    .catch(err => console.error('Works Load Error:', err));
+
+  // トップGallery の取得
+  fetch('data/gallery.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const grid = document.getElementById('topGalleryGrid');
+      if (!grid) return;
+      
+      const items = data.slice(0, 5);
+      const cells = items.map((item, i) => {
+        const imgHtml = item.mainImage 
+          ? `<img src="${item.mainImage}?v=${imgVer}" alt="${item.alt || item.title}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+          : `<div class="gallery-placeholder">PHOTO ${String(i+1).padStart(2,'0')}</div>`;
+        return `<a href="gallery.html#work-${item.id}" class="gallery-cell">${imgHtml}</a>`;
+      });
+      while(cells.length < 5) {
+        cells.push(`<div class="gallery-cell"><div class="gallery-placeholder">PHOTO ${String(cells.length+1).padStart(2,'0')}</div></div>`);
+      }
+      grid.innerHTML = cells.join('');
+    })
+    .catch(err => console.error('Gallery Load Error:', err));
+</script>
+
+</html>
