@@ -1,0 +1,288 @@
+/* 料金表専用スタイル */
+.price-table-container {
+  background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+  padding: 60px 40px;
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Noto Sans JP', sans-serif;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 背景のグリッド模様（オプション） */
+.price-table-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* ヘッダー */
+.price-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.price-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.price-title svg {
+  width: 36px;
+  height: 36px;
+  fill: #e3d2a4; /* Gold */
+  filter: drop-shadow(0 0 5px rgba(227, 210, 164, 0.5));
+}
+
+.price-title span {
+  background: linear-gradient(to bottom, #fff, #ccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.price-subtitle {
+  font-size: 14px;
+  color: #aaa;
+  letter-spacing: 0.05em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* メインレイアウト */
+.price-main {
+  display: flex;
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 左側：作品画像 */
+.price-figure {
+  flex: 0 0 320px;
+  position: relative;
+}
+
+.price-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  /* 斜めカット風の装飾（クリップパスは複雑なので枠線で表現） */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-figure::after {
+  content: "kaien";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  opacity: 0.5;
+  letter-spacing: 0.2em;
+}
+
+/* 右側：料金詳細 */
+.price-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* セクション共通 */
+.price-box {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 15px 20px;
+  position: relative;
+}
+
+.price-box-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.price-box-header svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 基本料金 - ゴールド */
+.basic-fee {
+  background: linear-gradient(135deg, rgba(227, 210, 164, 0.2) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border: 1px solid #e3d2a4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+.basic-fee .price-box-header {
+  color: #e3d2a4;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.basic-fee-content {
+  text-align: right;
+}
+
+.basic-fee-subject {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+.basic-fee-amount {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.basic-fee-amount span {
+  font-size: 18px;
+  margin: 0 5px;
+}
+
+/* オプション料金 - ブルー */
+.option-fees {
+  border: 1px solid rgba(0, 200, 255, 0.4);
+  box-shadow: inset 0 0 15px rgba(0, 200, 255, 0.05);
+}
+
+.option-fees .price-box-header {
+  color: #00c8ff;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.option-item {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.option-item-title {
+  font-size: 12px;
+  color: #00c8ff;
+  border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.option-item-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+/* ディーラープラン - ピンク */
+.pr-plan {
+  border: 1px solid rgba(255, 0, 200, 0.4);
+}
+
+.pr-plan .price-box-header {
+  color: #ff00c8;
+}
+
+.pr-plan-content {
+  display: flex;
+  gap: 20px;
+}
+
+.pr-plan-item {
+  flex: 1;
+}
+
+.pr-plan-label {
+  color: #ff00c8;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.pr-plan-desc {
+  font-size: 12px;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+/* ご依頼の流れ - シルバー */
+.flow-mini {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.flow-mini .price-box-header {
+  color: #fff;
+}
+
+.flow-mini-content {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.flow-mini-list {
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+/* フッターハッシュタグ */
+.price-footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  color: #666;
+  font-size: 12px;
+  font-family: 'Barlow Condensed', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+/* レスポンシブ */
+@media (max-width: 900px) {
+  .price-main {
+    flex-direction: column;
+  }
+  .price-figure {
+    flex: 0 0 auto;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+  .price-title {
+    font-size: 24px;
+  }
+}
