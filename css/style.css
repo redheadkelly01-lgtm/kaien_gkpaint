@@ -121,8 +121,8 @@ nav a.active {
 /* HERO */
 .hero {
   position: relative;
-  margin-top: var(--nav-h);
-  height: calc(100vh - var(--nav-h));
+  margin-top: 0;
+  height: 100vh;
   min-height: 500px;
   overflow: hidden;
   background: var(--bg);
@@ -862,12 +862,15 @@ footer {
 }
 
 @media(max-width:768px) {
+  :root {
+    --nav-h: 80px;
+  }
+
   body {
     font-size: 14px;
   }
 
   header {
-    height: 80px;
     padding: 0 20px;
   }
 
@@ -883,10 +886,11 @@ footer {
     aspect-ratio: 16 / 9;
     /* スマホでは画像比率に合わせる */
     min-height: auto;
+    margin-top: 0;
   }
 
   .hero-img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     opacity: 1;
     /* スマホでは明るく表示 */
