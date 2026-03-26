@@ -41,7 +41,7 @@
       --text-muted: #999999;
       --text-dim: #666666;
       --gold: #e3d2a4;
-      --nav-h: 100px;
+      --nav-h: 60px;
     }
 
     html {
@@ -90,9 +90,9 @@
     }
 
     .logo-img {
-      height: 100px;
-      width: 200px;
-      object-fit: cover;
+      height: 60px;
+      width: auto;
+      object-fit: contain;
       object-position: center;
       display: block;
       transition: transform .3s;
@@ -488,7 +488,7 @@
       .page-header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 56px 20px 32px; }
     }
     @media (max-width: 600px) {
-      header { height: 70px; padding: 0 20px; }
+      header { padding: 0 20px; }
       .logo-img { height: 44px; width: auto; object-fit: contain; }
       .page-title { font-size: 36px; }
       .page-count { display: none; }
@@ -528,7 +528,7 @@
   <!-- NAV -->
   <header>
     <a href="index.html" class="logo">
-      <img src="icon.webp" alt="KAIEN Logo" class="logo-img">
+      <!-- 画像削除 -->
     </a>
     <nav>
       <a href="index.html">TOP</a>
