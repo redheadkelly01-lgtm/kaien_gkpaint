@@ -49,9 +49,10 @@
       --border: #2a2a2a;
       --accent: #c0392b;
       --accent2: #e74c3c;
-      --text: #e8e8e8;
-      --text-muted: #b0b0b0;
-      --text-dim: #666;
+      --text: #cccccc; /* 目が疲れないライトグレー */
+      --text-muted: #999999;
+      --text-dim: #666666;
+      --gold: #e3d2a4; /* 上品なシャンパンゴールド */
       --nav-h: 100px;
     }
 
@@ -205,34 +206,43 @@
 
     /* INTRO */
     .intro {
-      padding: 72px 40px 56px;
+      padding: 100px 20px 80px; /* 上下余白を少し広めに */
       max-width: 860px;
       margin: 0 auto;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 32px; /* 段落間の余白 */
     }
 
     .intro p {
-      font-size: 18px; /* 15.5px -> 18px */
+      font-size: 18px;
       line-height: 2.2;
       color: var(--text);
+      margin: 0;
     }
 
     .intro p strong {
-      color: var(--text);
+      color: var(--gold);
       font-weight: 500;
+    }
+
+    .highlight {
+      color: #ffffff; /* 強調は太字の白 */
+      font-weight: 700;
     }
 
     /* SECTION TITLE */
     .section-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 26px; /* 22px -> 26px */
+      font-size: 30px; /* 少し大きめに */
       font-weight: 600;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 24px;
+      color: var(--gold); /* シャンパンゴールド */
+      margin-bottom: 40px; /* 上下余白を広めに */
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(227, 210, 164, 0.2);
     }
 
     /* INFORMATION */
@@ -873,7 +883,14 @@
         font-size: 11px;
       }
 
-      .intro,
+      .intro {
+        padding: 80px 20px 60px;
+        gap: 24px;
+      }
+      .intro p {
+        font-size: 15px;
+        line-height: 2.0; /* スマホでも見やすい改行幅 */
+      }
       .section-information,
       .section-price,
       .section-about,
@@ -956,11 +973,19 @@
   <!-- INTRO -->
   <section class="intro">
     <p>
-      息を呑むような「透明感」を、あなたの手元へ。<br><br>
-      ガレージキット製作・彩色代行「<strong>KAIEN GK PAINTING SERVICE</strong>」のホームページへようこそ。<br><br>
+      息を呑むような「透明感」を、あなたの手元へ。
+    </p>
+    <p>
+      ガレージキット製作・彩色代行「<strong>KAIEN GK PAINTING SERVICE</strong>」のホームページへようこそ。<br>
       当サービスでは、美少女フィギュアを中心としたレジンキャストキットの製作および彩色代行を承っております。
-      最大の強みは、サフレス塗装による「透明感のある肌表現」と、何層にも色を重ねて生み出す「繊細なグラデーション」です。
-      ディーラー様がキットに込めた造形の魅力を最大限に引き出し、世界に一つだけの美しい完成品へと仕上げます。<br><br>
+    </p>
+    <p>
+      最大の強みは、<span class="highlight">サフレス塗装</span>による「透明感のある肌表現」と、<br>
+      何層にも色を重ねて生み出す<span class="highlight">繊細なグラデーション</span>、<br>
+      そして素材に応じた<span class="highlight">質感の違いの表現</span>です。
+    </p>
+    <p>
+      ディーラー様がキットに込めた造形の魅力を最大限に引き出し、世界に一つだけの美しい完成品へと仕上げます。<br>
       個人のコレクター様からのご依頼はもちろん、イベント展示用のデコマス（彩色見本）製作などもお気軽にご相談ください。
     </p>
   </section>
