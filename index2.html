@@ -208,14 +208,23 @@
     }
 
     /* INTRO */
-    .intro {
-      padding: 100px 20px 80px; /* 上下余白を少し広めに */
-      max-width: 960px;
+    .intro-container {
+      width: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .intro-scaler {
+      width: 960px; /* PC時の固定幅 */
       margin: 0 auto;
+      transform-origin: top center;
+    }
+    .intro {
+      padding: 100px 20px 80px; 
+      width: 100%;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 36px; /* 段落間の余白 */
+      gap: 36px;
       font-family: 'Noto Serif JP', "Yu Mincho", "游明朝", serif;
       text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
@@ -231,7 +240,7 @@
     .intro-heading {
       font-size: 34px;
       font-weight: 700;
-      color: #f1dca3; /* シャンパンゴールド */
+      color: #f1dca3;
       line-height: 1.5;
       margin: 0;
       letter-spacing: 0.05em;
@@ -240,7 +249,7 @@
     .intro-body {
       font-size: 16px;
       line-height: 2.2;
-      color: #d0d0d0; /* ライトグレー */
+      color: #d0d0d0;
       margin: 0;
       letter-spacing: 0.02em;
     }
@@ -901,17 +910,9 @@
         font-size: 11px;
       }
 
-      .intro {
-        padding: 80px 10px 60px;
-        gap: 28px;
-        white-space: nowrap; /* 自動改行を禁止 */
-      }
-      /* 画面幅に合わせて文字を縮小し、指定した改行位置を常に維持する設定 */
-      .intro-lead { font-size: min(16px, 3.8vw); }
-      .intro-heading { font-size: min(22px, 4.8vw); }
-      .intro-body { font-size: min(14px, 2.38vw); line-height: 2.0; }
-
-      br.pc-only { display: block; content: ""; } /* スマホでもPCの改行を適用 */
+      /* === index2 固有の厳密な改行位置維持ロジック === */
+      /* スマホ向けメディアクエリ内の .intro スタイルは JS で全体を縮小するため不要 */
+      br.pc-only { display: block; content: ""; } 
       br.sp-only { display: none; }
 
       .section-information,
@@ -994,24 +995,28 @@
   </section>
 
   <!-- INTRO -->
-  <section class="intro">
-    <p class="intro-lead">
-      息を呑むような『透明感』を、あなたの手元へ。
-    </p>
-    
-    <h2 class="intro-heading">
-      ボークスファレホペイントコンテスト最優秀賞3連覇。<br class="pc-only">
-      数々の受賞歴が裏付ける、圧倒的な表現力。
-    </h2>
+  <section class="intro-container">
+    <div class="intro-scaler">
+      <div class="intro">
+        <p class="intro-lead">
+          息を呑むような『透明感』を、あなたの手元へ。
+        </p>
+        
+        <h2 class="intro-heading">
+          ボークスファレホペイントコンテスト最優秀賞3連覇。<br class="pc-only">
+          数々の受賞歴が裏付ける、圧倒的な表現力。
+        </h2>
 
-    <p class="intro-body">
-      最優秀賞の3連覇をはじめ、金賞4回、銀賞3回、銅賞1回という確かな実績が、当サービスの技術力の証です。<br class="pc-only">
-      最大の強みは、キャラクターに命を吹き込む極めて高い塗装技術にあります。<br class="pc-only">
-      透き通るような肌を生み出すこだわりの「<span class="highlight">サフレス塗装</span>」、息遣いまで感じさせる「<span class="highlight">繊細なグラデーション</span>」、<br class="pc-only">
-      そして肌・布・金属といった素材ごとの「<span class="highlight">質感の違いの的確な表現</span>」。<br class="pc-only">
-      妥協を許さないプロの技術と緻密な手仕事で、お預かりしたガレージキットのポテンシャルを<br class="pc-only">
-      最高到達点まで引き出し、ワンランク上の芸術作品へと昇華させます。
-    </p>
+        <p class="intro-body">
+          最優秀賞の3連覇をはじめ、金賞4回、銀賞3回、銅賞1回という確かな実績が、当サービスの技術力の証です。<br class="pc-only">
+          最大の強みは、キャラクターに命を吹き込む極めて高い塗装技術にあります。<br class="pc-only">
+          透き通るような肌を生み出すこだわりの「<span class="highlight">サフレス塗装</span>」、息遣いまで感じさせる「<span class="highlight">繊細なグラデーション</span>」、<br class="pc-only">
+          そして肌・布・金属といった素材ごとの「<span class="highlight">質感の違いの的確な表現</span>」。<br class="pc-only">
+          妥協を許さないプロの技術と緻密な手仕事で、お預かりしたガレージキットのポテンシャルを<br class="pc-only">
+          最高到達点まで引き出し、ワンランク上の芸術作品へと昇華させます。
+        </p>
+      </div>
+    </div>
   </section>
 
   <!-- INFORMATION -->
@@ -1175,6 +1180,27 @@
     <a href="#" class="footer-top">↑ PAGE TOP</a>
   </footer>
 
+  <script>
+    // index2.html 用の拡縮ロジック
+    function scaleIntro() {
+      const container = document.querySelector('.intro-container');
+      const scaler = document.querySelector('.intro-scaler');
+      if (!container || !scaler) return;
+      
+      const windowWidth = document.documentElement.clientWidth;
+      if (windowWidth < 960) {
+        // 画面が960px未満の場合はスケールダウンする
+        const scale = windowWidth / 960;
+        scaler.style.transform = `scale(${scale})`;
+        container.style.height = `${scaler.offsetHeight * scale}px`;
+      } else {
+        scaler.style.transform = 'none';
+        container.style.height = 'auto';
+      }
+    }
+    window.addEventListener('resize', scaleIntro);
+    window.addEventListener('load', scaleIntro);
+  </script>
 </body>
 
 <script>
