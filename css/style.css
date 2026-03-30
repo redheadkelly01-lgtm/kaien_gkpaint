@@ -687,18 +687,18 @@ nav a.active {
 
 .about-catch {
   font-family: 'Noto Serif JP', serif;
-  font-size: 33px;
+  font-size: 32px;
   font-weight: 700;
-  color: #f1dca3;
+  color: var(--gold);
   margin-bottom: 24px;
-  letter-spacing: 0.05em;
-  line-height: 1.5;
+  letter-spacing: 0.1em;
 }
 
 .about-lead {
-  font-size: 16px;
-  line-height: 2.2;
-  color: #d0d0d0;
+  font-size: 24px;
+  /* さらに大きく */
+  line-height: 2;
+  color: #fff;
   margin-bottom: 56px;
 }
 
