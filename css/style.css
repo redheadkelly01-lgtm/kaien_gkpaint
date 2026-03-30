@@ -245,16 +245,15 @@ nav a.active {
 .section-title {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 30px;
-  /* 少し大きめに */
   font-weight: 600;
   letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--gold);
-  /* シャンパンゴールド */
-  margin-bottom: 40px;
-  /* 上下余白を広めに */
+  margin: 0 auto 40px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgba(227, 210, 164, 0.2);
+  width: fit-content;
+  text-align: center;
 }
 
 /* INFORMATION */
@@ -342,26 +341,11 @@ nav a.active {
 /* GALLERY */
 .section-gallery {
   position: relative;
-  padding: 48px 0;
+  padding: 80px 40px;
   background: #111;
 }
 
-.gallery-label {
-  position: absolute;
-  left: 18px;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  writing-mode: vertical-rl;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  white-space: nowrap;
-}
+
 
 .gallery-inner {
   padding: 0 56px 0 56px;
@@ -454,13 +438,7 @@ nav a.active {
 }
 
 .section-flow .section-title {
-  text-align: center;
-  border-bottom: none;
   margin-bottom: 72px;
-  font-size: 18px;
-  letter-spacing: .12em;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 500;
 }
 
 .flow-list {
@@ -758,8 +736,6 @@ nav a.active {
 }
 
 .section-contact .section-title {
-  text-align: center;
-  border-bottom: none;
   margin-bottom: 8px;
 }
 
