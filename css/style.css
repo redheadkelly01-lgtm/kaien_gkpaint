@@ -632,17 +632,6 @@ nav a.active {
   overflow: hidden;
 }
 
-/* 背景にうっすら斜めライン装飾 */
-.section-about::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.02) 75%, transparent 75%, transparent);
-  background-size: 100px 100px;
-  pointer-events: none;
-}
-
 .section-about-inner {
   max-width: 900px;
   margin: 0 auto;
@@ -681,7 +670,7 @@ nav a.active {
 
 .about-label {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: .4em;
   color: var(--gold);
@@ -719,9 +708,9 @@ nav a.active {
 }
 
 .about-lead {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 2;
-  color: var(--text-muted);
+  color: #fff;
   margin-bottom: 56px;
 }
 
@@ -1039,6 +1028,11 @@ footer {
   .about-btn {
     padding: 20px 32px;
     width: 100%;
+  }
+
+  .about-lead {
+    font-size: 15px;
+    margin-bottom: 40px;
   }
 
   footer {
