@@ -31,9 +31,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Oswald:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Oswald:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/price-table.css">
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
@@ -62,6 +63,7 @@
   <section class="hero">
     <img src="images/top.webp?v=20260324" alt="KAIEN GK PAINTING SERVICE メインビジュアル" class="hero-img" loading="lazy">
     <div class="hero-overlay"></div>
+    <div class="hero-bottom"></div>
     <div class="hero-watermark">kaien</div>
   </section>
 
@@ -93,7 +95,7 @@
 
   <!-- INFORMATION -->
   <section class="section-information" id="works">
-    <h2 class="section-title">INFORMATION</h2>
+    <h2 class="section-title">WORKS</h2>
     <table class="info-table" id="topInfoTable">
       <!-- JSで動的に追加 -->
     </table>
@@ -104,7 +106,7 @@
 
   <!-- GALLERY -->
   <section class="section-gallery" id="gallery">
-    <div class="gallery-label">GALLERY — EDGE OF PAINTING SERVICE</div>
+    <h2 class="section-title">GALLERY</h2>
     <div class="gallery-inner">
       <div class="gallery-grid" id="topGalleryGrid">
         <!-- JSで動的に追加 -->
@@ -175,9 +177,121 @@
   <section class="section-price">
     <div class="section-price-inner">
       <h2 class="section-title">製作料金表</h2>
-      <!-- 価格表画像エリア -->
-      <div class="price-image-wrap">
-        <img src="images/ryoukin.webp?v=20260324" alt="製作料金表">
+
+      <div class="price-table-container">
+        <!-- 背景グリッド装飾はCSSで実装 -->
+
+        <div class="price-header">
+          <div class="price-title">
+            <div class="price-title-wrap">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5M19 19C19 19.6 18.6 20 18 20H6C5.4 20 5 19.6 5 19V18H19V19Z" />
+              </svg>
+              <span>ガレージキット製作・彩色代行　料金表</span>
+            </div>
+          </div>
+          <p class="price-subtitle">
+            圧倒的な透明感。極限の質感コントロール。<br class="sp-only">作品の魅力を最大限に引き出す、至高の作品を。
+          </p>
+        </div>
+
+        <div class="price-main">
+          <!-- 左側：フィギュア画像 -->
+          <div class="price-figure">
+            <img src="images/works/01_main.webp" alt="製作例">
+          </div>
+
+          <!-- 右側：料金詳細 -->
+          <div class="price-content">
+
+            <!-- 基本料金 -->
+            <div class="price-box basic-fee">
+              <div class="price-box-header">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M16,5.1V2H8V5.1L2,12L12,22L22,12L16,5.1M12,18.5L6.6,12.9L10.3,8.7L12,13.5L13.7,8.7L17.4,12.9L12,18.5Z" />
+                </svg>
+                基本料金
+              </div>
+              <div class="basic-fee-content">
+                <div class="basic-fee-subject">1/8〜1/6スケール (標準サイズ・30パーツ以内)</div>
+                <div class="basic-fee-amount">80,000<span>円 〜</span>100,000<span>円</span></div>
+              </div>
+            </div>
+
+            <!-- オプション料金 -->
+            <div class="price-box option-fees">
+              <div class="price-box-header">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M13.78 12.3L19.7 18.22L18.06 19.85L12.14 13.93L12.08 13.97L11 15L10 14L10.96 13.04L10.92 12.97L5 7.05L6.64 5.42L12.56 11.34L12.63 11.27L13.69 10.21L14.75 11.27L13.69 12.33L13.78 12.3Z" />
+                </svg>
+                オプション料金
+              </div>
+              <div class="option-grid">
+                <!-- パーツ数追加 -->
+                <div class="option-item">
+                  <div class="option-item-title">パーツ数追加</div>
+                  <div class="option-item-row"><span>31〜40パーツ</span><span>+10,000円</span></div>
+                  <div class="option-item-row"><span>41〜50パーツ</span><span>+20,000円</span></div>
+                </div>
+                <!-- 特殊塗装 -->
+                <div class="option-item">
+                  <div class="option-item-title">特殊塗装・複雑なマスキング</div>
+                  <div class="option-item-row"><span>+10,000円 〜 20,000円</span></div>
+                </div>
+                <!-- 特殊質感 -->
+                <div class="option-item">
+                  <div class="option-item-title">特殊質感・ギミック表現</div>
+                  <div class="option-item-row"><span>各 +5,000円 〜 10,000円</span></div>
+                  <div class="option-item-row" style="opacity: 0.6; font-size: 10px;">(UV発光、鏡面グロスなど)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ディーラー向け -->
+            <div class="price-box pr-plan">
+              <div class="price-box-header">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12,8H4A2,2 0 0,0 2,10V14A2,2 0 0,0 4,16H5L6,19H8L7,16H12M15,12A3,3 0 0,1 12,15V9A3,3 0 0,1 15,12M18,12A6,6 0 0,1 12,18V6A6,6 0 0,1 18,12Z" />
+                </svg>
+                ディーラー様向け【作品特別PRプラン】
+              </div>
+              <div class="pr-plan-content">
+                <div class="pr-plan-item">
+                  <div class="pr-plan-label">特別割引</div>
+                  <div class="pr-plan-desc">-10,000円〜</div>
+                </div>
+                <div class="pr-plan-item">
+                  <div class="pr-plan-label">宣伝バックアップ</div>
+                  <div class="pr-plan-desc">進捗ポストから完成まで、こだわりの仕上がりと世界観を強力PR。</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ご依頼の流れ -->
+            <div class="price-box flow-mini">
+              <div class="price-box-header">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z" />
+                </svg>
+                ご依頼の流れ
+              </div>
+              <div class="flow-mini-content">
+                DMにて以下の情報をお送りください。
+                <ul class="flow-mini-list">
+                  <li>キット名／ディーラー名</li>
+                  <li>スケール／パーツ数</li>
+                  <li>ご希望の仕上げやイメージ（ディーラー様）販売予定時期</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -185,29 +299,46 @@
   <!-- ABOUT -->
   <section class="section-about" id="about">
     <div class="section-about-inner">
-      <div>
+      <div class="about-header">
         <div class="about-avatar">
           <img src="images/profile.webp" alt="Kaien">
         </div>
-        <div class="about-socials">
-          <a href="https://x.com/kaien0610" target="_blank" rel="noopener noreferrer">✕ X (Twitter)</a>
+        <div class="about-title-group">
+          <h2 class="section-title">ABOUT</h2>
+          <div class="about-name-deco">Kaien</div>
+          <div class="about-sns">
+            <a href="https://x.com/kaien0610" target="_blank" rel="noopener noreferrer">✕ X (Twitter)</a>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="about-name">Kaien</div>
-        <div class="about-role">GK Painting Service</div>
-        <p class="about-bio" style="font-size: 16px; line-height: 1.8;">
-          ガレージキットの製作・塗装代行を専門とするペインター。エアブラシを主体とした彩色技法を軸に、透明感のある肌表現や繊細なグラデーション処理を得意とします。<br>
-          コレクター様の大切な作品を、世界に一つだけの完成品に仕立てるお手伝いをいたします。こちらのページにて【メジャーサービス】の詳細については必ずご確認ください。
-        </p>
-        <div class="about-links-title">Works</div>
-        <div class="about-links">
-          <a href="#">YouTube 作品動画チャンネル</a>
+
+      <div class="about-body">
+        <h3 class="about-catch">最高峰の技術で、理想を形に。</h3>
+        <p class="about-lead">妥協のないクオリティで、あなたの大切なキットを<br class="pc-only">世界に一つだけの完成品に仕立て上げます。</p>
+
+        <div class="about-details-grid">
+          <div class="about-details-col">
+            <h4 class="about-details-title">【実績】</h4>
+            <ul class="about-details-list">
+              <li>ボークスファレホペイントコンテスト 最優秀賞3連覇</li>
+              <li>同コンテスト 金賞4回、銀賞3回、銅賞1回 受賞</li>
+            </ul>
+          </div>
+          <div class="about-details-col">
+            <h4 class="about-details-title">【得意技術】</h4>
+            <ul class="about-details-list">
+              <li>究極の「サフレス塗装」による透明感</li>
+              <li>繊細なグラデーション表現</li>
+              <li>的確な質感の使い分け（肌、布、金属）</li>
+            </ul>
+          </div>
         </div>
-        <div class="about-links-title">Contact</div>
-        <div class="about-links">
-          <a href="https://x.com/kaien0610" target="_blank" rel="noopener noreferrer">X (Twitter) ダイレクトメッセージへ</a>
-          <a href="#contact">Contact フォームはこちら</a>
+
+        <div class="about-action">
+          <a href="#contact" class="about-btn">
+            <span>お見積り・ご相談は無料です。</span>
+            <span>まずはお気軽にお問い合わせください。</span>
+          </a>
         </div>
       </div>
     </div>

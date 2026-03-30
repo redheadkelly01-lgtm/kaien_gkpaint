@@ -73,9 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const latest = data.slice(0, 3);
       table.innerHTML = latest.map(item => `
         <tr>
-          <td class="info-date">${item.date}</td>
-          <td class="info-tag"><span>${item.category.toUpperCase()}</span></td>
-          <td class="info-content"><a href="worksdetail.html?id=${item.id}" style="color:var(--text);">${item.title}</a><br><small>${item.excerpt}</small></td>
+          <td class="info-content" style="text-align:center; padding: 12px 0;">
+            <a href="worksdetail.html?id=${item.id}" style="color:var(--text); font-size: 16px;">${item.title}</a>
+          </td>
         </tr>
       `).join('');
     })
