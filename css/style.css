@@ -896,7 +896,7 @@ footer {
 
 @media(max-width:768px) {
   .info-excerpt {
-    display: none;
+    display: none !important;
   }
 
   :root {
