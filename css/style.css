@@ -244,9 +244,9 @@ nav a.active {
 /* SECTION TITLE */
 .section-title {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 600;
-  letter-spacing: .22em;
+  letter-spacing: .3em;
   text-transform: uppercase;
   color: var(--gold);
   margin: 0 auto 40px;
@@ -628,7 +628,7 @@ nav a.active {
   background: linear-gradient(135deg, #e3d2a4, #b08d57);
   /* ゴールドのグラデーション枠 */
   box-shadow: 0 0 30px rgba(227, 210, 164, 0.2);
-  margin-bottom: 24px;
+  /*margin-bottom: 24px;*/
 }
 
 .about-avatar img {
@@ -643,14 +643,7 @@ nav a.active {
   text-align: center;
 }
 
-.about-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 36px; /* さらに少し大きく */
-  font-weight: 500;
-  letter-spacing: .4em;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
+
 
 .about-name-deco {
   font-family: 'Dancing Script', cursive;
@@ -702,7 +695,8 @@ nav a.active {
 }
 
 .about-lead {
-  font-size: 24px; /* さらに大きく */
+  font-size: 24px;
+  /* さらに大きく */
   line-height: 2;
   color: #fff;
   margin-bottom: 56px;
@@ -1015,8 +1009,9 @@ footer {
     font-size: 48px;
   }
 
-  .about-label {
+  .section-title {
     font-size: 24px;
+    margin-bottom: 32px;
   }
 
   .about-catch {
