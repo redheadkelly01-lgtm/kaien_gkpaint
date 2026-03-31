@@ -612,10 +612,10 @@
 <script>
   const imgVer = new Date().getTime();
   // ==============================
-  // データストア（LocalStorage）
+  // データストア（LocalStorage）※一時バッファのみ
   // ==============================
-  let worksData   = JSON.parse(localStorage.getItem('admin_works')   || '[]');
-  let galleryData = JSON.parse(localStorage.getItem('admin_gallery') || '[]');
+  let worksData   = [];
+  let galleryData = [];
   let bodyBlocks  = [];
   let editWorksIdx   = -1;
   let editGalleryIdx = -1;
@@ -628,14 +628,16 @@
   }
 
   // ==============================
-  // 初期ロード（既存JSONを取得）
+  // 初期ロード（常にサーバーのJSONを優先して読み込む）
   // ==============================
   Promise.all([
     fetch('../data/works.json?t=' + Date.now()).then(r=>r.json()).catch(()=>[]),
     fetch('../data/gallery.json?t=' + Date.now()).then(r=>r.json()).catch(()=>[])
   ]).then(([w, g]) => {
-    if (worksData.length === 0 && w.length > 0)   { worksData   = w; saveLocal(); }
-    if (galleryData.length === 0 && g.length > 0)  { galleryData = g; saveLocal(); }
+    // 常にサーバーデータで上書き（複数人編集時の差異を防ぐ）
+    worksData   = w;
+    galleryData = g;
+    saveLocal();
     renderWorksList();
     renderGalleryList();
   });
