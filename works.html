@@ -126,9 +126,87 @@
     .work-card.fade-in { animation: fadeIn .4s ease forwards; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
+    /* ─── LIGHTBOX ────────────────────────────────── */
+    .lb-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.92);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 20px;
+    }
+    .lb-overlay.open { display: flex; animation: lbFadeIn .25s ease; }
+    @keyframes lbFadeIn { from { opacity:0; } to { opacity:1; } }
+    .lb-img-wrap {
+      position: relative;
+      max-width: min(90vw, 480px);
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+    .lb-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .lb-close {
+      position: fixed;
+      top: 16px; right: 20px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: .7;
+      transition: opacity .2s;
+      z-index: 10000;
+    }
+    .lb-close:hover { opacity: 1; }
+    .lb-caption {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      max-width: 480px;
+    }
+    .lb-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 8px 24px;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .lb-link:hover { background: var(--accent); color: #fff; }
+    .lb-prev, .lb-next {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.5);
+      border: 1px solid #333;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      width: 44px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+      z-index: 10000;
+    }
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+    .lb-prev:hover, .lb-next:hover { background: rgba(192,57,43,.6); }
+
     /* サムネ */
     .card-thumb {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 4;
       overflow: hidden;
       position: relative;
       background: #000;
@@ -311,6 +389,16 @@
   <a href="#" class="footer-top">↑ PAGE TOP</a>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lbOverlay">
+  <button class="lb-close" id="lbClose">&#x2715;</button>
+  <button class="lb-prev" id="lbPrev">&#x276E;</button>
+  <button class="lb-next" id="lbNext">&#x276F;</button>
+  <div class="lb-img-wrap"><img id="lbImg" src="" alt=""></div>
+  <div class="lb-caption" id="lbCaption"></div>
+  <a href="#" class="lb-link" id="lbLink">DETAIL PAGE →</a>
+</div>
+
 <script>
   const filterBtns = document.querySelectorAll('.filter-btn');
   const shownCountEl = document.getElementById('shownCount');
@@ -320,23 +408,69 @@
 
   const imgVer = new Date().getTime();
 
+  // ライトボックス
+  let lbItems = [];   // { thumb, title, detailUrl } の配列（可視順）
+  let lbIndex = 0;
+  const lbOverlay = document.getElementById('lbOverlay');
+  const lbImg     = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbLink    = document.getElementById('lbLink');
+  const lbClose   = document.getElementById('lbClose');
+  const lbPrev    = document.getElementById('lbPrev');
+  const lbNext    = document.getElementById('lbNext');
+
+  function lbOpen(idx) {
+    const visible = lbItems.filter(it => !it.card.classList.contains('hidden'));
+    if (!visible.length) return;
+    lbIndex = Math.max(0, Math.min(idx, visible.length - 1));
+    const cur = visible[lbIndex];
+    lbImg.src = cur.thumb || '';
+    lbImg.alt = cur.title;
+    lbCaption.textContent = cur.title;
+    lbLink.href = cur.detailUrl;
+    lbOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function lbClose_fn() {
+    lbOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  lbClose.addEventListener('click', lbClose_fn);
+  lbOverlay.addEventListener('click', e => { if (e.target === lbOverlay) lbClose_fn(); });
+  lbPrev.addEventListener('click', e => {
+    e.stopPropagation();
+    const visible = lbItems.filter(it => !it.card.classList.contains('hidden'));
+    lbOpen((lbIndex - 1 + visible.length) % visible.length);
+  });
+  lbNext.addEventListener('click', e => {
+    e.stopPropagation();
+    const visible = lbItems.filter(it => !it.card.classList.contains('hidden'));
+    lbOpen((lbIndex + 1) % visible.length);
+  });
+  document.addEventListener('keydown', e => {
+    if (!lbOverlay.classList.contains('open')) return;
+    if (e.key === 'Escape')  lbClose_fn();
+    if (e.key === 'ArrowLeft')  lbPrev.click();
+    if (e.key === 'ArrowRight') lbNext.click();
+  });
+
   // カードHTMLを生成
   function createCard(item) {
-    const a = document.createElement('a');
-    a.className = 'work-card';
-    a.href = `worksdetail.html?id=${item.id}`;
-    a.dataset.category = item.category;
-    a.dataset.new = item.isNew ? 'true' : 'false';
+    const card = document.createElement('div');
+    card.className = 'work-card';
+    card.dataset.category = item.category;
+    card.dataset.new = item.isNew ? 'true' : 'false';
 
+    const thumbSrc = item.thumb ? `${item.thumb}?v=${imgVer}` : '';
     const thumbImg = item.thumb
-      ? `<img src="${item.thumb}?v=${imgVer}" alt="${item.title}" loading="lazy">`
+      ? `<img src="${thumbSrc}" alt="${item.title}" loading="lazy">`
       : `<div class="thumb-placeholder">THUMBNAIL</div>`;
 
-    a.innerHTML = `
-      <div class="card-thumb">
+    card.innerHTML = `
+      <div class="card-thumb" data-detail="worksdetail.html?id=${item.id}">
         ${thumbImg}
         <span class="card-badge ${item.category}">${item.category.toUpperCase()}</span>
-        <div class="card-overlay"><span class="card-overlay-label">READ MORE</span></div>
+        <div class="card-overlay"><span class="card-overlay-label">拡大 VIEW</span></div>
       </div>
       <div class="card-body">
         <div class="card-meta">
@@ -344,10 +478,22 @@
           <span class="card-meta-dot"></span>
           <span>${item.category.toUpperCase()}</span>
         </div>
-        <div class="card-title">${item.title}</div>
+        <div class="card-title"><a href="worksdetail.html?id=${item.id}" style="color:inherit;text-decoration:none;">${item.title}</a></div>
         <p class="card-excerpt">${item.excerpt}</p>
       </div>`;
-    return a;
+
+    // ライトボックス用データ登録
+    const lbEntry = { thumb: thumbSrc, title: item.title, detailUrl: `worksdetail.html?id=${item.id}`, card };
+    lbItems.push(lbEntry);
+
+    // サムネ領域クリックでライトボックス
+    card.querySelector('.card-thumb').addEventListener('click', () => {
+      const visible = lbItems.filter(it => !it.card.classList.contains('hidden'));
+      const idx = visible.indexOf(lbEntry);
+      lbOpen(idx);
+    });
+
+    return card;
   }
 
   // フィルタ適用
