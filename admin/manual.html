@@ -93,11 +93,16 @@
   <div class="flow">
     <div class="flow-step"><span class="flow-num">①</span><span class="flow-label">管理画面で記事・作品を登録・編集</span></div>
     <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label" style="color:var(--dim);"></span></div>
-    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">JSONをダウンロード</span></div>
+    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">「保存」後にサーバー反映ボタンをクリック</span></div>
     <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label"></span></div>
-    <div class="flow-step"><span class="flow-num">③</span><span class="flow-label">FTPでVPSにアップロード（JSONと画像）</span></div>
+    <div class="flow-step"><span class="flow-num">③</span><span class="flow-label">自動でサイトが更新される（FTP不要）</span></div>
     <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label"></span></div>
     <div class="flow-step"><span class="flow-num">④</span><span class="flow-label">ブラウザでサイトを確認</span></div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">📱 スマートフォン対応</div>
+    管理画面はスマートフォンからも利用可能です。外出先からでも写真のアップロードや記事の編集が簡単に行えます。
   </div>
 
   <hr>
@@ -200,29 +205,33 @@
   <div class="tip">
     <div class="tip-label">💡 TIP</div>
     推奨形式は <strong>WebP</strong>（軽量・高画質）です。<br>
-    JPEGやPNGもアップロードでき、最大ファイルサイズは <strong>10MB</strong> まで対応しています。
+    JPEGやPNGもアップロードでき、最大ファイルサイズは <strong>30MB</strong> まで対応しています。
   </div>
 
   <hr>
 
   <!-- JSONアップロード -->
-  <h2>サイトに反映する（JSONアップロード）</h2>
+  <h2>サイトに反映する（JSON保存）</h2>
   <p>管理画面での保存はブラウザ内の一時保存です。<br>
-  <strong>JSONをダウンロードしてVPSにアップロードして初めて反映されます。</strong></p>
+  <strong>「サーバーに反映」ボタンを押して初めてサイトが更新されます。</strong></p>
 
   <h3>手順</h3>
   <ol>
-    <li>「<strong>JSONエクスポート</strong>」タブを開く</li>
+    <li>「<strong>サーバー反映（JSON保存）</strong>」タブを開く</li>
     <li>更新内容に応じてクリック
       <ul>
-        <li><code>works.json を生成</code> → WORKS更新時</li>
-        <li><code>gallery.json を生成</code> → GALLERY更新時</li>
+        <li><code>WORKSデータをサーバに反映</code> → WORKS更新時</li>
+        <li><code>GALLERYデータをサーバに反映</code> → GALLERY更新時</li>
       </ul>
     </li>
-    <li>「<strong>ファイルにダウンロード</strong>」</li>
-    <li>FTPクライアント（FileZilla等）でVPSの <strong><code>data/</code></strong> フォルダに<strong>上書きアップロード</strong></li>
-    <li>ブラウザでサイトをリロードして確認</li>
+    <li>「✅ サーバーに直接保存しました」と表示されれば反映完了です。</li>
+    <li>ブラウザでサイトをリロードして確認してください。</li>
   </ol>
+
+  <div class="tip">
+    <div class="tip-label">⚠️ 注意</div>
+    もし「通信エラー」などが出る場合は、JSONを手動でダウンロードして <code>data/</code> フォルダにアップロードすることも可能です。
+  </div>
 
   <hr>
 
