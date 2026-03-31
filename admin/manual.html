@@ -93,11 +93,15 @@
   <div class="flow">
     <div class="flow-step"><span class="flow-num">①</span><span class="flow-label">管理画面で記事・作品を登録・編集</span></div>
     <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label" style="color:var(--dim);"></span></div>
-    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">「保存」後にサーバー反映ボタンをクリック</span></div>
+    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">「保存」ボタンをクリック（サーバーに自動反映）</span></div>
     <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label"></span></div>
-    <div class="flow-step"><span class="flow-num">③</span><span class="flow-label">自動でサイトが更新される（FTP不要）</span></div>
-    <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label"></span></div>
-    <div class="flow-step"><span class="flow-num">④</span><span class="flow-label">ブラウザでサイトを確認</span></div>
+    <div class="flow-step"><span class="flow-num">③</span><span class="flow-label">ブラウザでサイトを確認（完！）</span></div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-label">🚀 リアルタイム反映</div>
+    保存ボタンを押すと、即座にサーバー上のデータが更新されます。FTPソフトによるアップロード作業は一切不要です。<br>
+    スマートフォンからも同様の手順で更新可能です。
   </div>
 
   <div class="tip">
@@ -181,15 +185,18 @@
 
   <!-- 画像アップロード -->
   <h2>画像をアップロードする</h2>
-  <p>管理画面から直接VPSサーバーに画像をアップロードできます。</p>
+  <p>画像の入力欄の横にある「<strong>UP</strong>」ボタンから、直接サーバーに写真をアップロードできます。</p>
 
   <ol>
-    <li>「<strong>画像アップロード</strong>」タブを開く</li>
-    <li>（任意）ファイル名を指定するフィールドに入力（例: <code>thumb01</code>）</li>
-    <li>枠内に画像をドラッグ&amp;ドロップ、またはクリックして選択</li>
-    <li>アップロード完了後、「<strong>パスをコピー</strong>」をクリック</li>
-    <li>WORKSやGALLERYの入力フォームの該当欄にペーストする</li>
+    <li>編集フォームの画像パス入力欄の横にある「<strong>UP</strong>」ボタンをタップ</li>
+    <li>スマホのアルバムやカメラから画像を選択</li>
+    <li>アップロードが完了すると、自動的にパス（<code>images/works/〜</code>）が入力されます</li>
   </ol>
+
+  <div class="tip">
+    <div class="tip-label">💡 ポイント</div>
+    「<strong>画像アップロード</strong>」タブを使って、複数の画像を事前にまとめてアップロードしておくことも可能です。
+  </div>
 
   <table>
     <thead><tr><th>画像の種類</th><th>パスの例</th></tr></thead>
@@ -210,27 +217,10 @@
 
   <hr>
 
-  <!-- JSONアップロード -->
-  <h2>サイトに反映する（JSON保存）</h2>
-  <p>管理画面での保存はブラウザ内の一時保存です。<br>
-  <strong>「サーバーに反映」ボタンを押して初めてサイトが更新されます。</strong></p>
-
-  <h3>手順</h3>
-  <ol>
-    <li>「<strong>サーバー反映（JSON保存）</strong>」タブを開く</li>
-    <li>更新内容に応じてクリック
-      <ul>
-        <li><code>WORKSデータをサーバに反映</code> → WORKS更新時</li>
-        <li><code>GALLERYデータをサーバに反映</code> → GALLERY更新時</li>
-      </ul>
-    </li>
-    <li>「✅ サーバーに直接保存しました」と表示されれば反映完了です。</li>
-    <li>ブラウザでサイトをリロードして確認してください。</li>
-  </ol>
-
-  <div class="tip">
-    <div class="tip-label">⚠️ 注意</div>
-    もし「通信エラー」などが出る場合は、JSONを手動でダウンロードして <code>data/</code> フォルダにアップロードすることも可能です。
+  <!-- サイトに反映する -->
+  <div class="tip" style="background: rgba(192,57,43,.08); border-left-color: var(--accent);">
+    <div class="tip-label" style="color: var(--accent);">⚠️ 万が一反映されない場合</div>
+    保存してもサイトが変わらない場合は、「<strong>サーバー反映（JSON保存）</strong>」タブから手動で再反映を試みてください。
   </div>
 
   <hr>
