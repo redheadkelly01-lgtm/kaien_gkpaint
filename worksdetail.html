@@ -99,12 +99,25 @@
     }
     .article-visual-img {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 3 / 4;
       background: var(--surface);
       overflow: hidden;
       position: relative;
+      cursor: pointer;
     }
-    .article-visual-img img { width: 100%; height: 100%; object-fit: cover; }
+    .article-visual-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease, opacity .3s; }
+    .article-visual-img:hover img { transform: scale(1.03); opacity: .9; }
+    .article-visual-zoom {
+      position: absolute; bottom: 10px; right: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      background: rgba(0,0,0,.5);
+      padding: 3px 8px;
+      pointer-events: none;
+      opacity: 0; transition: opacity .3s;
+    }
+    .article-visual-img:hover .article-visual-zoom { opacity: 1; }
     .visual-placeholder {
       width: 100%; height: 100%;
       display: flex; flex-direction: column;
@@ -157,16 +170,65 @@
       margin: 32px 0;
     }
     .inline-img {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 3 / 4;
       background: #000;
       overflow: hidden;
       border: 2px solid #333;
       padding: 2px;
       transition: border-color .3s;
+      cursor: pointer;
     }
     .inline-img img { width: 100%; height: 100%; object-fit: cover; opacity: .88; transition: opacity .3s, transform .5s; }
     .inline-img:hover { border-color: var(--accent); }
     .inline-img:hover img { opacity: 1; transform: scale(1.05); }
+
+    /* ─── LIGHTBOX ────────────────────────────────── */
+    .lb-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.92);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 20px;
+    }
+    .lb-overlay.open { display: flex; animation: lbFadeIn .25s ease; }
+    @keyframes lbFadeIn { from { opacity:0; } to { opacity:1; } }
+    .lb-img-wrap {
+      max-width: min(90vw, 480px);
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+    .lb-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .lb-close {
+      position: fixed; top: 16px; right: 20px;
+      background: transparent; border: none;
+      color: #fff; font-size: 32px; cursor: pointer;
+      line-height: 1; opacity: .7; transition: opacity .2s; z-index: 10000;
+    }
+    .lb-close:hover { opacity: 1; }
+    .lb-caption {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; letter-spacing: .15em;
+      color: rgba(255,255,255,.6); text-align: center; max-width: 480px;
+    }
+    .lb-prev, .lb-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.5); border: 1px solid #333;
+      color: #fff; font-size: 24px; cursor: pointer;
+      width: 44px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s; z-index: 10000;
+    }
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+    .lb-prev:hover, .lb-next:hover { background: rgba(192,57,43,.6); }
     .inline-img-placeholder {
       width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
@@ -315,6 +377,15 @@
   <a href="works.html" class="back-link">WORKS 一覧に戻る</a>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lbOverlay">
+  <button class="lb-close" id="lbClose">&#x2715;</button>
+  <button class="lb-prev" id="lbPrev">&#x276E;</button>
+  <button class="lb-next" id="lbNext">&#x276F;</button>
+  <div class="lb-img-wrap"><img id="lbImg" src="" alt=""></div>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-copy">© 2026 KAIEN GK PAINTING SERVICE</div>
@@ -326,6 +397,40 @@
   const targetId = params.get('id');
   const imgVer = new Date().getTime();
 
+  // ライトボックス
+  let lbImages = []; // { src, alt } の配列
+  let lbIndex  = 0;
+  const lbOverlay = document.getElementById('lbOverlay');
+  const lbImg     = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbClose   = document.getElementById('lbClose');
+  const lbPrev    = document.getElementById('lbPrev');
+  const lbNext    = document.getElementById('lbNext');
+
+  function lbOpen(idx) {
+    if (!lbImages.length) return;
+    lbIndex = Math.max(0, Math.min(idx, lbImages.length - 1));
+    lbImg.src = lbImages[lbIndex].src;
+    lbImg.alt = lbImages[lbIndex].alt;
+    lbCaption.textContent = lbImages[lbIndex].alt;
+    lbOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function lbClose_fn() {
+    lbOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  lbClose.addEventListener('click', lbClose_fn);
+  lbOverlay.addEventListener('click', e => { if (e.target === lbOverlay) lbClose_fn(); });
+  lbPrev.addEventListener('click', e => { e.stopPropagation(); lbOpen((lbIndex - 1 + lbImages.length) % lbImages.length); });
+  lbNext.addEventListener('click', e => { e.stopPropagation(); lbOpen((lbIndex + 1) % lbImages.length); });
+  document.addEventListener('keydown', e => {
+    if (!lbOverlay.classList.contains('open')) return;
+    if (e.key === 'Escape')     lbClose_fn();
+    if (e.key === 'ArrowLeft')  lbPrev.click();
+    if (e.key === 'ArrowRight') lbNext.click();
+  });
+
   function renderBody(blocks) {
     return (blocks || []).map(b => {
       if (b.type === 'paragraph')   return `<p>${b.text}</p>`;
@@ -333,13 +438,13 @@
       if (b.type === 'heading3')    return `<h3>${b.text}</h3>`;
       if (b.type === 'imageGrid2') {
         const imgs = b.images.map(im =>
-          `<div class="inline-img"><img src="${im.src}?v=${imgVer}" alt="${im.alt}" loading="lazy"></div>`
+          `<div class="inline-img" data-src="${im.src}?v=${imgVer}" data-alt="${im.alt}"><img src="${im.src}?v=${imgVer}" alt="${im.alt}" loading="lazy"></div>`
         ).join('');
         return `<div class="img-grid-2">${imgs}</div>`;
       }
       if (b.type === 'imageGrid3') {
         const imgs = b.images.map(im =>
-          `<div class="inline-img"><img src="${im.src}?v=${imgVer}" alt="${im.alt}" loading="lazy"></div>`
+          `<div class="inline-img" data-src="${im.src}?v=${imgVer}" data-alt="${im.alt}"><img src="${im.src}?v=${imgVer}" alt="${im.alt}" loading="lazy"></div>`
         ).join('');
         return `<div class="img-grid-3">${imgs}</div>`;
       }
@@ -361,18 +466,40 @@
       document.getElementById('artScale').textContent   = item.scale || '';
       document.title = `${item.title} — KAIEN GK PAINTING SERVICE`;
 
+      // ライトボックス用画像リスト構築
+      lbImages = [];
+      if (item.mainVisual) {
+        lbImages.push({ src: `${item.mainVisual}?v=${imgVer}`, alt: item.title });
+      }
+      (item.body || []).forEach(b => {
+        if (b.type === 'imageGrid2' || b.type === 'imageGrid3') {
+          (b.images || []).forEach(im => {
+            lbImages.push({ src: `${im.src}?v=${imgVer}`, alt: im.alt || '' });
+          });
+        }
+      });
+
       // メインビジュアル
       const visImg = document.getElementById('artVisualImg');
       if (item.mainVisual) {
-        visImg.innerHTML = `<img src="${item.mainVisual}?v=${imgVer}" alt="${item.title} メインビジュアル" loading="lazy">`;
+        visImg.innerHTML = `<img src="${item.mainVisual}?v=${imgVer}" alt="${item.title} メインビジュアル" loading="lazy"><span class="article-visual-zoom">CLICK TO ZOOM</span>`;
+        visImg.addEventListener('click', () => lbOpen(0));
       } else {
-        visImg.innerHTML = `<div class="visual-placeholder"><span>MAIN VISUAL</span><small>推奨: 16:9（1200×675px 以上）</small></div>`;
+        visImg.innerHTML = `<div class="visual-placeholder"><span>MAIN VISUAL</span><small>推奨: 3:4</small></div>`;
       }
       const cap = document.getElementById('artVisualCaption');
       cap.textContent = item.mainVisualCaption || '';
 
       // 本文
       document.getElementById('artBody').innerHTML = renderBody(item.body);
+
+      // 本文内インライン画像にライトボックスを紐付け
+      document.querySelectorAll('.inline-img[data-src]').forEach(el => {
+        const src = el.dataset.src;
+        const alt = el.dataset.alt || '';
+        const idx = lbImages.findIndex(it => it.src === src);
+        el.addEventListener('click', () => lbOpen(idx >= 0 ? idx : 0));
+      });
 
       // PREV / NEXT
       const nav = document.getElementById('postNav');
