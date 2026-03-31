@@ -49,8 +49,8 @@ if (!in_array($ext, $allowed_exts)) {
     echo json_encode(['ok' => false, 'error' => '許可されていない拡張子です']);
     exit;
 }
-if ($file['size'] > 10 * 1024 * 1024) {
-    echo json_encode(['ok' => false, 'error' => 'ファイルサイズは10MB以内にしてください']);
+if ($file['size'] > 30 * 1024 * 1024) {
+    echo json_encode(['ok' => false, 'error' => 'ファイルサイズは30MB以内にしてください']);
     exit;
 }
 
