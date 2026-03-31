@@ -89,19 +89,17 @@
   <p class="lead">VPS（レンタルサーバー）での運用を前提としています。</p>
 
   <!-- 基本の流れ -->
-  <h2>基本の流れ</h2>
+  <h2>基本の流れ（最短2ステップ）</h2>
   <div class="flow">
     <div class="flow-step"><span class="flow-num">①</span><span class="flow-label">管理画面で記事・作品を登録・編集</span></div>
     <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label" style="color:var(--dim);"></span></div>
-    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">「保存」ボタンをクリック（サーバーに自動反映）</span></div>
-    <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label"></span></div>
-    <div class="flow-step"><span class="flow-num">③</span><span class="flow-label">ブラウザでサイトを確認（完！）</span></div>
+    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">「保存」ボタンをクリックすれば反映完了！</span></div>
   </div>
 
   <div class="tip">
-    <div class="tip-label">🚀 リアルタイム反映</div>
-    保存ボタンを押すと、即座にサーバー上のデータが更新されます。FTPソフトによるアップロード作業は一切不要です。<br>
-    スマートフォンからも同様の手順で更新可能です。
+    <div class="tip-label">🚀 サーバーへの自動反映</div>
+    記事や作品の編集画面で「**保存**」ボタンを押すと、バックグラウンドでサーバー上のデータも即座に更新されます。<br>
+    従来のような「JSONをダウンロードしてFTPで上げる」といった面倒な作業は一切不要です。
   </div>
 
   <div class="tip">
@@ -184,18 +182,18 @@
   <hr>
 
   <!-- 画像アップロード -->
-  <h2>画像をアップロードする</h2>
-  <p>画像の入力欄の横にある「<strong>UP</strong>」ボタンから、直接サーバーに写真をアップロードできます。</p>
+  <h2>画像を効率よくアップロードする</h2>
+  <p>各入力欄（サムネイル・メインビジュアル等）の横にある「<strong>UP</strong>」ボタンを使うのが最も速くて簡単です。</p>
 
   <ol>
-    <li>編集フォームの画像パス入力欄の横にある「<strong>UP</strong>」ボタンをタップ</li>
-    <li>スマホのアルバムやカメラから画像を選択</li>
-    <li>アップロードが完了すると、自動的にパス（<code>images/works/〜</code>）が入力されます</li>
+    <li>入力欄の右側にある「<strong>UP</strong>」ボタンをタップ</li>
+    <li>スマホのアルバムから写真を選択（複数枚ある場合は1枚ずつ）</li>
+    <li>アップロードが完了すると、自動的にその写真のパスが入力欄に書き込まれます</li>
   </ol>
 
   <div class="tip">
-    <div class="tip-label">💡 ポイント</div>
-    「<strong>画像アップロード</strong>」タブを使って、複数の画像を事前にまとめてアップロードしておくことも可能です。
+    <div class="tip-label">💡 補足：画像アップロードタブについて</div>
+    「<strong>画像アップロード</strong>」タブは、写真を事前にまとめてサーバーへ入れておきたい場合や、ファイル名を自分で細かく指定したい場合に使用する予備のツールです。通常は編集画面の「**UP**」ボタンだけで完結します。
   </div>
 
   <table>
@@ -218,9 +216,9 @@
   <hr>
 
   <!-- サイトに反映する -->
-  <div class="tip" style="background: rgba(192,57,43,.08); border-left-color: var(--accent);">
-    <div class="tip-label" style="color: var(--accent);">⚠️ 万が一反映されない場合</div>
-    保存してもサイトが変わらない場合は、「<strong>サーバー反映（JSON保存）</strong>」タブから手動で再反映を試みてください。
+  <div class="tip" style="background: rgba(192,57,43,.08); border-left-color: var(--accent); margin-top:40px;">
+    <div class="tip-label" style="color: var(--accent);">⚠️ サーバー反映タブについて</div>
+    「**サーバー反映（JSON保存）**」タブは、万が一保存ボタンからの自動反映に失敗した場合や、メンテナンス時に手動でデータを書き込みたい場合に使用します。普段の運用で意識する必要はありません。
   </div>
 
   <hr>
