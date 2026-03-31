@@ -3,246 +3,726 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>更新マニュアル — KAIEN GK PAINTING SERVICE</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Expires" content="0">
+  <title>管理マニュアル — KAIEN GK PAINTING SERVICE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0d0d0d; --surface: #1a1a1a; --surface2: #222;
-      --border: #2a2a2a; --accent: #c0392b;
-      --text: #e8e8e8; --muted: #b0b0b0; --dim: #666;
+      --bg: #111;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --text: #ccc;
+      --muted: #888;
+      --dim: #555;
+      --gold: #e3d2a4;
+      --green: #27ae60;
     }
-    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; line-height: 1.8; }
-    a { color: #5b9bd5; text-decoration: none; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+    a { color: var(--gold); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    code {
+      font-family: 'Courier New', monospace;
+      background: #222;
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      font-size: 12px;
+      border-radius: 2px;
+      color: #9ecbff;
+    }
 
-    header { background: #111; border-bottom: 1px solid var(--border); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-    .admin-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: .2em; display: flex; align-items: center; gap: 10px; }
-    .admin-logo-icon { width: 36px; height: 36px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    .admin-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
-    .admin-badge { font-size: 10px; font-weight: 600; letter-spacing: .3em; color: var(--dim); border: 1px solid var(--border); padding: 2px 8px; }
-    .header-link { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: .15em; color: var(--muted); transition: color .2s; }
-    .header-link:hover { color: var(--text); text-decoration: none; }
+    /* ヘッダ */
+    header {
+      background: rgba(10,10,10,.96);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .header-links { display: flex; gap: 20px; }
+    .header-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: .15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .header-links a:hover { color: #fff; }
 
-    .content { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+    /* レイアウト */
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: calc(100vh - 56px);
+    }
+
+    /* サイドナビ */
+    .sidenav {
+      background: #0d0d0d;
+      border-right: 1px solid var(--border);
+      padding: 32px 0;
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+    }
+    .nav-section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--dim);
+      padding: 0 24px;
+      margin-bottom: 8px;
+      margin-top: 24px;
+    }
+    .nav-section-label:first-child { margin-top: 0; }
+    .sidenav a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 7px 24px;
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .sidenav a:hover { color: #fff; border-left-color: var(--border); }
+
+    /* メインコンテンツ */
+    main {
+      padding: 56px 64px 120px;
+      max-width: 860px;
+    }
 
     /* タイトル */
-    h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px; }
-    .lead { color: var(--muted); font-size: 13px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .page-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .page-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .page-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
 
     /* セクション */
-    h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
-    h3 { font-size: 14px; font-weight: 700; color: var(--muted); margin: 24px 0 12px; letter-spacing: .05em; }
+    .section {
+      margin-bottom: 64px;
+    }
+    h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 80px;
+    }
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 28px 0 12px;
+    }
+    p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .lead {
+      font-size: 15px;
+      color: var(--text);
+    }
 
-    /* 本文 */
-    p { margin-bottom: 12px; color: var(--muted); }
-    strong { color: var(--text); font-weight: 700; }
+    /* ステップ */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 20px 0;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 32px;
+      text-align: center;
+      padding-top: 2px;
+    }
+    .step-body {}
+    .step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
 
-    /* リスト */
-    ol, ul { padding-left: 20px; margin-bottom: 16px; color: var(--muted); }
-    li { margin-bottom: 6px; line-height: 1.8; }
-    li code { background: #111; border: 1px solid var(--border); padding: 1px 6px; font-size: 12px; color: #a8d8a8; font-family: 'Courier New', monospace; }
-    li strong { color: var(--text); }
+    /* コールアウト */
+    .callout {
+      border-left: 3px solid var(--border);
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .callout.tip { border-left-color: var(--green); }
+    .callout.warn { border-left-color: #e5a23a; }
+    .callout.info { border-left-color: #5b9bd5; }
+    .callout-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .callout.tip .callout-label  { color: var(--green); }
+    .callout.warn .callout-label { color: #e5a23a; }
+    .callout.info .callout-label { color: #5b9bd5; }
 
     /* テーブル */
-    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
-    th { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--border); }
-    td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
-    td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
-    td code { background: #111; border: 1px solid var(--border); padding: 1px 6px; font-size: 12px; color: #a8d8a8; font-family: 'Courier New', monospace; }
-    tr:hover td { background: rgba(255,255,255,.02); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 20px 0;
+    }
+    th, td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      background: #0d0d0d;
+    }
+    td { color: var(--muted); }
+    td strong { color: var(--text); }
 
-    /* コードブロック */
-    pre { background: #060606; border: 1px solid var(--border); padding: 20px; font-family: 'Courier New', monospace; font-size: 12px; color: #a8d8a8; overflow-x: auto; margin: 16px 0 24px; white-space: pre; line-height: 1.7; }
+    /* バッジ */
+    .badge {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1px solid;
+      margin-right: 4px;
+    }
+    .badge-tab { border-color: var(--border); color: var(--muted); }
+    .badge-btn { border-color: rgba(192,57,43,.4); color: var(--accent); background: rgba(192,57,43,.08); }
+    .badge-key { border-color: var(--border); color: #9ecbff; background: #1a1f2e; }
 
-    /* 区切り線 */
-    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    /* インラインUI要素 */
+    .ui-btn {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: rgba(192,57,43,.1);
+    }
 
-    /* フロー図 */
-    .flow { background: var(--surface); border: 1px solid var(--border); padding: 24px 32px; margin: 16px 0 24px; }
-    .flow-step { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
-    .flow-step:last-child { margin-bottom: 0; }
-    .flow-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent); min-width: 24px; }
-    .flow-label { font-size: 13px; color: var(--text); }
-    .flow-arrow { color: var(--dim); font-size: 11px; margin-left: 4px; }
+    /* 区切り */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
 
-    /* TIPボックス */
-    .tip { background: rgba(91,155,213,.08); border: 1px solid rgba(91,155,213,.25); border-left: 3px solid #5b9bd5; padding: 14px 16px; margin: 16px 0 24px; font-size: 13px; color: var(--muted); }
-    .tip-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #5b9bd5; margin-bottom: 6px; }
+    /* モバイル */
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidenav { display: none; }
+      main { padding: 32px 24px 80px; }
+      header { padding: 0 20px; }
+      .page-title { font-size: 32px; }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="admin-logo">
-    <div class="admin-logo-icon"><img src="../icon.webp" alt="KAIEN"></div>
-    KAIEN
-    <span class="admin-badge">MANUAL</span>
+  <div class="logo">KAIEN — 管理マニュアル</div>
+  <div class="header-links">
+    <a href="index.html">← 管理画面に戻る</a>
+    <a href="../index.html" target="_blank">サイトを表示</a>
   </div>
-  <a href="index.html" class="header-link">← 管理画面に戻る</a>
 </header>
 
-<div class="content">
+<div class="layout">
+  <nav class="sidenav">
+    <div class="nav-section-label">はじめに</div>
+    <a href="#overview">管理画面の概要</a>
+    <a href="#basic-flow">基本の操作フロー</a>
 
-  <h1>WORKS・GALLERY 更新マニュアル</h1>
-  <p class="lead">VPS（レンタルサーバー）での運用を前提としています。</p>
+    <div class="nav-section-label">WORKS管理</div>
+    <a href="#works-new">新規記事を作成する</a>
+    <a href="#works-edit">既存記事を編集する</a>
+    <a href="#works-body">本文ブロックの使い方</a>
 
-  <!-- 基本の流れ -->
-  <h2>基本の流れ（最短2ステップ）</h2>
-  <div class="flow">
-    <div class="flow-step"><span class="flow-num">①</span><span class="flow-label">管理画面で記事・作品を登録・編集</span></div>
-    <div class="flow-step"><span class="flow-num" style="color:var(--dim);">↓</span><span class="flow-label" style="color:var(--dim);"></span></div>
-    <div class="flow-step"><span class="flow-num">②</span><span class="flow-label">「保存」ボタンをクリックすれば反映完了！</span></div>
-  </div>
+    <div class="nav-section-label">GALLERY管理</div>
+    <a href="#gallery-new">新規作品を登録する</a>
+    <a href="#gallery-edit">既存作品を編集する</a>
 
-  <div class="tip">
-    <div class="tip-label">🚀 サーバーへの自動反映</div>
-    記事や作品の編集画面で「**保存**」ボタンを押すと、バックグラウンドでサーバー上のデータも即座に更新されます。<br>
-    従来のような「JSONをダウンロードしてFTPで上げる」といった面倒な作業は一切不要です。
-  </div>
+    <div class="nav-section-label">画像</div>
+    <a href="#image-upload">写真のアップロード方法</a>
 
-  <div class="tip">
-    <div class="tip-label">📱 スマートフォン対応</div>
-    管理画面はスマートフォンからも利用可能です。外出先からでも写真のアップロードや記事の編集が簡単に行えます。
-  </div>
+    <div class="nav-section-label">その他</div>
+    <a href="#contacts">お問い合わせの確認</a>
+    <a href="#troubleshoot">うまくいかないとき</a>
+  </nav>
 
-  <hr>
+  <main>
+    <div class="page-eyebrow">KAIEN GK PAINTING SERVICE</div>
+    <h1 class="page-title">Admin Manual</h1>
+    <p class="page-desc lead">
+      このマニュアルは、管理画面（<code>admin/index.html</code>）の操作方法をまとめたものです。
+      スマートフォンからでも同じ手順で操作できます。
+    </p>
 
-  <!-- WORKS -->
-  <h2>WORKS を更新する</h2>
+    <!-- ===== 概要 ===== -->
+    <div class="section" id="overview">
+      <h2>管理画面の概要</h2>
+      <p>管理画面は5つのタブで構成されています。</p>
+      <table>
+        <tr>
+          <th>タブ名</th>
+          <th>用途</th>
+        </tr>
+        <tr>
+          <td><strong>WORKS管理</strong></td>
+          <td>制作日誌・お知らせ記事の作成・編集・削除</td>
+        </tr>
+        <tr>
+          <td><strong>GALLERY管理</strong></td>
+          <td>ギャラリー作品データの登録・編集・削除</td>
+        </tr>
+        <tr>
+          <td><strong>お問い合わせ</strong></td>
+          <td>サイトから届いたお問い合わせの確認</td>
+        </tr>
+        <tr>
+          <td><strong>画像アップロード</strong></td>
+          <td>画像を事前にまとめてサーバーに保存する（補助機能）</td>
+        </tr>
+        <tr>
+          <td><strong>サーバー反映（JSON保存）</strong></td>
+          <td>万が一の障害時に手動でデータを書き込む（補助機能）</td>
+        </tr>
+      </table>
 
-  <h3>記事を追加する</h3>
-  <ol>
-    <li>ブラウザで <code>https://ドメイン名/admin/index.html</code> を開く</li>
-    <li>「WORKS管理」タブ → 「<strong>+ 新規作成</strong>」</li>
-    <li>各フィールドを入力する</li>
-  </ol>
+      <div class="callout info">
+        <div class="callout-label">ポイント</div>
+        「画像アップロード」と「サーバー反映」タブは緊急・補助用です。
+        通常の更新作業は <strong>WORKS管理</strong> と <strong>GALLERY管理</strong> タブだけで完結します。
+      </div>
+    </div>
 
-  <table>
-    <thead><tr><th>フィールド</th><th>内容</th></tr></thead>
-    <tbody>
-      <tr><td>ID</td><td>記事ID（例: <code>007</code>）。他と重複しない連番</td></tr>
-      <tr><td>日付</td><td>表示用（例: <code>2026.06.01</code>）</td></tr>
-      <tr><td>カテゴリ</td><td>PROJECT / CONTEST / OTHER</td></tr>
-      <tr><td>タイトル</td><td>記事タイトル</td></tr>
-      <tr><td>スケール</td><td>例: <code>1/8 SCALE · RESIN KIT</code></td></tr>
-      <tr><td>抜粋</td><td>一覧カードに表示される短い説明文</td></tr>
-      <tr><td>サムネイル画像パス</td><td>例: <code>images/works/thumb07.webp</code></td></tr>
-      <tr><td>メインビジュアル画像パス</td><td>詳細ページの大きい画像</td></tr>
-      <tr><td>NEWバッジ</td><td>チェックするとNEWフィルタに表示</td></tr>
-    </tbody>
-  </table>
+    <!-- ===== 基本フロー ===== -->
+    <div class="section" id="basic-flow">
+      <h2>基本の操作フロー</h2>
+      <p>更新作業は次の2ステップだけです。</p>
 
-  <ol start="4">
-    <li><strong>本文コンテンツ</strong>をブロック単位で追加
-      <ul>
-        <li><code>+ テキスト段落</code> → 本文テキスト</li>
-        <li><code>+ 見出しH2</code> → セクション見出し</li>
-        <li><code>+ 画像×2 / ×3</code> → インライン画像グリッド</li>
-      </ul>
-    </li>
-    <li>「<strong>保存</strong>」をクリック</li>
-  </ol>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">管理画面で記事・作品を作成または編集する</div>
+            <div class="step-desc">WORKS管理またはGALLERY管理タブで内容を入力します。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">「保存」ボタンを押す　→　完了</div>
+            <div class="step-desc">
+              ボタンを押した瞬間にサーバーのデータが更新されます。
+              FTPソフトや別途の反映操作は一切不要です。
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <h3>記事を編集・削除する</h3>
-  <ul>
-    <li>「<strong>編集</strong>」→ 内容が読み込まれる → 変更後「保存」</li>
-    <li>「<strong>削除</strong>」→ 確認後削除</li>
-  </ul>
+      <div class="callout tip">
+        <div class="callout-label">補足</div>
+        削除や並び替えが必要な場合も同様に管理画面から操作するだけです。
+        保存が完了すると画面上部に「保存してサーバーに反映しました」と表示されます。
+      </div>
+    </div>
 
-  <hr>
+    <hr>
 
-  <!-- GALLERY -->
-  <h2>GALLERY を更新する</h2>
+    <!-- ===== WORKS 新規 ===== -->
+    <div class="section" id="works-new">
+      <h2>新規 WORKS 記事を作成する</h2>
 
-  <h3>作品を追加する</h3>
-  <ol>
-    <li>「GALLERY管理」タブ → 「<strong>+ 新規作成</strong>」</li>
-    <li>各フィールドを入力する</li>
-  </ol>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">「WORKS管理」タブを開く</div>
+            <div class="step-desc">上部ナビの「WORKS管理」をタップします。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">「＋ 新規作成」ボタンを押す</div>
+            <div class="step-desc">一覧の右上にあるボタンです。編集フォームが展開されます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">各フィールドを入力する</div>
+            <div class="step-desc">下表を参考に入力してください。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">「保存」を押して完了</div>
+            <div class="step-desc">サーバーに即時反映されます。</div>
+          </div>
+        </div>
+      </div>
 
-  <table>
-    <thead><tr><th>フィールド</th><th>内容</th></tr></thead>
-    <tbody>
-      <tr><td>ID</td><td>作品ID（例: <code>g006</code>）。他と重複しない</td></tr>
-      <tr><td>タイトル</td><td>作品名</td></tr>
-      <tr><td>スケール</td><td><code>1/8</code> のように分母だけ入力</td></tr>
-      <tr><td>年</td><td>例: <code>2026</code></td></tr>
-      <tr><td>メイン画像パス</td><td>縦長メイン画像のパス</td></tr>
-      <tr><td>サブ画像1〜4</td><td>右側2×2グリッドのサブ画像</td></tr>
-      <tr><td>キャプション</td><td>使用塗料・制作コメントなど</td></tr>
-    </tbody>
-  </table>
+      <h3>入力フィールド一覧</h3>
+      <table>
+        <tr><th>フィールド</th><th>説明</th><th>例</th></tr>
+        <tr><td><strong>ID</strong></td><td>半角英数。重複不可。URLの一部になる</td><td><code>001</code></td></tr>
+        <tr><td><strong>日付</strong></td><td>記事の日付</td><td><code>2026.05.13</code></td></tr>
+        <tr><td><strong>カテゴリ</strong></td><td>PROJECT / CONTEST / OTHER から選択</td><td>—</td></tr>
+        <tr><td><strong>タイトル</strong></td><td>記事タイトル（一覧・詳細ページに表示）</td><td><code>ねんどろいど 制作中</code></td></tr>
+        <tr><td><strong>スケール</strong></td><td>キットの縮尺情報（任意）</td><td><code>1/8 SCALE · RESIN KIT</code></td></tr>
+        <tr><td><strong>抜粋</strong></td><td>一覧カードに表示される概要文</td><td><code>今月の制作進捗...</code></td></tr>
+        <tr><td><strong>サムネイル</strong></td><td>一覧カードに表示するサムネイル画像。「UP」ボタンでアップロード</td><td>—</td></tr>
+        <tr><td><strong>メインビジュアル</strong></td><td>記事詳細ページ上部の大きな画像。「UP」ボタンでアップロード</td><td>—</td></tr>
+        <tr><td><strong>キャプション</strong></td><td>メインビジュアル下に表示する補足テキスト（任意）</td><td><code>組み立て前の状態</code></td></tr>
+        <tr><td><strong>NEWバッジ</strong></td><td>チェックすると一覧に「NEW」バッジが表示される</td><td>—</td></tr>
+      </table>
+    </div>
 
-  <ol start="3">
-    <li>「<strong>保存</strong>」をクリック</li>
-  </ol>
+    <!-- ===== WORKS 編集 ===== -->
+    <div class="section" id="works-edit">
+      <h2>既存 WORKS 記事を編集する</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">一覧から対象記事の「編集」を押す</div>
+            <div class="step-desc">該当行の「編集」ボタンで、そのデータがフォームに読み込まれます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">内容を修正し「保存」を押す</div>
+            <div class="step-desc">即座に反映されます。</div>
+          </div>
+        </div>
+      </div>
 
-  <hr>
+      <div class="callout warn">
+        <div class="callout-label">削除について</div>
+        「削除」ボタンを押すと確認ダイアログが表示されます。
+        削除後は元に戻せません。
+      </div>
+    </div>
 
-  <!-- 画像アップロード -->
-  <h2>画像を効率よくアップロードする</h2>
-  <p>各入力欄（サムネイル・メインビジュアル等）の横にある「<strong>UP</strong>」ボタンを使うのが最も速くて簡単です。</p>
+    <!-- ===== WORKS 本文ブロック ===== -->
+    <div class="section" id="works-body">
+      <h2>本文ブロックの使い方</h2>
+      <p>WORKS記事の本文は「ブロック」という単位で構成されています。ブロックを自由に追加・削除・並び替えることで記事を組み立てます。</p>
 
-  <ol>
-    <li>入力欄の右側にある「<strong>UP</strong>」ボタンをタップ</li>
-    <li>スマホのアルバムから写真を選択（複数枚ある場合は1枚ずつ）</li>
-    <li>アップロードが完了すると、自動的にその写真のパスが入力欄に書き込まれます</li>
-  </ol>
+      <h3>ブロックの種類</h3>
+      <table>
+        <tr><th>ボタン</th><th>用途</th></tr>
+        <tr><td><strong>＋ テキスト段落</strong></td><td>通常の文章を入力する（最も使用頻度が高い）</td></tr>
+        <tr><td><strong>＋ 見出しH2</strong></td><td>大見出し（セクションの区切り）</td></tr>
+        <tr><td><strong>＋ 見出しH3</strong></td><td>小見出し</td></tr>
+        <tr><td><strong>＋ 画像×2</strong></td><td>写真を横2枚並びで挿入</td></tr>
+        <tr><td><strong>＋ 画像×3</strong></td><td>写真を横3枚並びで挿入</td></tr>
+      </table>
 
-  <div class="tip">
-    <div class="tip-label">💡 補足：画像アップロードタブについて</div>
-    「<strong>画像アップロード</strong>」タブは、写真を事前にまとめてサーバーへ入れておきたい場合や、ファイル名を自分で細かく指定したい場合に使用する予備のツールです。通常は編集画面の「**UP**」ボタンだけで完結します。
-  </div>
+      <h3>ブロックの操作</h3>
+      <p>追加されたブロックには以下のボタンが表示されます。</p>
+      <table>
+        <tr><th>ボタン</th><th>動作</th></tr>
+        <tr><td><strong>編集</strong></td><td>画像ブロックの画像パスをモーダルで編集する</td></tr>
+        <tr><td><strong>削除</strong></td><td>そのブロックを削除する</td></tr>
+        <tr><td><strong>↑ / ↓</strong></td><td>ブロックの並び順を変える</td></tr>
+      </table>
 
-  <table>
-    <thead><tr><th>画像の種類</th><th>パスの例</th></tr></thead>
-    <tbody>
-      <tr><td>WORKSサムネイル</td><td><code>images/works/thumb01.webp</code></td></tr>
-      <tr><td>WORKS詳細メイン</td><td><code>images/works/detail01_main.webp</code></td></tr>
-      <tr><td>WORKS詳細インライン</td><td><code>images/works/detail01_a.webp</code></td></tr>
-      <tr><td>GALLERYメイン</td><td><code>images/works/01_main.webp</code></td></tr>
-      <tr><td>GALLERYサブ</td><td><code>images/works/01_sub1.webp</code></td></tr>
-    </tbody>
-  </table>
+      <div class="callout tip">
+        <div class="callout-label">画像ブロックの画像を設定する方法</div>
+        「＋ 画像×2」などを追加後、「<strong>編集</strong>」ボタンを押して開くモーダル内にある
+        「<strong>UP</strong>」ボタンからスマホの写真を直接アップロードできます。
+        パスは自動入力されます。
+      </div>
+    </div>
 
-  <div class="tip">
-    <div class="tip-label">💡 TIP</div>
-    推奨形式は <strong>WebP</strong>（軽量・高画質）です。<br>
-    JPEGやPNGもアップロードでき、最大ファイルサイズは <strong>30MB</strong> まで対応しています。
-  </div>
+    <hr>
 
-  <hr>
+    <!-- ===== GALLERY 新規 ===== -->
+    <div class="section" id="gallery-new">
+      <h2>新規 GALLERY 作品を登録する</h2>
 
-  <!-- サイトに反映する -->
-  <div class="tip" style="background: rgba(192,57,43,.08); border-left-color: var(--accent); margin-top:40px;">
-    <div class="tip-label" style="color: var(--accent);">⚠️ サーバー反映タブについて</div>
-    「**サーバー反映（JSON保存）**」タブは、万が一保存ボタンからの自動反映に失敗した場合や、メンテナンス時に手動でデータを書き込みたい場合に使用します。普段の運用で意識する必要はありません。
-  </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">「GALLERY管理」タブを開く</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">「＋ 新規作成」ボタンを押す</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">各フィールドを入力し、写真をアップロードする</div>
+            <div class="step-desc">各画像入力欄右の「UP」ボタンで写真を選ぶとアップロード完了後にパスが自動入力されます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">「保存」を押して完了</div>
+          </div>
+        </div>
+      </div>
 
-  <hr>
+      <h3>入力フィールド一覧</h3>
+      <table>
+        <tr><th>フィールド</th><th>説明</th><th>例</th></tr>
+        <tr><td><strong>ID</strong></td><td>半角英数。重複不可</td><td><code>g001</code></td></tr>
+        <tr><td><strong>タイトル</strong></td><td>作品名</td><td><code>ねんどろいど ○○</code></td></tr>
+        <tr><td><strong>スケール</strong></td><td>縮尺（数字のみ）</td><td><code>8</code>（→ 1/8と表示される）</td></tr>
+        <tr><td><strong>年</strong></td><td>制作年</td><td><code>2026</code></td></tr>
+        <tr><td><strong>メイン画像</strong></td><td>ギャラリーで大きく表示される縦長画像。「UP」ボタンでアップロード</td><td>—</td></tr>
+        <tr><td><strong>サブ画像1〜4</strong></td><td>右側に2×2で表示されるサブカット。「UP」ボタンでアップロード</td><td>—</td></tr>
+        <tr><td><strong>キャプション</strong></td><td>作品の説明文・使用塗料など（任意）</td><td>—</td></tr>
+      </table>
+    </div>
 
-  <!-- ファイル構成 -->
-  <h2>ファイル構成（参考）</h2>
-  <pre>kaien2/（サーバールート）
-├── admin/
-│   ├── index.html        ← 管理画面
-│   └── manual.html       ← このページ
-├── data/
-│   ├── works.json        ← WORKS記事データ  ★更新対象
-│   ├── gallery.json      ← GALLERY作品データ ★更新対象
-│   └── contacts.json     ← お問い合わせデータ（自動生成）
-├── images/
-│   └── works/            ← 画像置き場       ★更新対象（管理画面からUP可能）
-├── upload.php            ← 画像アップロード処理
-├── contact.php           ← お問い合わせ受信
-├── mark_read.php         ← 既読処理
-├── index.html
-├── works.html
-├── gallery.html
-└── worksdetail.html</pre>
+    <!-- ===== GALLERY 編集 ===== -->
+    <div class="section" id="gallery-edit">
+      <h2>既存 GALLERY 作品を編集する</h2>
+      <p>WORKS管理と同様です。一覧の「<strong>編集</strong>」ボタンでフォームに読み込み、修正後「<strong>保存</strong>」を押すと即座にサーバーへ反映されます。</p>
+    </div>
 
+    <hr>
+
+    <!-- ===== 画像アップロード ===== -->
+    <div class="section" id="image-upload">
+      <h2>写真のアップロード方法</h2>
+
+      <h3>通常の方法（推奨）：UPボタン</h3>
+      <p>各入力欄の右にある <span class="ui-btn">UP</span> ボタンを使う方法が最も簡単です。</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">画像入力欄の右にある「UP」をタップ</div>
+            <div class="step-desc">スマホのアルバムや写真ライブラリが開きます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">写真を選択する</div>
+            <div class="step-desc">アップロードが始まります。完了まで数秒かかる場合があります。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">入力欄にパスが自動入力される → 完了</div>
+            <div class="step-desc">入力欄下にサムネイルプレビューも表示されます。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-label">上限・形式</div>
+        1ファイルあたり最大 <strong>30MB</strong>。JPG / PNG / WebP / GIF に対応。
+        iPhoneで撮影した写真（HEIC形式）は、アルバムから選ぶと自動的に変換されます。
+      </div>
+
+      <h3>まとめてアップロードする方法：「画像アップロード」タブ</h3>
+      <p>複数の写真を一度にサーバーへ保存しておきたい場合や、ファイル名を自分で指定したい場合に使います。</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">「画像アップロード」タブを開く</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">（任意）ファイル名を指定する</div>
+            <div class="step-desc">拡張子不要。入力しない場合は元のファイル名が使われます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">枠内をタップして写真を選ぶ（複数選択可）</div>
+            <div class="step-desc">アップロード完了後、「パスをコピー」ボタンでパスをコピーできます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">コピーしたパスを各入力欄に貼り付ける</div>
+            <div class="step-desc">WORKS・GALLERYの編集フォームの該当欄にペーストします。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ===== お問い合わせ ===== -->
+    <div class="section" id="contacts">
+      <h2>お問い合わせの確認</h2>
+      <p>サイトのコンタクトフォームから届いたメッセージはここで確認できます。</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">「お問い合わせ」タブを開く</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">「↻ 更新」ボタンで最新の内容を読み込む</div>
+            <div class="step-desc">自動更新はされないので、確認したいときに都度押してください。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">「詳細を表示」で内容を確認する</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ===== トラブルシュート ===== -->
+    <div class="section" id="troubleshoot">
+      <h2>うまくいかないとき</h2>
+
+      <h3>「保存」を押してもサイトに反映されない</h3>
+      <p>「<strong>サーバー反映（JSON保存）</strong>」タブを開き、「WORKSデータをサーバに反映」または「GALLERYデータをサーバに反映」ボタンを押して手動反映を試みてください。</p>
+
+      <h3>写真がアップロードできない（エラーになる）</h3>
+      <p>以下を確認してください。</p>
+      <table>
+        <tr><th>チェック項目</th><th>対処</th></tr>
+        <tr><td>ファイルサイズが30MBを超えていないか</td><td>30MB以下のファイルを使用する</td></tr>
+        <tr><td>ネットワーク接続が安定しているか</td><td>Wi-Fiに接続してから再試行する</td></tr>
+        <tr><td>通信が途中で切れていないか</td><td>時間をおいてから再試行する</td></tr>
+      </table>
+
+      <h3>スマホで管理画面が古いまま表示される</h3>
+      <p>スマホブラウザのキャッシュが残っている場合があります。Safariであれば「設定 → Safari → 履歴とWebサイトデータを消去」、Chromeであれば「設定 → プライバシー → 閲覧履歴データの削除」からキャッシュを消去してください。</p>
+
+      <div class="callout warn">
+        <div class="callout-label">データの消失について</div>
+        万が一管理画面のデータが消えた場合（ブラウザのLocalStorageが消去された場合など）、
+        「サーバー反映（JSON保存）」タブのデータ出力欄からJSONをダウンロードしてバックアップを確認できます。
+        また、サーバー上の <code>data/works.json</code> / <code>data/gallery.json</code> が最新のデータの正となります。
+      </div>
+    </div>
+  </main>
 </div>
+
 </body>
 </html>
