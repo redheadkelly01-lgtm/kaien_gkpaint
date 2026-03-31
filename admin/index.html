@@ -169,6 +169,110 @@
     .modal-content.preview { max-width: 95vw; height: 90vh; display: flex; flex-direction: column; }
     .modal-body.preview { flex: 1; padding: 0; background: #000; overflow: hidden; }
     #previewFrame { width: 100%; height: 100%; border: none; background: #0d0d0d; }
+
+    /* モバイル対応 */
+    @media (max-width: 768px) {
+      header {
+        height: auto;
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .admin-logo { font-size: 14px; }
+      .header-links {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .header-links a { font-size: 11px; }
+
+      .tabs {
+        padding: 0 16px;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+      }
+      .tabs::-webkit-scrollbar { display: none; /* Chrome, Safari */ }
+      .tab-btn {
+        padding: 12px 16px;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .content {
+        padding: 16px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .section-title { font-size: 16px; }
+
+      .form-row, .form-row.triple {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      /* テーブルの横スクロール対応 */
+      .tab-panel {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .list-table {
+        min-width: 700px; /* テーブルが潰れないように最小幅を確保 */
+      }
+
+      .form-card {
+        padding: 20px 16px;
+      }
+
+      .modal-content {
+        max-width: 100%;
+        margin: 10px;
+        max-height: 85vh;
+      }
+      .modal-header, .modal-body, .modal-footer {
+        padding: 16px;
+      }
+
+      .add-block-bar {
+        gap: 6px;
+      }
+      .add-block-btn {
+        padding: 6px 10px;
+        font-size: 10px;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+      .form-actions .btn {
+        width: 100%;
+      }
+
+      .modal-close {
+        font-size: 28px;
+        padding: 8px;
+      }
+
+      .body-block {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 8px;
+      }
+      .block-type-label {
+        min-width: auto;
+      }
+      .block-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
   </style>
 </head>
 <body>
