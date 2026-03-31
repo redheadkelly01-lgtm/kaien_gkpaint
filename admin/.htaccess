@@ -2,8 +2,3 @@ AuthType Basic
 AuthName "KAIEN Admin Area"
 AuthUserFile /var/www/etc/.htpasswd
 Require valid-user
-
-# アップロード上限の引き上げ
-php_value upload_max_filesize 30M
-php_value post_max_size 30M
-php_value memory_limit 128M
