@@ -85,11 +85,11 @@
 /* メインコンテンツ - Grid化 */
 .price-main {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr 1.2fr; /* 比率指定に変更: 画像をより大きく表示 */
+  gap: 40px; /* 余白も少し拡大 */
   position: relative;
   z-index: 5;
-  align-items: start; /* stretchから変更: 画像の高さがテキストに引きずられないように */
+  align-items: start;
 }
 
 /* 左側：作品画像 */
@@ -99,8 +99,10 @@
 
 .price-figure img {
   width: 100%;
-  height: auto; /* 100%から変更: 自然な比率を優先 */
-  object-fit: contain; /* coverから変更: 全体が表示されるように */
+  height: auto;
+  object-fit: cover; /* 比率が広がったため再度coverまたはautoへ検討。ここでは全体を見せるためcontainもあり得るが、ひとまず自然な表示を狙う */
+  object-position: top; /* 頭部が切れないように上揃え */
+  /* object-fit: contain; 全体を見せたい場合はこちらが安全ですが、隙間が目立つ可能性があります */
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
