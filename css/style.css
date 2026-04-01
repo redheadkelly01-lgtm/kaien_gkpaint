@@ -560,8 +560,9 @@ nav a.active {
 }
 
 .section-price-inner {
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: 90%;
+  /* 最大幅の制限を撤廃 */
+  margin: 0;
 }
 
 .price-image-wrap {
