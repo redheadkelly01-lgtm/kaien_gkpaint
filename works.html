@@ -470,7 +470,7 @@
       <div class="card-thumb" data-detail="worksdetail.html?id=${item.id}">
         ${thumbImg}
         <span class="card-badge ${item.category}">${item.category.toUpperCase()}</span>
-        <div class="card-overlay"><span class="card-overlay-label">拡大 VIEW</span></div>
+        <div class="card-overlay"><span class="card-overlay-label">VIEW DETAIL</span></div>
       </div>
       <div class="card-body">
         <div class="card-meta">
@@ -486,11 +486,9 @@
     const lbEntry = { thumb: thumbSrc, title: item.title, detailUrl: `worksdetail.html?id=${item.id}`, card };
     lbItems.push(lbEntry);
 
-    // サムネ領域クリックでライトボックス
+    // サムネ領域クリックで詳細ページへ
     card.querySelector('.card-thumb').addEventListener('click', () => {
-      const visible = lbItems.filter(it => !it.card.classList.contains('hidden'));
-      const idx = visible.indexOf(lbEntry);
-      lbOpen(idx);
+      location.href = `worksdetail.html?id=${item.id}`;
     });
 
     return card;
