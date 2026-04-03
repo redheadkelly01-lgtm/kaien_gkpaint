@@ -1055,10 +1055,26 @@
 
   function deleteContact(id) {
     if (!confirm('削除しますか？')) return;
-    contactsData = contactsData.filter(c => c.id !== id);
-    renderContactsList();
-    updateContactsBadge();
-    closeContact();
+
+    const fd = new FormData();
+    fd.append('id', id);
+
+    fetch('delete_contact.php', { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          contactsData = contactsData.filter(c => c.id !== id);
+          renderContactsList();
+          updateContactsBadge();
+          closeContact();
+        } else {
+          alert('削除に失敗しました: ' + (data.error || 'サーバーエラー'));
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert('削除通信に失敗しました');
+      });
   }
 
   // お問い合わせタブ選択時に自動ロード
