@@ -12,14 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $entry = [
-    'id'        => uniqid(),
-    'date'      => date('Y-m-d H:i:s'),
-    'name'      => htmlspecialchars(trim($_POST['from_name']  ?? ''), ENT_QUOTES, 'UTF-8'),
-    'email'     => htmlspecialchars(trim($_POST['reply_to']   ?? ''), ENT_QUOTES, 'UTF-8'),
-    'kit_info'  => htmlspecialchars(trim($_POST['kit_info']   ?? ''), ENT_QUOTES, 'UTF-8'),
-    'message'   => htmlspecialchars(trim($_POST['message']    ?? ''), ENT_QUOTES, 'UTF-8'),
-    'image_url' => htmlspecialchars(trim($_POST['image_url']  ?? ''), ENT_QUOTES, 'UTF-8'),
-    'read'      => false,
+    'id'         => uniqid(),
+    'date'       => date('Y-m-d H:i:s'),
+    'name'       => htmlspecialchars(trim($_POST['from_name']   ?? ''), ENT_QUOTES, 'UTF-8'),
+    'email'      => htmlspecialchars(trim($_POST['reply_to']    ?? ''), ENT_QUOTES, 'UTF-8'),
+    'kit_name'   => htmlspecialchars(trim($_POST['kit_name']    ?? ''), ENT_QUOTES, 'UTF-8'),
+    'maker_name' => htmlspecialchars(trim($_POST['maker_name']  ?? ''), ENT_QUOTES, 'UTF-8'),
+    'finish'     => htmlspecialchars(trim($_POST['finish']      ?? ''), ENT_QUOTES, 'UTF-8'),
+    'message'    => htmlspecialchars(trim($_POST['message']     ?? ''), ENT_QUOTES, 'UTF-8'),
+    'image_url'  => htmlspecialchars(trim($_POST['image_url']   ?? ''), ENT_QUOTES, 'UTF-8'),
+    'read'       => false,
 ];
 
 // ハニーポット（ボット対策）: 非表示フィールドに値が入っていたらボットとみなす

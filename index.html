@@ -371,12 +371,23 @@
           <input type="email" id="reply_to" name="reply_to" class="form-input" placeholder="example@email.com" required>
         </div>
         <div class="form-group">
-          <label class="form-label">キット名・スケール・ご依頼内容</label>
-          <input type="text" id="kit_info" name="kit_info" class="form-input" placeholder="〇〇 1/8スケール・全塗装仕上げ">
+          <label class="form-label">製作希望のキット名・キャラクター名</label>
+          <input type="text" id="kit_name" name="kit_name" class="form-input" required
+            placeholder="例：初音ミク V4X、アスナ（ソードアート・オンライン）など">
+        </div>
+        <div class="form-group">
+          <label class="form-label">メーカー・ディーラー名</label>
+          <input type="text" id="maker_name" name="maker_name" class="form-input" required
+            placeholder="例：グッドスマイルカンパニー、ボークス、ディーラー名など">
+        </div>
+        <div class="form-group">
+          <label class="form-label">希望する仕上げ</label>
+          <textarea id="finish" name="finish" class="form-textarea" required
+            placeholder="例：サフレス塗装、パール塗装、しっとりとした肌質感、金属部分は光沢など"></textarea>
         </div>
         <div class="form-group">
           <label class="form-label">ご要望・ご質問</label>
-          <textarea id="message" name="message" class="form-textarea" placeholder="ご依頼内容の詳細をご記入ください。"></textarea>
+          <textarea id="message" name="message" class="form-textarea" placeholder="その他、納期のご相談や台座製作の有無などをご自由にご記入ください。"></textarea>
         </div>
         <div class="form-group">
           <label class="form-label">参考画像URL（任意）</label>

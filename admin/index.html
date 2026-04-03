@@ -1009,7 +1009,7 @@
         <td style="font-family:'Barlow Condensed',sans-serif; color:var(--dim); font-size:12px;">${c.date}</td>
         <td style="font-weight:${c.read ? 'normal' : '700'}">${c.name}</td>
         <td><a href="mailto:${c.email}" style="color:var(--muted); font-size:12px;">${c.email}</a></td>
-        <td style="color:var(--muted); font-size:12px; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${c.kit_info || '—'}</td>
+        <td style="color:var(--muted); font-size:12px; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${c.kit_name || c.kit_info || '—'}</td>
         <td style="display:flex; gap:6px;">
           <button class="btn-danger btn" onclick="openContact('${c.id}')">詳細</button>
           <button class="btn-danger btn" onclick="deleteContact('${c.id}')">削除</button>
@@ -1030,7 +1030,9 @@
       <div class="contact-field"><div class="contact-field-label">受信日時</div><div class="contact-field-value">${c.date}</div></div>
       <div class="contact-field"><div class="contact-field-label">お名前</div><div class="contact-field-value">${c.name}</div></div>
       <div class="contact-field"><div class="contact-field-label">メールアドレス</div><div class="contact-field-value"><a href="mailto:${c.email}" style="color:#5b9bd5;">${c.email}</a></div></div>
-      <div class="contact-field"><div class="contact-field-label">キット情報</div><div class="contact-field-value">${c.kit_info || '—'}</div></div>
+      <div class="contact-field"><div class="contact-field-label">キット名</div><div class="contact-field-value">${c.kit_name || c.kit_info || '—'}</div></div>
+      <div class="contact-field"><div class="contact-field-label">メーカー・ディーラー名</div><div class="contact-field-value">${c.maker_name || '—'}</div></div>
+      <div class="contact-field"><div class="contact-field-label">希望する仕上げ</div><div class="contact-field-value">${c.finish || '—'}</div></div>
       <div class="contact-field"><div class="contact-field-label">ご要望・ご質問</div><div class="contact-field-value">${c.message || '—'}</div></div>
       <div class="contact-field"><div class="contact-field-label">参考画像URL</div><div class="contact-field-value">${c.image_url ? `<a href="${c.image_url}" target="_blank" style="color:#5b9bd5;">${c.image_url}</a>` : '—'}</div></div>`;
     det.scrollIntoView({ behavior: 'smooth' });
