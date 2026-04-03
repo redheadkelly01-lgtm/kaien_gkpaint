@@ -22,10 +22,15 @@
   display: none;
 }
 
-/* PC: 5枚表示 */
+/* PC: 5枚表示 (デフォルト) */
 .gallery-item {
   flex: 0 0 calc((100% - (16px * 4)) / 5);
   scroll-snap-align: start;
+}
+
+/* PC: 3枚表示 (index.html用) */
+.carousel-3 .gallery-item {
+  flex: 0 0 calc((100% - (16px * 2)) / 3);
 }
 
 @media (max-width: 900px) {

@@ -44,6 +44,7 @@
     // ★ EmailJS の Public Key をここに設定
     (function () { emailjs.init({ publicKey: 'YOUR_PUBLIC_KEY' }); })();
   </script>
+  <link rel="stylesheet" href="css/carousel.css?v=20260403">
 </head>
 
 <body>
@@ -107,12 +108,17 @@
 
   <div class="section-sep"></div>
 
-  <!-- GALLERY -->
+  <!-- GALLERY (Carousel Mode - 3 Items) -->
   <section class="section-gallery" id="gallery">
     <h2 class="section-title">GALLERY</h2>
     <div class="gallery-inner">
-      <div class="gallery-grid" id="topGalleryGrid">
-        <!-- JSで動的に追加 -->
+      <div class="gallery-carousel-wrap carousel-3">
+        <button class="carousel-btn prev" id="galleryPrev">❮</button>
+        <div class="gallery-carousel" id="topGalleryCarousel">
+          <!-- js/carousel.js で動的に追加 -->
+          <div style="color:var(--text-dim); padding:40px; text-align:center; width:100%;">LOADING...</div>
+        </div>
+        <button class="carousel-btn next" id="galleryNext">❯</button>
       </div>
       <div class="gallery-view-all"><a href="gallery.html">VIEW ALL →</a></div>
     </div>
@@ -391,5 +397,6 @@
 </body>
 
 <script src="js/main.js" defer></script>
+<script src="js/carousel.js" defer></script>
 
 </html>
