@@ -38,7 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData(this);
 
       fetch('contact.php', { method: 'POST', body: formData })
-        .then(r => r.json())
+        .then(async r => {
+          if (!r.ok) {
+            const text = await r.text();
+            throw new Error(`HTTP ${r.status}: ${text.slice(0, 100)}`);
+          }
+          return r.json();
+        })
         .then(data => {
           if (data.ok) {
             msg.textContent = 'お問い合わせを受け付けました。後ほどご連絡いたします。';
@@ -49,9 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         })
         .catch(err => {
-          msg.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+          msg.textContent = '送信エラー: ' + err.message;
           msg.style.cssText = 'display:block; color:#e74c3c; margin-top:16px; font-size:13px;';
-          console.error(err);
+          console.error('Submit Error Details:', err);
         })
         .finally(() => {
           btn.textContent = '送信';
