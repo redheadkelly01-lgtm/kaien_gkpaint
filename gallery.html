@@ -621,18 +621,42 @@
         const pageCount = document.getElementById('pageCount');
         if (pageCount) pageCount.innerHTML = `${String(total).padStart(2,'0')}<span>WORKS</span>`;
 
+        // ハッシュの解析（特定の作品へのリンクか確認）
+        const hash = window.location.hash;
+        let targetIndex = -1;
+        if (hash.startsWith('#work-')) {
+          const targetId = hash.replace('#work-', '');
+          targetIndex = data.findIndex(item => item.id === targetId);
+        }
+
         data.forEach((item, i) => {
           const block = createBlock(item, i + 1);
           mainEl.appendChild(block);
-          if (i >= STEP) {
+          
+          // 初期表示範囲内、またはハッシュで指定されたターゲットより前なら表示
+          if (i < STEP || i <= targetIndex) {
+            shown++;
+          } else {
             block.classList.add('hidden');
             hiddenBlocks.push(block);
-          } else {
-            shown++;
           }
         });
         shownEl.textContent = shown;
         if (shown >= total) wrap.style.display = 'none';
+
+        // ハッシュがある場合は該当箇所までスクロール
+        if (targetIndex >= 0) {
+          setTimeout(() => {
+            const target = document.querySelector(hash);
+            if (target) {
+              // ヘッダー高さを考慮（PC:60px, Mobile:70px）
+              const headerH = window.innerWidth <= 600 ? 70 : 60;
+              const elementPosition = target.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - (headerH + 20); // 余裕分+20px
+              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+          }, 400);
+        }
 
         btn.addEventListener('click', () => {
           const toShow = hiddenBlocks.splice(0, STEP);
