@@ -1,0 +1,109 @@
+/* GALLERY CAROUSEL CUSTOM STYLES */
+.gallery-carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.gallery-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  padding: 10px 4px;
+  width: 100%;
+}
+
+.gallery-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* PC: 5枚表示 */
+.gallery-item {
+  flex: 0 0 calc((100% - (16px * 4)) / 5);
+  scroll-snap-align: start;
+}
+
+@media (max-width: 900px) {
+  /* タブレット等: 4枚表示 */
+  .gallery-item {
+    flex: 0 0 calc((100% - (16px * 3)) / 4);
+  }
+}
+
+@media (max-width: 600px) {
+  /* スマホ: 3枚表示 */
+  .gallery-carousel {
+    gap: 10px;
+  }
+  .gallery-item {
+    flex: 0 0 calc((100% - (10px * 2)) / 3);
+  }
+}
+
+/* カルーセル内のセルスタイル（既存の gallery-cell を再利用しつつ調整） */
+.gallery-item .gallery-cell {
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+
+/* ナビゲーションボタン */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.carousel-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(192, 57, 43, 0.4);
+}
+
+.carousel-btn.prev {
+  left: -48px;
+}
+
+.carousel-btn.next {
+  right: -48px;
+}
+
+@media (max-width: 768px) {
+  .carousel-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .carousel-btn.prev { left: -34px; }
+  .carousel-btn.next { right: -34px; }
+}
+
+@media (max-width: 480px) {
+  .carousel-btn {
+    display: none; /* スマホではスワイプ主体にするためボタン非表示 */
+  }
+}
+
+/* リンクエリアの調整 */
+.gallery-view-all {
+  margin-top: 32px !important;
+}
