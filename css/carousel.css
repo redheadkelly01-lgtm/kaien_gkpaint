@@ -36,12 +36,24 @@
 }
 
 @media (max-width: 600px) {
-  /* スマホ: 3枚表示 */
+  /* スマホ: 画像サイズを大きくし、右端をはみ出させてカルーセルであることを強調 */
   .gallery-carousel {
-    gap: 10px;
+    gap: 12px;
+    padding-right: 40px; /* 最後までスクロールした時の余白 */
+    scroll-padding: 0 20px;
   }
   .gallery-item {
-    flex: 0 0 calc((100% - (10px * 2)) / 3);
+    flex: 0 0 75%; /* 1枚を 75% にすることで、隣が 25% 見える */
+  }
+  
+  /* スマホではスクロールバーを薄く表示して「動かせる」ことを示唆 */
+  .gallery-carousel::-webkit-scrollbar {
+    display: block;
+    height: 3px;
+  }
+  .gallery-carousel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
   }
 }
 
