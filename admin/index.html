@@ -667,10 +667,21 @@
         <td><span class="badge badge-${w.category}">${w.category.toUpperCase()}</span>${w.isNew?'<span class="badge badge-new">NEW</span>':''}</td>
         <td>${w.title}</td>
         <td style="display:flex; gap:6px;">
+          <button class="btn-danger btn" onclick="moveWorksItem(${i}, -1)" ${i===0?'style="opacity:0;pointer-events:none"':''}>↑</button>
+          <button class="btn-danger btn" onclick="moveWorksItem(${i}, 1)" ${i===worksData.length-1?'style="opacity:0;pointer-events:none"':''}>↓</button>
           <button class="btn-danger btn" onclick="editWorksItem(${i})">編集</button>
           <button class="btn-danger btn" onclick="deleteWorksItem(${i})">削除</button>
         </td>
       </tr>`).join('');
+  }
+
+  function moveWorksItem(i, dir) {
+    const j = i + dir;
+    if (j < 0 || j >= worksData.length) return;
+    [worksData[i], worksData[j]] = [worksData[j], worksData[i]];
+    saveLocal();
+    renderWorksList();
+    exportWorks();
   }
 
   // ==============================
@@ -810,10 +821,21 @@
         <td style="font-family:'Barlow Condensed',sans-serif; color:var(--dim);">1/${g.scale}</td>
         <td style="font-family:'Barlow Condensed',sans-serif; color:var(--dim);">${g.year}</td>
         <td style="display:flex; gap:6px;">
+          <button class="btn-danger btn" onclick="moveGalleryItem(${i}, -1)" ${i===0?'style="opacity:0;pointer-events:none"':''}>↑</button>
+          <button class="btn-danger btn" onclick="moveGalleryItem(${i}, 1)" ${i===galleryData.length-1?'style="opacity:0;pointer-events:none"':''}>↓</button>
           <button class="btn-danger btn" onclick="editGalleryItem(${i})">編集</button>
           <button class="btn-danger btn" onclick="deleteGalleryItem(${i})">削除</button>
         </td>
       </tr>`).join('');
+  }
+
+  function moveGalleryItem(i, dir) {
+    const j = i + dir;
+    if (j < 0 || j >= galleryData.length) return;
+    [galleryData[i], galleryData[j]] = [galleryData[j], galleryData[i]];
+    saveLocal();
+    renderGalleryList();
+    exportGallery();
   }
 
   // ==============================
