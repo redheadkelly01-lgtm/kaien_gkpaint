@@ -8,12 +8,12 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Expires" content="0">
-  <meta name="description" content="KAIEN GK PAINTING SERVICEのギャラリーページ。サフレス塗装による透明感と繊細なグラデーションで仕上げたガレージキット作品をご覧ください。">
+  <meta name="description" content="KAIEN GK PAINTING SERVICEのギャラリーページ。持てる技術をつぎ込んだ作品をご覧ください。">
   <link rel="canonical" href="https://kaien-gkpaint.com/gallery.html">
   <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="GALLERY — KAIEN GK PAINTING SERVICE">
-  <meta property="og:description" content="サフレス塗装による透明感と繊細なグラデーションで仕上げたガレージキット作品をご覧ください。">
+  <meta property="og:description" content="持てる技術をつぎ込んだ作品をご覧ください。">
   <meta property="og:url" content="https://kaien-gkpaint.com/gallery.html">
   <meta property="og:image" content="https://kaien-gkpaint.com/icon.webp">
   <meta property="og:locale" content="ja_JP">
@@ -100,6 +100,7 @@
       display: block;
       transition: transform .3s;
     }
+
     .logo:hover .logo-img {
       transform: scale(1.05);
     }
@@ -260,7 +261,8 @@
       overflow: hidden;
       background: #000;
       position: relative;
-      border: 2px solid #333; /* 太く、はっきりと */
+      border: 2px solid #333;
+      /* 太く、はっきりと */
       padding: 2px;
       transition: border-color .3s, transform .3s;
     }
@@ -456,22 +458,36 @@
 
     /* ─── LIGHTBOX ────────────────────────────────── */
     .lightbox {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.92);
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(4px);
       z-index: 2000;
-      display: none; align-items: center; justify-content: center;
+      display: none;
+      align-items: center;
+      justify-content: center;
       cursor: zoom-out;
-      opacity: 0; transition: opacity .3s ease;
+      opacity: 0;
+      transition: opacity .3s ease;
     }
-    .lightbox.active { display: flex; opacity: 1; }
+
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
     .lightbox img {
-      max-width: 92%; max-height: 92%;
+      max-width: 92%;
+      max-height: 92%;
       object-fit: contain;
-      box-shadow: 0 0 50px rgba(0,0,0,0.5);
-      transform: scale(.95); transition: transform .3s ease;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+      transform: scale(.95);
+      transition: transform .3s ease;
     }
-    .lightbox.active img { transform: scale(1); }
+
+    .lightbox.active img {
+      transform: scale(1);
+    }
 
     /* ─── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 768px) {
@@ -487,17 +503,41 @@
         font-size: 11px;
       }
     }
+
     @media (max-width: 900px) {
-      .page-header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 56px 20px 32px; }
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 56px 20px 32px;
+      }
     }
+
     @media (max-width: 600px) {
-      header { padding: 0 20px; }
-      .logo-img { height: 44px; width: auto; object-fit: contain; }
-      .page-title { font-size: 36px; }
-      .page-count { display: none; }
+      header {
+        padding: 0 20px;
+      }
+
+      .logo-img {
+        height: 44px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .page-title {
+        font-size: 36px;
+      }
+
+      .page-count {
+        display: none;
+      }
     }
+
     @media (max-width: 768px) {
-      body { font-size: 14px; }
+      body {
+        font-size: 14px;
+      }
+
       .gallery-main {
         padding: 0 20px 80px;
       }
@@ -573,10 +613,10 @@
 
   <script>
     const STEP = 2;
-    const btn    = document.getElementById('loadMoreBtn');
+    const btn = document.getElementById('loadMoreBtn');
     const shownEl = document.getElementById('shownCount');
     const totalEl = document.getElementById('totalCount');
-    const wrap   = document.getElementById('loadMoreWrap');
+    const wrap = document.getElementById('loadMoreWrap');
     const mainEl = document.querySelector('.gallery-main');
     let hiddenBlocks = [];
     let shown = 0;
@@ -589,16 +629,16 @@
       const mainImg = item.mainImage
         ? `<img src="${item.mainImage}?v=${imgVer}" alt="${item.alt || item.title}" loading="lazy">`
         : `<div class="img-placeholder"><span>MAIN IMAGE</span><small>推奨: 縦長（3:4）</small></div>`;
-      const subs = [0,1,2,3].map(i => {
+      const subs = [0, 1, 2, 3].map(i => {
         const s = (item.subImages || [])[i];
         return s
-          ? `<div class="work-sub-img"><img src="${s}?v=${imgVer}" alt="${item.alt || item.title} サブ${i+1}" loading="lazy"></div>`
-          : `<div class="work-sub-img"><div class="img-placeholder"><span>SUB 0${i+1}</span></div></div>`;
+          ? `<div class="work-sub-img"><img src="${s}?v=${imgVer}" alt="${item.alt || item.title} サブ${i + 1}" loading="lazy"></div>`
+          : `<div class="work-sub-img"><div class="img-placeholder"><span>SUB 0${i + 1}</span></div></div>`;
       }).join('');
       div.id = `work-${item.id}`;
       div.innerHTML = `
         <div class="work-header">
-          <span class="work-num">NO.${String(num).padStart(2,'0')}</span>
+          <span class="work-num">NO.${String(num).padStart(2, '0')}</span>
           <div class="work-title-line"></div>
           <h2 class="work-title">${item.title}</h2>
           <span class="work-meta">1/${item.scale} Scale &middot; ${item.year}</span>
@@ -619,7 +659,7 @@
         const total = data.length;
         totalEl.textContent = total;
         const pageCount = document.getElementById('pageCount');
-        if (pageCount) pageCount.innerHTML = `${String(total).padStart(2,'0')}<span>WORKS</span>`;
+        if (pageCount) pageCount.innerHTML = `${String(total).padStart(2, '0')}<span>WORKS</span>`;
 
         // ハッシュの解析（特定の作品へのリンクか確認）
         const hash = window.location.hash;
@@ -632,7 +672,7 @@
         data.forEach((item, i) => {
           const block = createBlock(item, i + 1);
           mainEl.appendChild(block);
-          
+
           // 初期表示範囲内、またはハッシュで指定されたターゲットより前なら表示
           if (i < STEP || i <= targetIndex) {
             shown++;
@@ -669,10 +709,10 @@
           if (shown >= total) wrap.style.display = 'none';
         });
       })
-      .catch(err => { 
-        console.error(err); 
-        alert('読み込みエラー詳細: ' + err.message); 
-        wrap.style.display = 'none'; 
+      .catch(err => {
+        console.error(err);
+        alert('読み込みエラー詳細: ' + err.message);
+        wrap.style.display = 'none';
       });
 
     // ライトボックス制御
