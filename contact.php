@@ -1,3 +1,4 @@
+<?php
 header('Content-Type: application/json; charset=utf-8');
 // 同一ドメイン内からのアクセスのみを許可（セキュリティ強化）
 // header('Access-Control-Allow-Origin: *'); 
