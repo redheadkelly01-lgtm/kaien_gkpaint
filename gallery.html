@@ -627,12 +627,12 @@
       const div = document.createElement('div');
       div.className = 'work-block';
       const mainImg = item.mainImage
-        ? `<img src="${item.mainImage}?v=${imgVer}" alt="${item.alt || item.title}" loading="lazy">`
+        ? `<img src="${item.mainImage}?v=${imgVer}" alt="${item.alt || item.title}のサフレス塗装作例" loading="lazy">`
         : `<div class="img-placeholder"><span>MAIN IMAGE</span><small>推奨: 縦長（3:4）</small></div>`;
       const subs = [0, 1, 2, 3].map(i => {
         const s = (item.subImages || [])[i];
         return s
-          ? `<div class="work-sub-img"><img src="${s}?v=${imgVer}" alt="${item.alt || item.title} サブ${i + 1}" loading="lazy"></div>`
+          ? `<div class="work-sub-img"><img src="${s}?v=${imgVer}" alt="${item.alt || item.title}のサフレス塗装作例 サブ${i + 1}" loading="lazy"></div>`
           : `<div class="work-sub-img"><div class="img-placeholder"><span>SUB 0${i + 1}</span></div></div>`;
       }).join('');
       div.id = `work-${item.id}`;
