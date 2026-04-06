@@ -354,6 +354,8 @@
           <div class="form-group">
             <label class="form-label">タイトル</label>
             <textarea class="form-textarea" id="wTitle" style="height:44px;" placeholder="作品タイトル"></textarea>
+            <label class="form-label" style="margin-top:12px;">代替テキスト(alt)</label>
+            <textarea class="form-textarea" id="wAlt" style="height:44px;" placeholder="未入力の場合はタイトルを利用"></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">スケール</label>
@@ -468,6 +470,8 @@
                 <input class="form-input" id="gYear" placeholder="2026">
               </div>
             </div>
+            <label class="form-label" style="margin-top:12px;">代替テキスト(alt)</label>
+            <input class="form-input" id="gAlt" placeholder="未入力の場合はタイトルを利用">
           </div>
         </div>
 
@@ -697,6 +701,7 @@
       document.getElementById('wDate').value           = w.date;
       document.getElementById('wCategory').value       = w.category;
       document.getElementById('wTitle').value          = w.title;
+      document.getElementById('wAlt').value            = w.alt || '';
       document.getElementById('wScale').value          = w.scale || '';
       document.getElementById('wExcerpt').value        = w.excerpt;
       document.getElementById('wThumb').value          = w.thumb || '';
@@ -705,7 +710,7 @@
       document.getElementById('wIsNew').checked        = w.isNew || false;
       bodyBlocks = JSON.parse(JSON.stringify(w.body || []));
     } else {
-      ['wId','wDate','wTitle','wScale','wExcerpt','wThumb','wMainVisual','wMainVisualCaption'].forEach(id => document.getElementById(id).value = '');
+      ['wId','wDate','wTitle','wAlt','wScale','wExcerpt','wThumb','wMainVisual','wMainVisualCaption'].forEach(id => document.getElementById(id).value = '');
       document.getElementById('wCategory').value = 'project';
       document.getElementById('wIsNew').checked = false;
     }
@@ -734,6 +739,7 @@
     const item = {
       id,
       title:             document.getElementById('wTitle').value.trim(),
+      alt:               document.getElementById('wAlt').value.trim(),
       date:              document.getElementById('wDate').value.trim(),
       category:          document.getElementById('wCategory').value,
       isNew:             document.getElementById('wIsNew').checked,
@@ -848,6 +854,7 @@
       const g = galleryData[idx];
       document.getElementById('gId').value        = g.id;
       document.getElementById('gTitle').value     = g.title;
+      document.getElementById('gAlt').value       = g.alt || '';
       document.getElementById('gScale').value     = g.scale;
       document.getElementById('gYear').value      = g.year;
       document.getElementById('gMainImage').value = g.mainImage || '';
@@ -857,7 +864,7 @@
       document.getElementById('gSub4').value      = (g.subImages||[])[3] || '';
       document.getElementById('gCaption').value   = g.caption || '';
     } else {
-      ['gId','gTitle','gScale','gYear','gMainImage','gSub1','gSub2','gSub3','gSub4','gCaption']
+      ['gId','gTitle','gAlt','gScale','gYear','gMainImage','gSub1','gSub2','gSub3','gSub4','gCaption']
         .forEach(id => {
           document.getElementById(id).value = '';
           const pre = document.getElementById(id + 'Preview');
@@ -889,6 +896,7 @@
     const item = {
       id,
       title:     document.getElementById('gTitle').value.trim(),
+      alt:       document.getElementById('gAlt').value.trim(),
       scale:     document.getElementById('gScale').value.trim(),
       year:      document.getElementById('gYear').value.trim(),
       mainImage: document.getElementById('gMainImage').value.trim(),
@@ -1289,13 +1297,15 @@
       const count = type === 'imageGrid2' ? 2 : 3;
       for (let i = 0; i < count; i++) {
         const val = (current && current.images && current.images[i]) ? current.images[i].src : '';
+        const altVal = (current && current.images && current.images[i]) ? (current.images[i].alt || '') : '';
         html += `
           <div class="modal-field-group">
-            <label class="form-label">画像パス ${i+1}</label>
+            <label class="form-label" style="display:flex; justify-content:space-between;"><span>画像パス ${i+1}</span></label>
             <div class="input-group">
               <input class="form-input" id="modalImg${i}" value="${val}" placeholder="images/works/...">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('modalImg${i}', 'wId', 'body_${idx >= 0 ? idx : bodyBlocks.length}_${i}')">UP</button>
             </div>
+            <input class="form-input" id="modalAlt${i}" value="${altVal}" placeholder="代替テキスト(alt)" style="margin-top:6px;">
             <div id="modalImg${i}Preview" class="img-preview-mini">
               ${val ? `<img src="../${val}?v=${imgVer}" style="max-height:60px; margin-top:4px;">` : ''}
             </div>
@@ -1320,7 +1330,10 @@
       const count = modalActiveType === 'imageGrid2' ? 2 : 3;
       newBlock.images = [];
       for (let i = 0; i < count; i++) {
-        newBlock.images.push({ src: document.getElementById('modalImg' + i).value.trim(), alt: '' });
+        newBlock.images.push({ 
+          src: document.getElementById('modalImg' + i).value.trim(), 
+          alt: document.getElementById('modalAlt' + i).value.trim() 
+        });
       }
     }
 
