@@ -488,37 +488,41 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">サブ画像1</label>
+            <label class="form-label" style="display:flex; justify-content:space-between;"><span>サブ画像1</span></label>
             <div class="input-group">
               <input class="form-input" id="gSub1" placeholder="images/works/01_sub1.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub1', 'gId', 'sub1')">UP</button>
             </div>
+            <input class="form-input" id="gSub1Alt" placeholder="代替テキスト(alt)" style="margin-top:6px;">
             <div id="gSub1Preview" class="img-preview-mini"></div>
           </div>
           <div class="form-group">
-            <label class="form-label">サブ画像2</label>
+            <label class="form-label" style="display:flex; justify-content:space-between;"><span>サブ画像2</span></label>
             <div class="input-group">
               <input class="form-input" id="gSub2" placeholder="images/works/01_sub2.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub2', 'gId', 'sub2')">UP</button>
             </div>
+            <input class="form-input" id="gSub2Alt" placeholder="代替テキスト(alt)" style="margin-top:6px;">
             <div id="gSub2Preview" class="img-preview-mini"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">サブ画像3</label>
+            <label class="form-label" style="display:flex; justify-content:space-between;"><span>サブ画像3</span></label>
             <div class="input-group">
               <input class="form-input" id="gSub3" placeholder="images/works/01_sub3.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub3', 'gId', 'sub3')">UP</button>
             </div>
+            <input class="form-input" id="gSub3Alt" placeholder="代替テキスト(alt)" style="margin-top:6px;">
             <div id="gSub3Preview" class="img-preview-mini"></div>
           </div>
           <div class="form-group">
-            <label class="form-label">サブ画像4</label>
+            <label class="form-label" style="display:flex; justify-content:space-between;"><span>サブ画像4</span></label>
             <div class="input-group">
               <input class="form-input" id="gSub4" placeholder="images/works/01_sub4.webp">
               <button class="btn btn-secondary btn-up" onclick="performCmsUpload('gSub4', 'gId', 'sub4')">UP</button>
             </div>
+            <input class="form-input" id="gSub4Alt" placeholder="代替テキスト(alt)" style="margin-top:6px;">
             <div id="gSub4Preview" class="img-preview-mini"></div>
           </div>
         </div>
@@ -861,10 +865,13 @@
       document.getElementById('gSub1').value      = (g.subImages||[])[0] || '';
       document.getElementById('gSub2').value      = (g.subImages||[])[1] || '';
       document.getElementById('gSub3').value      = (g.subImages||[])[2] || '';
-      document.getElementById('gSub4').value      = (g.subImages||[])[3] || '';
+      document.getElementById('gSub1Alt').value   = (g.subAlts||[])[0] || '';
+      document.getElementById('gSub2Alt').value   = (g.subAlts||[])[1] || '';
+      document.getElementById('gSub3Alt').value   = (g.subAlts||[])[2] || '';
+      document.getElementById('gSub4Alt').value   = (g.subAlts||[])[3] || '';
       document.getElementById('gCaption').value   = g.caption || '';
     } else {
-      ['gId','gTitle','gAlt','gScale','gYear','gMainImage','gSub1','gSub2','gSub3','gSub4','gCaption']
+      ['gId','gTitle','gAlt','gScale','gYear','gMainImage','gSub1','gSub2','gSub3','gSub4','gSub1Alt','gSub2Alt','gSub3Alt','gSub4Alt','gCaption']
         .forEach(id => {
           document.getElementById(id).value = '';
           const pre = document.getElementById(id + 'Preview');
@@ -892,7 +899,22 @@
   function saveGalleryItem() {
     const id = document.getElementById('gId').value.trim();
     if (!id) { showMsg('galleryMsg', 'IDを入力してください', 'error'); return; }
-    const subs = ['gSub1','gSub2','gSub3','gSub4'].map(i => document.getElementById(i).value.trim()).filter(Boolean);
+    
+    const subs = [];
+    const subAlts = [];
+    for (let i = 1; i <= 4; i++) {
+      const src = document.getElementById(`gSub${i}`).value.trim();
+      const alt = document.getElementById(`gSub${i}Alt`).value.trim();
+      // Only add to arrays if src exists
+      if (src) {
+        subs.push(src);
+        subAlts.push(alt); 
+      }
+    }
+    
+    // In case no items have a src, make subAlts empty array but ensure matching indices if skipped. 
+    // Wait, the previous logic just filtered out falsy `gSub${i}` values. By doing this we preserve the order correctly for valid sub image.
+    
     const item = {
       id,
       title:     document.getElementById('gTitle').value.trim(),
@@ -901,6 +923,7 @@
       year:      document.getElementById('gYear').value.trim(),
       mainImage: document.getElementById('gMainImage').value.trim(),
       subImages: subs,
+      subAlts:   subAlts,
       caption:   document.getElementById('gCaption').value.trim()
     };
     if (editGalleryIdx >= 0) {
