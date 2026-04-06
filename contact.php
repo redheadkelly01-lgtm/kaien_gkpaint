@@ -47,7 +47,7 @@ if (empty($entry['name']) || empty($entry['email'])) {
     exit;
 }
 
-$dir  = __DIR__ . '/admin/data';
+$dir  = __DIR__ . '/data';
 $file = $dir . '/contacts.json';
 
 // デバッグ情報

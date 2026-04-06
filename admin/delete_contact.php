@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $id   = trim($_POST['id'] ?? '');
-$file = __DIR__ . '/data/contacts.json';
+$file = __DIR__ . '/../data/contacts.json';
 
 if (empty($id)) {
     echo json_encode(['ok' => false, 'error' => 'IDが指定されていません']);
