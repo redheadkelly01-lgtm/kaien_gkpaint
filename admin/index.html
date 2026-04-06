@@ -828,7 +828,7 @@
       <tr>
         <td style="font-family:'Barlow Condensed',sans-serif; color:var(--dim);">${g.id}</td>
         <td>${g.title}</td>
-        <td style="font-family:'Barlow Condensed',sans-serif; color:var(--dim);">1/${g.scale}</td>
+        <td style="font-family:'Barlow Condensed',sans-serif; color:var(--dim);">${g.scale}</td>
         <td style="font-family:'Barlow Condensed',sans-serif; color:var(--dim);">${g.year}</td>
         <td style="display:flex; gap:6px;">
           <button class="btn-danger btn" onclick="moveGalleryItem(${i}, -1)" ${i===0?'style="opacity:0;pointer-events:none"':''}>↑</button>
@@ -1510,7 +1510,7 @@
   <div class="g-header">
     <h1 class="g-title">${item.title}</h1>
     <div class="g-meta">
-      <span>SCALE: 1/${item.scale}</span>
+      <span>SCALE: ${item.scale}</span>
       <span>YEAR: ${item.year}</span>
     </div>
   </div>
