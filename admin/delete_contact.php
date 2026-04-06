@@ -9,19 +9,25 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $id   = trim($_POST['id'] ?? '');
-$file = __DIR__ . '/../data/contacts.json';
+$file = __DIR__ . '/../data/contacts.php';
+$oldFile = __DIR__ . '/../data/contacts.json';
 
 if (empty($id)) {
     echo json_encode(['ok' => false, 'error' => 'IDが指定されていません']);
     exit;
 }
 
-if (!file_exists($file)) {
-    echo json_encode(['ok' => false, 'error' => 'contacts.jsonが見つかりません']);
+if (file_exists($file)) {
+    $raw = file_get_contents($file);
+    $raw = preg_replace('/^<\?php exit; \?>\s*/', '', $raw);
+    $contacts = json_decode($raw, true) ?: [];
+} elseif (file_exists($oldFile)) {
+    $raw = file_get_contents($oldFile);
+    $contacts = json_decode($raw, true) ?: [];
+} else {
+    echo json_encode(['ok' => false, 'error' => 'contacts.phpが見つかりません']);
     exit;
 }
-
-$contacts = json_decode(file_get_contents($file), true) ?: [];
 $beforeCount = count($contacts);
 
 // 指定されたID以外のデータを残す
@@ -37,6 +43,10 @@ if (count($newContacts) === $beforeCount) {
     exit;
 }
 
-$result = file_put_contents($file, json_encode($newContacts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+$content = "<?php exit; ?>\n" . json_encode($newContacts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+$result = file_put_contents($file, $content);
+if ($result !== false && file_exists($oldFile)) {
+    @unlink($oldFile);
+}
 
 echo json_encode(['ok' => $result !== false]);

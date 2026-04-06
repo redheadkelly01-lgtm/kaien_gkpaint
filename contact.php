@@ -48,14 +48,15 @@ if (empty($entry['name']) || empty($entry['email'])) {
 }
 
 $dir  = __DIR__ . '/data';
-$file = $dir . '/contacts.json';
+$file = $dir . '/contacts.php';
+$oldFile = $dir . '/contacts.json';
 
 // デバッグ情報
 $debug = [
     'dir_exists'    => is_dir($dir),
     'dir_writable'  => is_writable($dir),
     'file_exists'   => file_exists($file),
-    'file_writable' => file_exists($file) ? is_writable($file) : 'N/A',
+    'file_writable' => file_exists($file) ? is_writable($file) : (file_exists($oldFile) ? is_writable($oldFile) : 'N/A'),
     'php_user'      => function_exists('posix_getpwuid') ? posix_getpwuid(posix_geteuid())['name'] : get_current_user(),
     'dir_path'      => $dir,
 ];
@@ -75,6 +76,10 @@ if (!is_writable($dir)) {
 $contacts = [];
 if (file_exists($file)) {
     $raw = file_get_contents($file);
+    $raw = preg_replace('/^<\?php exit; \?>\s*/', '', $raw);
+    $contacts = json_decode($raw, true) ?: [];
+} elseif (file_exists($oldFile)) {
+    $raw = file_get_contents($oldFile);
     $contacts = json_decode($raw, true) ?: [];
 }
 
@@ -95,7 +100,12 @@ foreach ($contacts as $c) {
 array_unshift($contacts, $entry);
 $contacts = array_slice($contacts, 0, 300);
 
-$result = file_put_contents($file, json_encode($contacts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+$content = "<?php exit; ?>\n" . json_encode($contacts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+$result = file_put_contents($file, $content);
+
+if ($result !== false && file_exists($oldFile)) {
+    @unlink($oldFile); // 古いファイルを削除
+}
 
 if ($result === false) {
     echo json_encode(['ok' => false, 'error' => 'ファイルへの書き込みに失敗しました']);

@@ -2,9 +2,14 @@
 // .htaccessでアクセス拒否されているcontacts.jsonを、Basic認証済みのadmin側から読み込むための中継API
 header('Content-Type: application/json; charset=utf-8');
 
-$file = __DIR__ . '/../data/contacts.json';
+$file = __DIR__ . '/../data/contacts.php';
+$oldFile = __DIR__ . '/../data/contacts.json';
+
 if (file_exists($file)) {
-    readfile($file);
+    $raw = file_get_contents($file);
+    echo preg_replace('/^<\?php exit; \?>\s*/', '', $raw);
+} elseif (file_exists($oldFile)) {
+    readfile($oldFile);
 } else {
     echo '[]';
 }

@@ -9,19 +9,25 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $id   = trim($_POST['id'] ?? '');
-$file = __DIR__ . '/../data/contacts.json';
+$file = __DIR__ . '/../data/contacts.php';
+$oldFile = __DIR__ . '/../data/contacts.json';
 
 if (empty($id)) {
     echo json_encode(['ok' => false, 'error' => 'IDが指定されていません']);
     exit;
 }
 
-if (!file_exists($file)) {
-    echo json_encode(['ok' => false, 'error' => 'contacts.jsonが見つかりません']);
+if (file_exists($file)) {
+    $raw = file_get_contents($file);
+    $raw = preg_replace('/^<\?php exit; \?>\s*/', '', $raw);
+    $contacts = json_decode($raw, true) ?: [];
+} elseif (file_exists($oldFile)) {
+    $raw = file_get_contents($oldFile);
+    $contacts = json_decode($raw, true) ?: [];
+} else {
+    echo json_encode(['ok' => false, 'error' => 'contacts.phpが見つかりません']);
     exit;
 }
-
-$contacts = json_decode(file_get_contents($file), true) ?: [];
 $updated  = false;
 
 foreach ($contacts as &$c) {
