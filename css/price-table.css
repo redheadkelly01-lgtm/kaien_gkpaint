@@ -137,6 +137,7 @@
   width: 22px;
   height: 22px;
   flex-shrink: 0;
+  fill: currentColor;
 }
 
 /* 基本料金 - ゴールド強調 */
