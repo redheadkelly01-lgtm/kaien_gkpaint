@@ -2,10 +2,16 @@
 // お問い合わせデータの暗号化・復号化ユーティリティ
 define('CONTACT_SEC_KEY', 'kaien_gkpaint_2026_hq_secure_key!');
 
+// AES-256用の32バイトキーをハッシュで生成
+function get_contact_sec_key() {
+    return substr(hash('sha256', CONTACT_SEC_KEY), 0, 32);
+}
+
 function encrypt_contacts($data_array) {
+    if (empty($data_array)) $data_array = [];
     $json = json_encode($data_array, JSON_UNESCAPED_UNICODE);
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-    $encrypted = openssl_encrypt($json, 'aes-256-cbc', CONTACT_SEC_KEY, 0, $iv);
+    $encrypted = @openssl_encrypt($json, 'aes-256-cbc', get_contact_sec_key(), 0, $iv);
     return base64_encode($encrypted . '::' . $iv);
 }
 
@@ -22,7 +28,7 @@ function read_contacts_data($file_path, $old_path = null) {
             $decoded = base64_decode($raw);
             if ($decoded && strpos($decoded, '::') !== false) {
                 $parts = explode('::', $decoded, 2);
-                $json = openssl_decrypt($parts[0], 'aes-256-cbc', CONTACT_SEC_KEY, 0, $parts[1]);
+                $json = @openssl_decrypt($parts[0], 'aes-256-cbc', get_contact_sec_key(), 0, $parts[1]);
                 $contacts = json_decode($json, true) ?: [];
             }
         }
