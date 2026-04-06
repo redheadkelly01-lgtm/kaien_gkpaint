@@ -1009,7 +1009,7 @@
   let openContactId = null;
 
   function loadContacts() {
-    fetch('../data/contacts.json?t=' + Date.now())
+    fetch('data/contacts.json?t=' + Date.now())
       .then(r => r.json())
       .then(data => {
         contactsData = data;
