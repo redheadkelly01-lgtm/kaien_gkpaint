@@ -47,41 +47,13 @@ if (empty($entry['name']) || empty($entry['email'])) {
     exit;
 }
 
+require_once __DIR__ . '/contact_sec.php';
+
 $dir  = __DIR__ . '/data';
 $file = $dir . '/contacts.php';
 $oldFile = $dir . '/contacts.json';
 
-// デバッグ情報
-$debug = [
-    'dir_exists'    => is_dir($dir),
-    'dir_writable'  => is_writable($dir),
-    'file_exists'   => file_exists($file),
-    'file_writable' => file_exists($file) ? is_writable($file) : (file_exists($oldFile) ? is_writable($oldFile) : 'N/A'),
-    'php_user'      => function_exists('posix_getpwuid') ? posix_getpwuid(posix_geteuid())['name'] : get_current_user(),
-    'dir_path'      => $dir,
-];
-
-if (!is_dir($dir)) {
-    if (!mkdir($dir, 0775, true)) {
-        echo json_encode(['ok' => false, 'error' => 'dataディレクトリの作成に失敗しました', 'debug' => $debug]);
-        exit;
-    }
-}
-
-if (!is_writable($dir)) {
-    echo json_encode(['ok' => false, 'error' => 'dataディレクトリに書き込み権限がありません', 'debug' => $debug]);
-    exit;
-}
-
-$contacts = [];
-if (file_exists($file)) {
-    $raw = file_get_contents($file);
-    $raw = preg_replace('/^<\?php exit; \?>\s*/', '', $raw);
-    $contacts = json_decode($raw, true) ?: [];
-} elseif (file_exists($oldFile)) {
-    $raw = file_get_contents($oldFile);
-    $contacts = json_decode($raw, true) ?: [];
-}
+$contacts = read_contacts_data($file, $oldFile);
 
 // ボット/スパム対策（レートリミット）
 $ip = $_SERVER['REMOTE_ADDR'];
@@ -97,11 +69,11 @@ foreach ($contacts as $c) {
         break; // 直近の履歴だけで判定
     }
 }
+
 array_unshift($contacts, $entry);
 $contacts = array_slice($contacts, 0, 300);
 
-$content = "<?php exit; ?>\n" . json_encode($contacts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$result = file_put_contents($file, $content);
+$result = save_contacts_data($file, $contacts);
 
 if ($result !== false && file_exists($oldFile)) {
     @unlink($oldFile); // 古いファイルを削除
@@ -113,3 +85,4 @@ if ($result === false) {
 }
 
 echo json_encode(['ok' => true]);
+
