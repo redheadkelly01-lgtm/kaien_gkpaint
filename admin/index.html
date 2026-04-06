@@ -905,11 +905,8 @@
     for (let i = 1; i <= 4; i++) {
       const src = document.getElementById(`gSub${i}`).value.trim();
       const alt = document.getElementById(`gSub${i}Alt`).value.trim();
-      // Only add to arrays if src exists
-      if (src) {
-        subs.push(src);
-        subAlts.push(alt); 
-      }
+      subs.push(src);
+      subAlts.push(alt); 
     }
     
     // In case no items have a src, make subAlts empty array but ensure matching indices if skipped. 
