@@ -8,6 +8,7 @@
 - `worksdetail.html` において、新しいブロックタイプ `link` のレンダリングに対応しました。
 - プレミアムな印象を与える、ホバーエフェクト付きのリンクボタンデザインを導入しました。
 - **改行の反映**: 管理画面で入力した改行が、詳細ページ（本文）、一覧ページ（カードのタイトル・概要）、トップページ（お知らせ）、ギャラリー（キャプション）のすべてで正しく反映されるようにCSSを修正しました。
+- **NEWバッジの表示**: 管理画面で「NEWバッジを表示する」にチェックを入れた際、一覧ページのカード右上に赤いNEWバッジが表示され、トップページのお知らせ欄にもNEWマークが付くように修正しました。
 
 ### 2. 管理画面（編集・保存機能）
 - `admin/index.html` の「本文コンテンツ」エリアに「+ リンク」ボタンを追加しました。
@@ -19,10 +20,10 @@
 
 ## 変更ファイル
 
-- [worksdetail.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/worksdetail.html) : 表示ロジック、スタイリング、改行反映の追加
-- [works.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/works.html) : 一覧ページでの改行反映
+- [works.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/works.html) : 一覧ページでの改行反映およびNEWバッジ表示
 - [gallery.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/gallery.html) : ギャラリーキャプションでの改行反映
-- [css/style.css](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/css/style.css) : トップページのお知らせ欄での改行反映
+- [css/style.css](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/css/style.css) : トップページのお知らせ欄での改行反映およびNEWバッジのスタイリング
+- [js/main.js](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/js/main.js) : トップページのお知らせ欄でのNEWバッジ表示ロジック
 - [admin/index.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/admin/index.html) : 編集・管理機能の追加
 
 ## 検証結果
@@ -31,6 +32,7 @@
 - [x] 追加したリンクの編集・削除・並び替えが動作することを確認。
 - [x] 詳細ページ、一覧ページ、プレビュー画面で、意図したデザインでリンクが表示されることを確認。
 - [x] 管理画面で入力した改行が、実際の各ページに反映されていることを確認。
+- [x] 管理画面で「NEW」にチェックを入れると、一覧ページとトップページにNEWマークが表示されることを確認。
 - [x] リンクをクリックした際、新しいタブで正しく遷移することを確認。
 
 > [!TIP]
