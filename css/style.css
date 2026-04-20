@@ -898,6 +898,12 @@ footer {
   color: var(--text-dim);
 }
 
+.footer-disclosure {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
 .footer-top {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 11px;
