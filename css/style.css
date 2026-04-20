@@ -302,6 +302,17 @@ nav a.active {
   color: var(--accent2);
   border: 1px solid rgba(192, 57, 43, .28);
 }
+.info-tag .new-badge {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  margin-right: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  vertical-align: middle;
+}
 
 .info-content {
   color: var(--text);

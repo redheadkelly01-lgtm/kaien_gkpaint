@@ -250,6 +250,13 @@
     .card-badge.project { color: #5b9bd5; border-color: rgba(91,155,213,.3); }
     .card-badge.contest { color: #e5a23a; border-color: rgba(229,162,58,.3); }
     .card-badge.other   { color: var(--text-dim); }
+    .card-badge.new-badge {
+      left: auto; right: 12px;
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 2px 10px rgba(192,57,43,0.3);
+    }
 
     /* ホバーオーバーレイ */
     .card-overlay {
@@ -482,6 +489,7 @@
       <div class="card-thumb" data-detail="worksdetail.html?id=${item.id}">
         ${thumbImg}
         <span class="card-badge ${item.category}">${item.category.toUpperCase()}</span>
+        ${item.isNew ? `<span class="card-badge new-badge">NEW</span>` : ''}
         <div class="card-overlay"><span class="card-overlay-label">VIEW DETAIL</span></div>
       </div>
       <div class="card-body">
