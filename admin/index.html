@@ -413,6 +413,7 @@
           <button class="add-block-btn" onclick="addBlock('heading3')">+ 見出しH3</button>
           <button class="add-block-btn" onclick="addBlock('imageGrid2')">+ 画像×2</button>
           <button class="add-block-btn" onclick="addBlock('imageGrid3')">+ 画像×3</button>
+          <button class="add-block-btn" onclick="addBlock('link')">+ リンク（ボタン）</button>
         </div>
       </div>
 
@@ -777,9 +778,14 @@
     el.innerHTML = bodyBlocks.map((b, i) => {
       let label = b.type;
       let editor = '';
-      if (b.text !== undefined) {
+      if (b.text !== undefined && b.type !== 'link') {
         const rows = b.type === 'paragraph' ? 5 : 1;
         editor = `<textarea class="form-textarea" style="height:${rows*24+20}px; margin-top:4px;" oninput="updateBlockText(${i}, this.value)">${b.text}</textarea>`;
+      } else if (b.type === 'link') {
+        editor = `<div style="font-size:12px; color:var(--text-dim); padding-top:4px;">
+                    <div style="color:var(--accent2); font-weight:600;">[ ${b.text} ]</div>
+                    <div style="font-family:monospace; margin-top:2px;">URL: ${b.url}</div>
+                  </div>`;
       } else if (b.images) {
         editor = `<div style="color:var(--dim); font-size:12px; padding:4px 0;">${b.images.map(im => im.src).join(', ')}</div>`;
       }
@@ -787,7 +793,7 @@
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
           <span class="block-type-label">${label}</span>
           <div class="block-actions">
-            ${b.images ? `<button class="block-btn" onclick="editBlock(${i})">編集</button>` : ''}
+            ${(b.images || b.type === 'link') ? `<button class="block-btn" onclick="editBlock(${i})">編集</button>` : ''}
             <button class="block-btn del" onclick="deleteBlock(${i})">削除</button>
             ${i > 0 ? `<button class="block-btn" onclick="moveBlock(${i},-1)">↑</button>` : ''}
             ${i < bodyBlocks.length-1 ? `<button class="block-btn" onclick="moveBlock(${i},1)">↓</button>` : ''}
@@ -1332,6 +1338,18 @@
             </div>
           </div>`;
       }
+    } else if (type === 'link') {
+      const text = current ? current.text : '';
+      const url  = current ? current.url : '';
+      html = `
+        <div class="modal-field-group">
+          <label class="form-label">ボタンのテキスト（ラベル）</label>
+          <input type="text" id="modalLinkText" class="form-input" value="${text}" placeholder="Amazonで表示する">
+        </div>
+        <div class="modal-field-group">
+          <label class="form-label">遷移先URL</label>
+          <input type="text" id="modalLinkUrl" class="form-input" value="${url}" placeholder="https://...">
+        </div>`;
     }
 
     body.innerHTML = html;
@@ -1356,6 +1374,9 @@
           alt: document.getElementById('modalAlt' + i).value.trim() 
         });
       }
+    } else if (modalActiveType === 'link') {
+      newBlock.text = document.getElementById('modalLinkText').value.trim();
+      newBlock.url  = document.getElementById('modalLinkUrl').value.trim();
     }
 
     if (modalActiveIdx >= 0) {
@@ -1432,6 +1453,8 @@
     .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin: 32px 0; }
     .inline-img { aspect-ratio: 1 / 1; background: var(--surface); overflow: hidden; }
     .inline-img img { width: 100%; height: 100%; object-fit: cover; }
+    .article-btn-wrap { margin: 32px 0; text-align: center; }
+    .article-btn { display: inline-flex; align-items: center; gap:10px; padding: 12px 32px; background: rgba(192,57,43,0.1); border: 1px solid var(--accent); color: var(--accent2); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
     @media (max-width: 600px) {
       .article-header, .article-visual, .article-body { padding-left: 20px; padding-right: 20px; }
       .article-title { font-size: 22px; }
@@ -1460,6 +1483,7 @@
       if (b.type === 'heading3') return '<h3>' + b.text + '</h3>';
       if (b.type === 'imageGrid2') return '<div class="img-grid-2">' + b.images.map(m => `<div class="inline-img"><img src="../${m.src}"></div>`).join('') + '</div>';
       if (b.type === 'imageGrid3') return '<div class="img-grid-3">' + b.images.map(m => `<div class="inline-img"><img src="../${m.src}"></div>`).join('') + '</div>';
+      if (b.type === 'link') return `<div class="article-btn-wrap"><a href="${b.url}" target="_blank" class="article-btn">${b.text}</a></div>`;
       return '';
     }).join('')}
   </div>
