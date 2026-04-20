@@ -306,6 +306,7 @@ nav a.active {
 .info-content {
   color: var(--text);
   line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 .info-content small {
