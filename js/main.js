@@ -81,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <tr>
           <td class="info-date">${item.date}</td>
           <td class="info-tag">
-            ${item.isNew ? `<span class="new-badge">NEW</span>` : ''}
-            <span>${item.category.toUpperCase()}</span>
+            <div class="info-tag-inner">
+              <span>${item.category.toUpperCase()}</span>
+              ${item.isNew ? `<span class="new-badge">NEW</span>` : ''}
+            </div>
           </td>
           <td class="info-content"><a href="worksdetail.html?id=${item.id}" style="color:var(--text);">${item.title}</a><span class="info-excerpt"><br><small>${item.excerpt}</small></span></td>
         </tr>
