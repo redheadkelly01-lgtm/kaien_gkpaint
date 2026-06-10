@@ -1065,3 +1065,30 @@ footer {
     margin: 0 20px;
   }
 }
+
+/* CONTACT NOTICE */
+.contact-notice {
+  background-color: rgba(192, 57, 43, 0.1);
+  border: 1px solid var(--accent);
+  padding: 20px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.contact-notice-title {
+  color: var(--accent2);
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-notice-body {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 0;
+}
