@@ -1,8 +1,7 @@
 # タスク
 
-- [x] `css/style.css` に警告表示ボックス（`.contact-notice`）のスタイルを追加する
-- [x] `index.html` の `#contactForm` 内の先頭に警告表示ボックスを追加する
-- [x] `index2.html` の `#contactForm` 内の先頭に警告表示ボックスを追加する
-- [x] `index3.html` の `#contactForm` 内の先頭に警告表示ボックスを追加する
-- [x] 手動検証：ブラウザで各HTMLを開き、CONTACTフォームのレイアウトと崩れがないか確認する
-- [x] 修正後に `git add` および `git commit` を実行する
+- [x] `index.html` の `#contactForm` 内의警告表示ボックスのテキストを更新する
+- [x] `index2.html` の `#contactForm` 内の警告表示ボックスのテキストを更新する
+- [x] `index3.html` の `#contactForm` 内の警告表示ボックスのテキストを更新する
+- [ ] 手動検証：ブラウザで各HTMLを開き、警告表示ボックスの文言が正しく表示され、表示崩れがないか確認する
+- [ ] 修正後に `git commit` を実行する
