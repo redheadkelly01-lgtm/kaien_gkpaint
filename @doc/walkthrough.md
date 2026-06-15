@@ -1,21 +1,22 @@
-# 問い合わせフォームへの最短着手時期アナウンスの追加完了報告
+# 問い合わせフォームのアナウンスメッセージ変更完了報告
 
-CONTACTページ（問い合わせフォーム）の入力欄のすぐ上に、最短着手時期（2026年11月〜）を伝える注意喚起のアナウンスを追加しました。
+問い合わせフォーム上部に表示されている最短着手時期のアナウンスメッセージを、最新のスケジュールを確認するように促すテキストに更新しました。
 
 ## 変更内容
 
-### 1. スタイルの追加
-- [style.css](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/css/style.css) の末尾に、注意喚起メッセージ用のスタイルクラス `.contact-notice`、`.contact-notice-title`、`.contact-notice-body` を追加しました。
-- デザインは、サイト全体のダーク系の落ち着いたテイストと調和しつつ、しっかりと目立たせるために、薄い赤の背景とアクセントカラーのボーダーを採用しています。
-
-### 2. HTMLの変更
-以下の3つのHTMLファイルの `#contactForm` 開始直後に、アナウンス用のHTML要素を挿入しました。
+### 1. HTMLの変更
+以下の3つのHTMLファイルにおいて、`#contactForm` 開始直後にある警告ブロック（`.contact-notice`）のテキストを変更しました。
 - [index.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/index.html)
 - [index2.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/index2.html)
 - [index3.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/index3.html)
+
+#### 変更内容詳細
+- タイトルから「⚠️」アイコンおよび「2026年11月〜」という具体的な日付表記を削除し、「現在の最短着手時期について」に変更しました。
+- 本文を、インフォメーション欄の「現在のスケジュールについて」を参照するように促す文章に更新しました。
 
 ---
 
 ## 検証結果
 
-- `git diff` により、意図しない変更がないこと、および各ファイルにアナウンス用HTMLとCSSスタイルが過不足なく適用されていることを確認しました。
+- `git diff` により、意図した変更だけが正しく適用されていることを確認しました。
+- `git commit` を実行し、変更内容をコミットしました。
