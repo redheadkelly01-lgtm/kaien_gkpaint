@@ -917,6 +917,48 @@ footer {
   color: var(--text);
 }
 
+.footer-copy a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-copy a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.footer-link-separator {
+  color: var(--text-dim);
+  margin: 0 8px;
+}
+
+/* TOKUSHOHO PAGE */
+.section-tokushoho {
+  padding: 120px 40px;
+  background: var(--bg);
+  min-height: calc(100vh - var(--nav-h) - 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tokushoho-img-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  padding: 12px;
+}
+
+.tokushoho-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media(max-width:768px) {
   .info-excerpt {
     display: none !important;

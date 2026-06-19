@@ -1,21 +1,31 @@
-# 基本料金価格訂正完了報告
+# 変更内容の要約（ウォークスルー）
 
-料金表に記載されている基本料金の価格を訂正しました。
+特定商取引法に基づく表記ページを追加し、サイト内の全主要ページのフッターにそのページへのリンクを追加しました。
 
-## 変更内容
+## 変更されたファイル
 
-### 1. HTMLの変更
-- [index.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/index.html) の基本料金表示を以下の通り更新しました。
+### 1. 新規作成
+- [tokushoho.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/tokushoho.html)
+  - 特定商取引法に基づく表記ページを新規作成しました。
+  - スパム・検索避け対策のため、ご提示いただいた画像 `images/SpecifiedCommercialTransaction.png` をベースに掲載する形式をとっています。
+  - レスポンシブ対応とし、大画面では画像が引き伸ばされすぎないよう `max-width: 800px` のコンテナに収めて中央寄せにしています。
 
-**基本料金:**
-- 訂正前: 60,000円 〜 80,000円
-- 訂正後: 80,000円 〜 100,000円
+### 2. スタイルシートの変更
+- [style.css](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/css/style.css)
+  - 新規ページ（`.section-tokushoho`）用のレイアウトスタイルを追加しました。
+  - 各ページのフッターに表示するリンク用のスタイル（`.footer-copy a`、`.footer-copy a:hover`、`.footer-link-separator`）を追加しました。
 
-※ なお、`index2.html` はすでに「80,000円 〜 100,000円」となっており、`index3.html` は画像（ryoukin.webp）での表示のため、変更対象は `index.html` のみとなります。
+### 3. フッターの変更
+以下のファイルのフッターに、「特定商取引法に基づく表記」へのテキストリンクを追加し、スタイル定義も行いました。
+- [index.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/index.html)
+- [works.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/works.html)
+- [gallery.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/gallery.html)
+- [worksdetail.html](file:///c:/Users/kmurata/Documents/order/order/gumplabot/gunplasaihan/kaien2/worksdetail.html)
 
 ---
 
 ## 検証結果
 
-- `git diff` により、意図した基本料金の変更だけが正しく適用されていることを確認しました。
-- `git commit` を実行し、変更内容をコミットしました。
+- 各ページのフッターに「特定商取引法に基づく表記」のテキストリンクが崩れなく表示され、ホバー時にアンダーラインと文字色が白に変わるエフェクトが効くことを確認しました。
+- リンクをクリックすることで、新しく追加した `tokushoho.html` に正常に遷移することを確認しました。
+- 新規ページにおいて、画像が適切に中央寄せで表示され、スマートフォン表示などの狭い画面幅でもはみ出すことなく自動的に縮小されることを確認しました。

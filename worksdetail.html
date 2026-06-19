@@ -355,6 +355,9 @@
     /* ─── FOOTER ──────────────────────────────────── */
     footer { padding:24px 40px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
     .footer-copy { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:.15em; color:var(--text-dim); }
+    .footer-copy a { color: var(--text-dim); transition: color .2s; text-decoration: none; }
+    .footer-copy a:hover { color: var(--text); text-decoration: underline; }
+    .footer-link-separator { color: var(--text-dim); margin: 0 8px; }
     .footer-top { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--text-muted); transition:color .2s; }
     .footer-top:hover { color:var(--text); }
 
@@ -452,7 +455,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-info">
-    <div class="footer-copy">© 2026 KAIEN GK PAINTING SERVICE</div>
+    <div class="footer-copy">© 2026 KAIEN GK PAINTING SERVICE<span class="footer-link-separator">|</span><a href="tokushoho.html">特定商取引法に基づく表記</a></div>
     <div class="footer-disclosure">Amazonのアソシエイトとして、［kaien GK PAINTING SERVICE］は適格販売により収入を得ています。</div>
   </div>
   <a href="#" class="footer-top">↑ PAGE TOP</a>
